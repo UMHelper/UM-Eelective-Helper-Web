@@ -34,7 +34,7 @@
   color: #3f51b5;
   font-family: "Noto Sans SC", sans-serif;
   font-size: 0.5cm;
-  line-height: 0cm;
+  line-height: 1em;
 }
 
 #judge_table {
@@ -47,8 +47,17 @@
 }
 
 #judge_table_head {
-    font-family: "Noto Sans SC", sans-serif;
+  font-family: "Noto Sans SC", sans-serif;
 }
+
+#result1,
+#result2,
+#result3,
+#result4 {
+  font-size: 0.5cm;
+  margin: 0.3cm auto 0 auto;
+}
+
 @media (min-width: 16cm) {
   #init_page_card {
     width: 15cm;
