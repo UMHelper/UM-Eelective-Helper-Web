@@ -51,8 +51,13 @@ function searcher() {
             for (i in resp_json.prof_info) {
               rank += resp_json.prof_info[i].result;
               document.getElementById("judge_table_body").innerHTML +=
-                '<tr><td class="mdl-data-table__cell--non-numeric">' +
+                '<tr><td class="mdl-data-table__cell--non-numeric"><a href="./instructor.html?New_code=' +
+                encodeURIComponent(resp_json.course_info.New_code) +
+                "&prof_name=" +
+                encodeURIComponent(resp_json.prof_info[i].name) +
+                '" target="_blank">' +
                 resp_json.prof_info[i].name +
+                "</a>" +
                 "</td><td>" +
                 String((resp_json.prof_info[i].result * 2).toFixed(2)) +
                 "/10</td></tr>";
