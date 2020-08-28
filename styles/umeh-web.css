@@ -1,0 +1,57 @@
+#init_page_card {
+  width: 90vw;
+  margin: 0 auto;
+}
+
+#title {
+  color: #3f51b5;
+  font-family: "Noto Sans SC", sans-serif;
+  font-size: 1cm;
+}
+
+#view {
+  text-align: center;
+}
+
+#umicon {
+  width: 5cm;
+  height: 5cm;
+  margin: 1cm auto;
+}
+
+#course_num_container {
+  width: 90%;
+  margin: 0 auto;
+  font-family: "Noto Sans SC", sans-serif;
+}
+
+#search {
+  font-family: "Noto Sans SC", sans-serif;
+}
+
+#course_name,
+#course_info {
+  color: #3f51b5;
+  font-family: "Noto Sans SC", sans-serif;
+  font-size: 0.5cm;
+  line-height: 0cm;
+}
+
+#judge_table {
+  margin: 0.7cm auto;
+  font-family: "Noto Sans SC", sans-serif;
+}
+
+#judge_table_body {
+  font-family: "Noto Sans SC", sans-serif;
+}
+
+#judge_table_head {
+    font-family: "Noto Sans SC", sans-serif;
+}
+@media (min-width: 16cm) {
+  #init_page_card {
+    width: 15cm;
+    margin: 0 auto;
+  }
+}

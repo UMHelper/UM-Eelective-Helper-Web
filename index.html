@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles/material.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="./styles/umeh-web.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="view">
+        <h1 id="title">澳大选咩课 web</h1>
+        <h2 id="course_name"></h2>
+        <h2 id="course_info"></h2>
+        <div class="mdl-card mdl-shadow--2dp" id="init_page_card">
+            <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" id="judge_table" hidden>
+                <thead>
+                    <tr>
+                        <td class="mdl-data-table__cell--non-numeric">总体评分：</td>
+                        <td id="course_rank"></td>
+                    </tr>
+                    <tr id="judge_table_head">
+                        <th class="mdl-data-table__cell--non-numeric">教授名称</th>
+                        <th>评分</th>
+                    </tr>
+                </thead>
+                <tbody id="judge_table_body">
+                </tbody>
+            </table>
+            <img src="./images/badge.png" alt="UM icon" id="umicon">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="course_num_container">
+                <input class="mdl-textfield__input" type="text" id="course_num">
+                <label class="mdl-textfield__label" for="course_num">输入课号，如ACCT1000</label>
+            </div>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect"
+                id="search">
+                查询
+            </button>
+        </div>
+    </div>
+    <script src="./scripts/umeh.js"></script>
+    <script src="./scripts/material.min.js"></script>
+</body>
+
+</html>
