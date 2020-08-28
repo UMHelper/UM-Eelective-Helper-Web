@@ -2,7 +2,7 @@
 A web-based course review app for University of Macau.
 
 # Original app
-"选咩课" mini program on WeChat platform.
+"选咩课" mini program on WeChat platform, maintained by [BoxMars](https://github.com/BoxMars).
 
 # Thanks
 Using [Material Design Lite](https://getmdl.io/) for UI development.
