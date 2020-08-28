@@ -1,4 +1,4 @@
-var API_server = "http://127.0.0.1:8081";
+var API_server = "https://mpserver.umeh.top";
 
 var search_button = document.getElementById("search");
 
