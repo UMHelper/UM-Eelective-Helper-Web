@@ -1,4 +1,4 @@
-var API_server = "http://mpserver.umeh.top";
+var API_server = "https://mpserver.umeh.top";
 
 function modify_title(course_json_obj) {
   document.getElementById("title").innerHTML =
