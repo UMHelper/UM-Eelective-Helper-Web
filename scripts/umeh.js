@@ -1,4 +1,4 @@
-var API_server = "http://mpserver.umeh.top";
+var API_server = "https://mpserver.umeh.top";
 
 var search_button = document.getElementById("search");
 
