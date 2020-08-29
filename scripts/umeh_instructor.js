@@ -86,16 +86,18 @@ try {
   var req = new XMLHttpRequest();
 
   req.onreadystatechange = function () {
-    var resp_text = req.responseText;
-    var resp_json = JSON.parse(resp_text);
-    try {
-      if (resp_json.course_info.New_code === undefined) {
-        throw "New_code未定義。";
+    if (req.readyState === XMLHttpRequest.DONE) {
+      var resp_text = req.responseText;
+      var resp_json = JSON.parse(resp_text);
+      try {
+        if (resp_json.course_info.New_code === undefined) {
+          throw "New_code未定義。";
+        }
+        modify_title(resp_json);
+        comment_gen(resp_json);
+      } catch (e) {
+        alert(`後臺出現異常，錯誤代號：${e}，請重試。`);
       }
-      modify_title(resp_json);
-      comment_gen(resp_json);
-    } catch (e) {
-      alert(`後臺出現異常，錯誤代號：${e}，請重試。`);
     }
   };
 
