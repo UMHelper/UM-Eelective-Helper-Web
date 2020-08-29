@@ -15,122 +15,98 @@
 </head>
 
 <body>
-    <h1>教師名稱</h1>
+    <h1 id="name_of_prof"></h1>
     <div style="margin:0 auto;" id="viewport"> </div>
 
     <!--自定義CSS-->
     <style>
         body {
             width: 90vw;
-            margin: 0 auto;
+            margin: 0 auto 1cm auto;
+            text-align: center;
+        }
+
+        h1 {
+            color: #3f51b5;
+            font-family: "Noto Sans SC", sans-serif;
+            font-size: 1cm;
+        }
+
+        h2 {
+            color: #3f51b5;
+            font-family: "Noto Sans SC", sans-serif;
+            font-size: 0.5cm;
+            line-height: 1em;
         }
 
         @media (min-width: 16cm) {
             body {
                 width: 15cm;
-                margin: 0 auto;
+                margin: 0 auto 1cm auto;
+                text-align: center;
             }
         }
     </style>
 
-    <!--MDL js库-->
-    <script src="./scripts/material.min.js"></script>
-
     <script>
         var API_server = "https://mpserver.umeh.top";
         function add_course(course_json_obj, course_number) {
+            document.getElementById("name_of_prof").innerHTML = url_params.get("prof_name");
             document.getElementById("viewport").innerHTML += `
-            <h1 id="title${String(course_number)}">加載中</h1>
-            <h2 id="course_name${String(course_number)}">
-            <div class="mdl-spinner mdl-js-spinner is-active"></div>
+            <h2><a target="_blank" href="./instructor.html?New_code=${encodeURIComponent(course_json_obj.course_info.New_code)}&prof_name=${encodeURIComponent(course_json_obj.prof_info.name)}">${course_json_obj.course_info.New_code}</a></h2>
+            <h2>
+            ${course_json_obj.course_info.courseTitleEng}
             </h2>
-            <h2 id="course_info${String(course_number)}"></h2>
-            <div class="mdl-card mdl-shadow--2dp" id="general_info${String(course_number)}">
-            <div class="mdl-card__title" id="instructor_name_container${String(course_number)}">
+            <h2>
+                學院：${course_json_obj.course_info.Offering_Unit}&nbsp;&nbsp;&nbsp;專業：${course_json_obj.course_info.Offering_Department}
+            </h2>
+            <div class="mdl-card mdl-shadow--2dp" style="margin:0 auto;">
+            <div class="mdl-card__title">
             </div>
             <div class="mdl-card__supporting-text">
-                <div id="progress_total${String(course_number)}" class="mdl-progress mdl-js-progress"></div>
-                <p id="result1${String(course_number)}">總評：x.xx/10</p>
-                <div id="progress_relax${String(course_number)}" class="mdl-progress mdl-js-progress"></div>
-                <p id="result2${String(course_number)}">輕鬆程度：x.xx/10</p>
-                <div id="progress_score${String(course_number)}" class="mdl-progress mdl-js-progress"></div>
-                <p id="result3${String(course_number)}">給分情況：x.xx/10</p>
-                <div id="progress_harvest${String(course_number)}" class="mdl-progress mdl-js-progress"></div>
-                <p id="result4${String(course_number)}">學習收穫：x.xx/10</p>
+                <div class="mdl-slider__container">
+  <input disabled class="mdl-slider mdl-js-slider is-upgraded" type="range" min="0" max="100" value="${10 * (course_json_obj.prof_info.result * 2)}" tabindex="0" data-upgraded=",MaterialSlider"><div class="mdl-slider__background-flex">
+  <div class="mdl-slider__background-lower" style="flex: ${0.1 * (course_json_obj.prof_info.result * 2)} 1 0%;">
+  </div>
+  <div class="mdl-slider__background-upper" style="flex: ${1 - (0.1 * (course_json_obj.prof_info.result * 2))} 1 0%;"></div>
+  </div>
+</div>
+                <p>總評：${(
+                    course_json_obj.prof_info.result * 2
+                ).toFixed(2)}/10</p>
+                <div class="mdl-slider__container">
+  <input disabled class="mdl-slider mdl-js-slider is-upgraded" type="range" min="0" max="100" value="${10 * (course_json_obj.prof_info.hard * 2)}" tabindex="0" data-upgraded=",MaterialSlider"><div class="mdl-slider__background-flex">
+  <div class="mdl-slider__background-lower" style="flex: ${0.1 * (course_json_obj.prof_info.hard * 2)} 1 0%;">
+  </div>
+  <div class="mdl-slider__background-upper" style="flex: ${1 - (0.1 * (course_json_obj.prof_info.hard * 2))} 1 0%;"></div>
+  </div>
+</div>
+                <p>輕鬆程度：${(
+                    course_json_obj.prof_info.hard * 2
+                ).toFixed(2)}/10</p>
+                <div class="mdl-slider__container">
+  <input disabled class="mdl-slider mdl-js-slider is-upgraded" type="range" min="0" max="100" value="${10 * (course_json_obj.prof_info.grade * 2)}" tabindex="0" data-upgraded=",MaterialSlider"><div class="mdl-slider__background-flex">
+  <div class="mdl-slider__background-lower" style="flex: ${0.1 * (course_json_obj.prof_info.grade * 2)} 1 0%;">
+  </div>
+  <div class="mdl-slider__background-upper" style="flex: ${1 - (0.1 * (course_json_obj.prof_info.grade * 2))} 1 0%;"></div>
+  </div>
+</div>
+                <p>給分情況：${(
+                    course_json_obj.prof_info.grade * 2
+                ).toFixed(2)}/10</p>
+                <div class="mdl-slider__container">
+  <input disabled class="mdl-slider mdl-js-slider is-upgraded" type="range" min="0" max="100" value="${10 * (course_json_obj.prof_info.reward * 2)}" tabindex="0" data-upgraded=",MaterialSlider"><div class="mdl-slider__background-flex">
+  <div class="mdl-slider__background-lower" style="flex: ${0.1 * (course_json_obj.prof_info.reward * 2)} 1 0%;">
+  </div>
+  <div class="mdl-slider__background-upper" style="flex: ${1 - (0.1 * (course_json_obj.prof_info.reward * 2))} 1 0%;"></div>
+  </div>
+</div>
+                <p>學習收穫：${(
+                    course_json_obj.prof_info.reward * 2
+                ).toFixed(2)}/10</p>
             </div>
             </div>
             `
-            document.getElementById("title" + String(course_number)).innerHTML =
-                `<a href="./instructor.html?New_code=${encodeURIComponent(course_json_obj.course_info.New_code)}&prof_name=${encodeURIComponent(course_json_obj.prof_info.name)}">${course_json_obj.course_info.New_code}</a>`;
-            document.getElementById("course_name" + String(course_number)).innerHTML =
-                course_json_obj.course_info.courseTitleEng;
-            document.getElementById("course_info" + String(course_number)).innerHTML =
-                `學院：${course_json_obj.course_info.Offering_Unit}` +
-                `&nbsp;&nbsp;&nbsp;專業：${course_json_obj.course_info.Offering_Department}`;
-            document
-                .getElementById("progress_total" + String(course_number))
-                .addEventListener("mdl-componentupgraded", function () {
-                    this.MaterialProgress.setProgress(
-                        10 * (course_json_obj.prof_info.result * 2)
-                    );
-                });
-            try {
-                document
-                    .getElementById("progress_total" + String(course_number))
-                    .MaterialProgress.setProgress(
-                        10 * (course_json_obj.prof_info.result * 2)
-                    );
-            } catch (e) { }
-            document.getElementById("result1" + String(course_number)).innerHTML = `總評：${(
-                course_json_obj.prof_info.result * 2
-            ).toFixed(2)}/10`;
-            document
-                .getElementById("progress_relax" + String(course_number))
-                .addEventListener("mdl-componentupgraded", function () {
-                    this.MaterialProgress.setProgress(
-                        10 * (course_json_obj.prof_info.hard * 2)
-                    );
-                });
-            try {
-                document
-                    .getElementById("progress_relax" + String(course_number))
-                    .MaterialProgress.setProgress(10 * (course_json_obj.prof_info.hard * 2));
-            } catch (e) { }
-            document.getElementById("result2" + String(course_number)).innerHTML = `輕鬆程度：${(
-                course_json_obj.prof_info.hard * 2
-            ).toFixed(2)}/10`;
-            document
-                .getElementById("progress_score" + String(course_number))
-                .addEventListener("mdl-componentupgraded", function () {
-                    this.MaterialProgress.setProgress(
-                        10 * (course_json_obj.prof_info.grade * 2)
-                    );
-                });
-            try {
-                document
-                    .getElementById("progress_score" + String(course_number))
-                    .MaterialProgress.setProgress(10 * (course_json_obj.prof_info.grade * 2));
-            } catch (e) { }
-            document.getElementById("result3" + String(course_number)).innerHTML = `給分情況：${(
-                course_json_obj.prof_info.grade * 2
-            ).toFixed(2)}/10`;
-            document
-                .getElementById("progress_harvest" + String(course_number))
-                .addEventListener("mdl-componentupgraded", function () {
-                    this.MaterialProgress.setProgress(
-                        10 * (course_json_obj.prof_info.reward * 2)
-                    );
-                });
-            try {
-                document
-                    .getElementById("progress_harvest" + String(course_number))
-                    .MaterialProgress.setProgress(
-                        10 * (course_json_obj.prof_info.reward * 2)
-                    );
-            } catch (e) { }
-            document.getElementById("result4" + String(course_number)).innerHTML = `學習收穫：${(
-                course_json_obj.prof_info.reward * 2
-            ).toFixed(2)}/10`;
         }
 
         try {
@@ -141,24 +117,25 @@
                     var resp_text = req.responseText;
                     try {
                         var resp_json = JSON.parse(resp_text);
+
+                        try {
+                            if (resp_json.prof_info.name === undefined) {
+                                throw "name未定義。";
+                            }
+
+                            for (var k in resp_json.course) {
+                                add_course(resp_json.course[k], k);
+                            }
+
+                            if (resp_json.course.length === 0) {
+                                document.querySelector("body").innerHTML = "<h1 style=\"margin 0 auto;\">該講師還沒有課程信息！</h1>"
+                            }
+                        } catch (e) {
+                            alert(`後臺出現異常，錯誤代號：${e}，請重試。`);
+                        }
                     } catch (e) {
                         alert("該講師未找到！錯誤代碼：" + String(e));
-                        document.querySelector("body").innerHTML = "<h1 style=\"margin 0 auto;\">講師未找到！</h1>"
-                    }
-                    try {
-                        if (resp_json.prof_info.name === undefined) {
-                            throw "name未定義。";
-                        }
-
-                        for (var k in resp_json.course) {
-                            add_course(resp_json.course[k], k);
-                        }
-
-                        if (resp_json.course.length === 0) {
-                            document.querySelector("body").innerHTML = "<h1 style=\"margin 0 auto;\">該講師還沒有課程信息！</h1>"
-                        }
-                    } catch (e) {
-                        alert(`後臺出現異常，錯誤代號：${e}，請重試。`);
+                        document.querySelector("body").innerHTML = "<h1 style=\"margin 0 auto; text-align: center;\">講師未找到！</h1>"
                     }
                 }
             };
@@ -175,7 +152,13 @@
         } catch (e) {
             alert(`網路鏈結異常，錯誤代號：${e}，請重試。`);
         }
+
     </script>
+
+    <!--MDL js库-->
+    <script src="./scripts/material.min.js"></script>
+
+
 </body>
 
 </html>

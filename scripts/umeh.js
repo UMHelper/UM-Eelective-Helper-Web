@@ -104,3 +104,7 @@ search_button.onclick = searcher;
 document
   .getElementById("course_num")
   .setAttribute("onkeypress", "if(event.keyCode==13) {searcher()}");
+
+document.getElementById("search_instructor").onclick=function(){
+  document.location.href="./prof_info.html?prof_name="+encodeURIComponent(document.getElementById("ins_name").value);
+}
