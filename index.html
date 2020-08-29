@@ -5,10 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>澳大選咩課</title>
+
+    <!--Material Design Lite CSS库-->
     <link rel="stylesheet" href="./styles/material.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <!--自定义CSS库-->
     <link rel="stylesheet" href="./styles/umeh-web.css">
+
+    <!--思源黑体-->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC&display=swap" rel="stylesheet">
+
+    <!--Apple icon，添加到主屏幕上时有图标-->
     <!-- third-generation iPad with high-resolution Retina display: -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="./images/badge.png">
     <!-- iPhone with high-resolution Retina display: -->
@@ -17,14 +25,22 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="./images/badge.png">
     <!-- non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
     <link rel="apple-touch-icon-precomposed" href="./images/badge.png">
+
 </head>
 
 <body>
+    <!--主视图div-->
     <div id="view">
+
+        <!--卡片上部区域，呈现标题、课程基本信息-->
         <h1 id="title">澳大選咩課</h1>
         <h2 id="course_name"></h2>
         <h2 id="course_info"></h2>
+
+        <!--卡片区域，呈现搜索、课程教授详细信息-->
         <div class="mdl-card mdl-shadow--2dp" id="init_page_card">
+
+            <!--教授列表及评分-->
             <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" id="judge_table" hidden>
                 <thead>
                     <tr>
@@ -39,7 +55,11 @@
                 <tbody id="judge_table_body">
                 </tbody>
             </table>
+
+            <!--UM校徽-->
             <img src="./images/badge.png" alt="UM icon" id="umicon">
+
+            <!--搜索框和按钮-->
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="course_num_container">
                 <input class="mdl-textfield__input" type="text" id="course_num">
                 <label class="mdl-textfield__label" for="course_num">輸入課號，如ACCT1000</label>
@@ -49,19 +69,22 @@
                 查詢
             </button>
         </div>
-        <p style="margin: 0.2cm auto 0 auto; font-size:0.25cm; color: gray;">Web界面由<a
-                href="https://github.com/Admittedly-Goat" style="color: gray;">Admittedly_Goat</a>開發，基於GPLv3協定在<a
-                href="https://github.com/Admittedly-Goat/UM-Eelective-Helper-Web" style="color: gray;">Github</a>開源。
-            感謝<a href="https://github.com/BoxMars" style="color: gray;">BoxMars</a>維護後臺與微信小程序，Owl
-            Studio之前的維護開發工作，以及Google的Material Design Lite庫的幫助。</p>
+
+        <!--免责声明以及credits信息-->
+        <p style="margin: 0.2cm auto 0 auto; font-size:0.25cm; color: gray;">Web界面由
+            <a href="https://github.com/Admittedly-Goat" style="color: gray;">Admittedly_Goat</a>開發，基於GPLv3協定在
+            <a href="https://github.com/Admittedly-Goat/UM-Eelective-Helper-Web" style="color: gray;">Github</a>開源。感謝
+            <a href="https://github.com/BoxMars"
+                style="color: gray;">BoxMars</a>維護後臺與微信小程序，OwlStudio之前的維護開發工作，以及Google的Material Design Lite庫的幫助。</p>
         <p style="margin: 0.1cm auto 0 auto; font-size:0.25cm; color: gray;">This program is distributed in the hope
-            that it will be useful,
-            but WITHOUT ANY WARRANTY; without even the implied warranty of
-            MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-            GNU General Public License for more details.</p>
+            that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+            FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</p>
     </div>
 
+    <!--MDL js库-->
     <script src="./scripts/material.min.js"></script>
+
+    <!--自定义js，放在material库下面，不然可能会有些许bug-->
     <script src="./scripts/umeh.js"></script>
 </body>
 
