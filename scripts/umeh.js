@@ -4,7 +4,7 @@ var search_button = document.getElementById("search");
 
 function searcher() {
   search_button.setAttribute("disabled", "");
-  search_button.innerHTML = "查询中...";
+  search_button.innerHTML = "查詢中...";
 
   var request_search = new XMLHttpRequest();
 
@@ -16,7 +16,7 @@ function searcher() {
         try {
           var resp_json = JSON.parse(resp_text);
           if (resp_json.course_info.New_code === undefined) {
-            throw "New_code未定义。";
+            throw "New_code未定義。";
           }
 
           document.getElementById("title").innerHTML =
@@ -26,19 +26,19 @@ function searcher() {
             resp_json.course_info.courseTitleEng;
 
           document.getElementById("course_info").innerHTML =
-            "学院：" +
+            "學院：" +
             resp_json.course_info.Offering_Unit +
-            "&nbsp;&nbsp;&nbsp;专业：" +
+            "&nbsp;&nbsp;&nbsp;專業：" +
             resp_json.course_info.Offering_Department;
 
           document.getElementById("judge_table").removeAttribute("hidden");
           document.getElementById("umicon").setAttribute("hidden", "");
-          search_button.innerHTML = "查询";
+          search_button.innerHTML = "查詢";
           search_button.removeAttribute("disabled");
           document.getElementById("course_num").removeAttribute("disabled");
 
           if (resp_json.prof_info.length === 0) {
-            document.getElementById("course_rank").innerHTML = "暂时没有评分";
+            document.getElementById("course_rank").innerHTML = "暫時沒有評分";
             document
               .getElementById("judge_table_body")
               .setAttribute("hidden", "");
@@ -75,9 +75,9 @@ function searcher() {
               .removeAttribute("hidden");
           }
         } catch (e) {
-          alert("输入的课号无效，请重试。\r错误代码：" + String(e));
+          alert("輸入的課號無效，請重試。\r錯誤代號：" + String(e));
 
-          search_button.innerHTML = "查询";
+          search_button.innerHTML = "查詢";
           search_button.removeAttribute("disabled");
           document.getElementById("course_num").removeAttribute("disabled");
         }
@@ -96,7 +96,7 @@ function searcher() {
 
     request_search.send();
   } catch (e) {
-    alert("网络请求出现问题，请重试。\r错误代码：" + String(e));
+    alert("網路鏈結異常，錯誤代號：" + String(e));
   }
 }
 

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>澳大选咩课 评价提交</title>
+    <title>澳大選咩課 評價提交</title>
     <link rel="stylesheet" href="./styles/material.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC&display=swap" rel="stylesheet" />
@@ -29,26 +29,26 @@
     <div id="view" class="mdl-shadow--2dp">
         <h1 id="reminder" style="font-size:0.5cm;"></h1>
         <form action="https://mpserver.umeh.top/submit_comment/" method="POST">
-            <legend style="margin:0.5cm auto 0 auto;">课程编号</legend>
+            <legend style="margin:0.5cm auto 0 auto;">課程編號</legend>
             <input class="mdl-textfield__input" type="text" name="New_code" value="" id="course_number"
                 style="text-align: center;">
-            <legend style="margin:0.5cm auto 0 auto;">讲师名称</legend>
+            <legend style="margin:0.5cm auto 0 auto;">講師名稱</legend>
             <input class="mdl-textfield__input" type="text" name="prof_name" value="" id="prof_name"
                 style="text-align: center;">
-            <legend style="margin:0.5cm auto 0 auto;">签到情况</legend>
+            <legend style="margin:0.5cm auto 0 auto;">簽到情況</legend>
             <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="attend_none">
                 <input type="radio" id="attend_none" class="mdl-radio__button" name="attendance" value="5">
                 <span class="mdl-radio__label">不需要</span>
             </label>
             <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="attend_occasion">
                 <input type="radio" id="attend_occasion" class="mdl-radio__button" name="attendance" value="2.5">
-                <span class="mdl-radio__label">有时需要</span>
+                <span class="mdl-radio__label">有時需要</span>
             </label>
             <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="attend_all">
                 <input type="radio" id="attend_all" class="mdl-radio__button" name="attendance" value="1">
-                <span class="mdl-radio__label">总是需要</span>
+                <span class="mdl-radio__label">總是需要</span>
             </label>
-            <legend style="margin:0.5cm auto 0 auto;">做pre情况</legend>
+            <legend style="margin:0.5cm auto 0 auto;">做pre情況</legend>
             <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="pre_none">
                 <input type="radio" id="pre_none" class="mdl-radio__button" name="pre" value="0">
                 <span class="mdl-radio__label">不需要</span>
@@ -59,24 +59,24 @@
             </label>
             <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="pre_all">
                 <input type="radio" id="pre_all" class="mdl-radio__button" name="pre" value="1">
-                <span class="mdl-radio__label">多次/小组展示</span>
+                <span class="mdl-radio__label">多次/小組展示</span>
             </label>
-            <legend style="margin:0.5cm auto 0 auto;">给分情况（左侧代表不好，右侧代表好）</legend>
+            <legend style="margin:0.5cm auto 0 auto;">給分情況（左側代表不好，右側代表好）</legend>
             <input class="mdl-slider mdl-js-slider" type="range" min="0" max="5" value="2" tabindex="0" name="grade">
-            <legend style="margin:0.5cm auto 0 auto;">辛苦程度（左侧代表辛苦，右侧代表轻松）</legend>
+            <legend style="margin:0.5cm auto 0 auto;">辛苦程度（左側代表辛苦，右側代表輕鬆）</legend>
             <input class="mdl-slider mdl-js-slider" type="range" min="0" max="5" value="2" tabindex="0" name="hard">
-            <legend style="margin:0.5cm auto 0 auto;">收获程度（左侧代表收获少，右侧代表收获多）</legend>
+            <legend style="margin:0.5cm auto 0 auto;">收穫程度（左側代表收穫少，右側代表收穫多）</legend>
             <input class="mdl-slider mdl-js-slider" type="range" min="0" max="5" value="2" tabindex="0" name="reward">
-            <legend style="margin:0.5cm auto 0 auto;">功课多少（左侧代表功课多，右侧代表功课少）</legend>
+            <legend style="margin:0.5cm auto 0 auto;">功課多少（左側代表功課多，右側代表功課少）</legend>
             <input class="mdl-slider mdl-js-slider" type="range" min="0" max="5" value="2" tabindex="0"
                 name="assignment">
-            <legend style="margin:0.5cm auto 0 auto;">总评（左侧代表不推荐，右侧代表推荐）</legend>
+            <legend style="margin:0.5cm auto 0 auto;">總評（左側代表不推薦，右側代表推薦）</legend>
             <input class="mdl-slider mdl-js-slider" type="range" min="0" max="5" value="2" tabindex="0"
                 name="recommend">
-            <legend style="margin:0.5cm auto 0 auto;">您有什么想评论的吗？</legend>
+            <legend style="margin:0.5cm auto 0 auto;">閣下還有想説的嗎？</legend>
             <div class="mdl-textfield mdl-js-textfield">
                 <textarea class="mdl-textfield__input" type="text" rows="3" name="content" id="sdfghb"></textarea>
-                <label class="mdl-textfield__label" for="sdfghb">请在此处输入...</label>
+                <label class="mdl-textfield__label" for="sdfghb">請在此暢所欲言...</label>
             </div>
             <p></p>
             <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
@@ -88,7 +88,7 @@
     <script src="./scripts/material.min.js"></script>
     <script>
         var url_params = new URLSearchParams(window.location.search);
-        document.getElementById("reminder").innerHTML = `正在为编号为 ${url_params.get("New_code")} 的课程的讲师 ${url_params.get("prof_name")} 评分。`;
+        document.getElementById("reminder").innerHTML = `正在為編號爲 ${url_params.get("New_code")} 的課程的講師 ${url_params.get("prof_name")} 評價。`;
         document.getElementById("course_number").setAttribute("value", url_params.get("New_code"));
         document.getElementById("prof_name").setAttribute("value", url_params.get("prof_name"));
     </script>

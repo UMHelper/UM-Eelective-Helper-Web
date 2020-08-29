@@ -6,8 +6,8 @@ function modify_title(course_json_obj) {
   document.getElementById("course_name").innerHTML =
     course_json_obj.course_info.courseTitleEng;
   document.getElementById("course_info").innerHTML =
-    `学院：${course_json_obj.course_info.Offering_Unit}` +
-    `&nbsp;&nbsp;&nbsp;专业：${course_json_obj.course_info.Offering_Department}`;
+    `學院：${course_json_obj.course_info.Offering_Unit}` +
+    `&nbsp;&nbsp;&nbsp;專業：${course_json_obj.course_info.Offering_Department}`;
   document.getElementById("instructor_name").innerHTML =
     course_json_obj.prof_info.name;
   document
@@ -24,7 +24,7 @@ function modify_title(course_json_obj) {
         10 * (course_json_obj.prof_info.result * 2)
       );
   } catch (e) {}
-  document.getElementById("result1").innerHTML = `总评：${(
+  document.getElementById("result1").innerHTML = `總評：${(
     course_json_obj.prof_info.result * 2
   ).toFixed(2)}/10`;
   document
@@ -39,7 +39,7 @@ function modify_title(course_json_obj) {
       .getElementById("progress_relax")
       .MaterialProgress.setProgress(10 * (course_json_obj.prof_info.hard * 2));
   } catch (e) {}
-  document.getElementById("result2").innerHTML = `轻松程度：${(
+  document.getElementById("result2").innerHTML = `輕鬆程度：${(
     course_json_obj.prof_info.hard * 2
   ).toFixed(2)}/10`;
   document
@@ -54,7 +54,7 @@ function modify_title(course_json_obj) {
       .getElementById("progress_score")
       .MaterialProgress.setProgress(10 * (course_json_obj.prof_info.grade * 2));
   } catch (e) {}
-  document.getElementById("result3").innerHTML = `给分情况：${(
+  document.getElementById("result3").innerHTML = `給分情況：${(
     course_json_obj.prof_info.grade * 2
   ).toFixed(2)}/10`;
   document
@@ -71,7 +71,7 @@ function modify_title(course_json_obj) {
         10 * (course_json_obj.prof_info.reward * 2)
       );
   } catch (e) {}
-  document.getElementById("result4").innerHTML = `学习收获：${(
+  document.getElementById("result4").innerHTML = `學習收穫：${(
     course_json_obj.prof_info.reward * 2
   ).toFixed(2)}/10`;
 }
@@ -90,12 +90,12 @@ try {
     var resp_json = JSON.parse(resp_text);
     try {
       if (resp_json.course_info.New_code === undefined) {
-        throw "New_code未定义。";
+        throw "New_code未定義。";
       }
       modify_title(resp_json);
       comment_gen(resp_json);
     } catch (e) {
-      alert(`后台内部异常，错误代码：${e}，请重试。`);
+      alert(`後臺出現異常，錯誤代號：${e}，請重試。`);
     }
   };
 
@@ -114,5 +114,5 @@ try {
   );
   req.send();
 } catch (e) {
-  alert(`网络连接异常，错误代码:${e}，请重试。`);
+  alert(`網路鏈結異常，錯誤代號：${e}，請重試。`);
 }
