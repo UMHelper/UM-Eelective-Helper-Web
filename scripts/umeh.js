@@ -88,7 +88,7 @@ function searcher() {
       "GET",
       API_server +
         "/course_info/?New_code=" +
-        document.getElementById("course_num").value
+        document.getElementById("course_num").value.toUpperCase()
     );
 
     document.getElementById("course_num").value = "";
@@ -106,5 +106,5 @@ document
   .setAttribute("onkeypress", "if(event.keyCode==13) {searcher()}");
 
 document.getElementById("search_instructor").onclick=function(){
-  document.location.href="./prof_info.html?prof_name="+encodeURIComponent(document.getElementById("ins_name").value);
+  document.location.href="./prof_info.html?prof_name="+encodeURIComponent(document.getElementById("ins_name").value.toUpperCase());
 }
