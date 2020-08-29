@@ -2,7 +2,7 @@ var API_server = "https://mpserver.umeh.top";
 
 function modify_title(course_json_obj) {
   document.getElementById("title").innerHTML =
-    `<a href="./instructor.html?New_code=${encodeURIComponent(course_json_obj.course_info.New_code)}&prof_name=${encodeURIComponent(course_json_obj.prof_info.name)}>${course_json_obj.course_info.New_code}</a>`;
+    `<a href="./instructor.html?New_code=${encodeURIComponent(course_json_obj.course_info.New_code)}&prof_name=${encodeURIComponent(course_json_obj.prof_info.name)}">${course_json_obj.course_info.New_code}</a>`;
   document.getElementById("course_name").innerHTML =
     course_json_obj.course_info.courseTitleEng;
   document.getElementById("course_info").innerHTML =
