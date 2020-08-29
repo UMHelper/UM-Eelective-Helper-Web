@@ -93,9 +93,6 @@ try {
   };
 
   var url_params = new URLSearchParams(window.location.search);
-  document
-    .getElementById("make_comment")
-    .setAttribute("href", "./comment.html" + window.location.search);
 
   req.open(
     "GET",
