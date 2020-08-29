@@ -151,7 +151,7 @@
                         }
 
                         for (var k in resp_json.course) {
-                            modify_title(resp_json.course[k], k);
+                            add_course(resp_json.course[k], k);
                         }
 
                         if (resp_json.course.length === 0) {
