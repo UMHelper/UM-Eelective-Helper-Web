@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="./styles/resp_skeleton.css" rel="stylesheet" type="text/css">
+    <link href="./styles/index.html.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
     <!--
         Noto Sans TC
@@ -23,16 +24,16 @@
         <!--
             侧边栏的菜单项示例如下
         -->
-        <div class="side_box_entry" style="background-color: #F06292;" onclick="window.open('https:\/\/www.google.com');">
+        <div class="side_box_entry" style="background-color: #F06292;"
+            onclick="window.open('https:\/\/web.umeh.top/');">
 
             <!--
                 第一项菜单
             -->
 
-            <img class="side_box_icon"
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Firefox_logo%2C_2019.svg/800px-Firefox_logo%2C_2019.svg.png">
+            <img class="side_box_icon" src="./images/badge.png">
 
-            <span class="side_box_text" style="color:#FFFFFF;">测试用文字</span>
+            <span class="side_box_text" style="color:#FFFFFF;">澳大選咩課</span>
 
         </div>
 
@@ -40,6 +41,9 @@
             <!--
                 第二项菜单
             -->
+            <img class="side_box_icon" src="./images/black_pixel.png">
+
+            <span class="side_box_text" style="color:#FFFFFF;">更多功能盡情期待</span>
         </div>
 
         <div class="side_box_entry" style="background-color: #29B6F6;">
@@ -60,6 +64,47 @@
         <!--
         主界面在这里书写
         -->
+
+        <div class="main_box_header"></div>
+
+        <div id="umeh_main_interactive">
+            <!--
+                課程主信息
+            -->
+            <h1 class="course_id" id="course_id">ACCT1000</h1>
+            <h2 class="course_info_h2" id="course_name">某某課程</h2>
+            <h2 class="course_info_h2" id="course_info">某某學院某某專業</h2>
+
+            <label for="course_number_input" class="input_label">請輸入課程代號，如ACCT1000：</label>
+            <input type="text" class="input_info" id="course_number_input">
+            <button class="btn_query" id="query_by_id">查詢課程信息</button>
+
+            <p class="input_label">或者</p>
+
+            <label for="instructor_name_input" class="input_label">請輸入講師名稱，英文名，姓名之間只有一個空格：</label>
+            <input type="text" class="input_info" id="instructor_name_input">
+            <button class="btn_query" id="query_by_name">查詢講師信息</button>
+
+            <!--
+                課程教授評分表
+            -->
+            <table id="judge_table" class="judge_table">
+                <thead>
+                    <tr>
+                        <td>總體評分：</td>
+                        <td id="course_rank">23333</td>
+                    </tr>
+                    <tr id="judge_table_head">
+                        <th class="mdl-data-table__cell--non-numeric">教授名稱</th>
+                        <th>評分</th>
+                    </tr>
+                </thead>
+                <tbody id="judge_table_body">
+                </tbody>
+            </table>
+        </div>
+
+
     </div>
 
 </body>
