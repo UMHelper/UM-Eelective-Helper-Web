@@ -28,7 +28,7 @@
 <body>
     <div id="view" class="mdl-shadow--2dp">
         <h1 id="reminder" style="font-size:0.5cm;"></h1>
-        <form action="https://mpserver.umeh.top/submit_comment/" method="POST">
+        <form action="https://mpserver.umeh.top/submit_comment/" method="POST" target="nm_iframe" id="sub_form">
             <legend style="margin:0.5cm auto 0 auto;">課程編號</legend>
             <input class="mdl-textfield__input" type="text" name="New_code" value="" id="course_number"
                 style="text-align: center;">
@@ -80,9 +80,10 @@
             </div>
             <p></p>
             <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-                style="margin:0 auto 1cm auto;">
+                style="margin:0 auto 1cm auto;" id="submit_btn">
                 提交！
             </button>
+            <iframe id="id_iframe" name="nm_iframe" style="display:none;"></iframe>
         </form>
     </div>
     <script src="./scripts/material.min.js"></script>
@@ -91,6 +92,11 @@
         document.getElementById("reminder").innerHTML = `正在為編號爲 ${url_params.get("New_code")} 的課程的講師 ${url_params.get("prof_name")} 評價。`;
         document.getElementById("course_number").setAttribute("value", url_params.get("New_code"));
         document.getElementById("prof_name").setAttribute("value", url_params.get("prof_name"));
+        document.getElementById("submit_btn").onclick = function () {
+            document.getElementById("sub_form").submit();
+            document.getElementById("sub_form").style.display = "none";
+            document.getElementById("reminder").innerHTML = "感謝您的評價！"
+        }
     </script>
 </body>
 
