@@ -99,12 +99,20 @@ function searcher() {
     alert("網路鏈結異常，錯誤代號：" + String(e));
   }
 }
-
+function redirect_ins() {
+  document.location.href =
+    "./prof_info.html?prof_name=" +
+    encodeURIComponent(document.getElementById("ins_name").value.toUpperCase());
+}
 search_button.onclick = searcher;
+
 document
   .getElementById("course_num")
   .setAttribute("onkeypress", "if(event.keyCode==13) {searcher()}");
 
-document.getElementById("search_instructor").onclick=function(){
-  document.location.href="./prof_info.html?prof_name="+encodeURIComponent(document.getElementById("ins_name").value.toUpperCase());
-}
+document.getElementById("ins_name").value = "";
+document.getElementById("course_num").value = "";
+document.getElementById("search_instructor").onclick = redirect_ins;
+document
+  .getElementById("ins_name")
+  .setAttribute("onkeypress", "if(event.keyCode==13) {redirect_ins()}");
