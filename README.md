@@ -1,4 +1,5 @@
 # UM-Eelective-Helper-Web
+[Demo](https://web.umeh.top/)
 A web-based course review app for University of Macau.
 
 Web version of "選咩課" is mainly developed by [Admittedly_Goat](https://github.com/Admittedly-Goat) in group [UMHelper](https://github.com/UMHelper). Feel free to contact me if you have any questions.
