@@ -7,8 +7,12 @@ function changeType() {
 }
 
 function goSearch() {
-
-  if (document.getElementById("byCrn").checked == true) {
+  if (document.getElementById("course_input").value.length < 4) {
+    document.getElementById("progress").style.visibility = "visible";
+    alert("Length too short. Please type in accurate information to search.");
+    document.getElementById("progress").style.visibility = "hidden";
+  }
+  else if (document.getElementById("byCrn").checked == true) {
     searcher(document.getElementById("course_input").value.toUpperCase());
   }
   else {
@@ -17,10 +21,17 @@ function goSearch() {
 
 }
 
+function goBack() {
+
+  document.getElementById("ins_panel").innerHTML ="";
+  document.getElementById("entry").style.visibility = "visible";
+  document.getElementById("info").style.visibility = "hidden";
+}
+
 function searcher(crn) {
+  document.getElementById("progress").style.visibility = "visible";
   search_button.setAttribute("disabled", "");
   search_button.innerHTML = "Processing...";
-
   var request_search = new XMLHttpRequest();
 
   try {
@@ -40,33 +51,34 @@ function searcher(crn) {
           document.getElementById("course_name").innerHTML =
             resp_json.course_info.courseTitleEng;
 
-          document.getElementById("course_info").innerHTML =
-            "學院：" +
-            resp_json.course_info.Offering_Unit +
-            "&nbsp;&nbsp;&nbsp;專業：" +
-            resp_json.course_info.Offering_Department;
+          document.getElementById("course_name_chi").innerHTML =
+            resp_json.course_info.courseTitleChi;
 
-          document.getElementById("judge_table").removeAttribute("hidden");
-          document.getElementById("umicon").setAttribute("hidden", "");
-          search_button.innerHTML = "查詢";
+          document.getElementById("course_info").innerHTML =
+            "Offered by " + resp_json.course_info.Offering_Department + ", " + resp_json.course_info.Offering_Unit;
+
+          document.getElementById("medium").innerHTML = resp_json.course_info.Medium_of_Instruction + " Instruction";
+          document.getElementById("credits").innerHTML = resp_json.course_info.Credits + " Credits";
+          document.getElementById("entry").style.height = 0;
+
+          search_button.innerHTML = "Search";
           search_button.removeAttribute("disabled");
-          document.getElementById("course_num").removeAttribute("disabled");
+          document.getElementById("course_input").removeAttribute("disabled");
 
           if (resp_json.prof_info.length === 0) {
-            document.getElementById("course_rank").innerHTML = "暫時沒有評分";
-            document
-              .getElementById("judge_table_body")
-              .setAttribute("hidden", "");
-            document
-              .getElementById("judge_table_head")
-              .setAttribute("hidden", "");
+            document.getElementById("course_rank").innerHTML = "Average: Not Available";
           } else {
             rank = 0;
-            document.getElementById("judge_table_body").innerHTML = " ";
             for (i in resp_json.prof_info) {
               rank += resp_json.prof_info[i].result;
-              document.getElementById("judge_table_body").innerHTML +=
-                '<tr><td class="mdl-data-table__cell--non-numeric"><a href="./instructor.html?New_code=' +
+              document.getElementById("ins_panel").innerHTML += '<div class="ins_info page_container primary_white large5 medium5 small10 zi2"><a href="./instructor.html?New_code=' + encodeURIComponent(resp_json.course_info.New_code) + "&prof_name=" + encodeURIComponent(resp_json.prof_info[i].name) +
+                '" target="_blank"><span class="flex_text"> <div>' + resp_json.prof_info[i].name + ' </div></span> </a>  <span class="flex_text"> <div>' + resp_json.prof_info[i].num + ' Comments </div>   </span>  <span class="flex_text"> <div>' + String((resp_json.prof_info[i].result * 2).toFixed(2)) + '/10</div> </span>    <div class="bar" style="margin-top:0.5cm">   <div class="barcontent" style="width: ' + resp_json.prof_info[i].result * 20 + '%"></div></div></div>'
+
+
+
+
+
+              /*'<tr><td class="mdl-data-table__cell--non-numeric"><a href="./instructor.html?New_code=' +
                 encodeURIComponent(resp_json.course_info.New_code) +
                 "&prof_name=" +
                 encodeURIComponent(resp_json.prof_info[i].name) +
@@ -75,26 +87,29 @@ function searcher(crn) {
                 "</a>" +
                 "</td><td>" +
                 String((resp_json.prof_info[i].result * 2).toFixed(2)) +
-                "/10</td></tr>";
+                "/10</td></tr>";*/
             }
 
-            document.getElementById("course_rank").innerHTML =
+            document.getElementById("course_rank").innerHTML = "Average: " +
               String(((rank / resp_json.prof_info.length) * 2).toFixed(2)) +
               "/10";
 
-            document
-              .getElementById("judge_table_body")
-              .removeAttribute("hidden");
-            document
-              .getElementById("judge_table_head")
-              .removeAttribute("hidden");
+            //document              .getElementById("judge_table_body")              .removeAttribute("hidden");
+            // document              .getElementById("judge_table_head")              .removeAttribute("hidden");
+            document.getElementById("progress").style.visibility = "hidden";
+            document.getElementById("entry").style.visibility = "hidden";
+            document.getElementById("info").style.visibility = "visible";
           }
         } catch (e) {
-          alert("輸入的課號無效，請重試。\r錯誤代號：" + String(e));
+          alert("Invalid course code. \rError：" + String(e));
 
-          search_button.innerHTML = "查詢";
+          search_button.innerHTML = "Search";
           search_button.removeAttribute("disabled");
-          document.getElementById("course_num").removeAttribute("disabled");
+          document.getElementById("course_input").removeAttribute("disabled");
+          document.getElementById("progress").style.visibility = "hidden";
+
+          document.getElementById("entry").style.visibility = "visible";
+          document.getElementById("info").style.visibility = "hidden";
         }
       }
     };
@@ -120,17 +135,17 @@ function redirect_ins(ins) {
     encodeURIComponent(ins);
 }
 
-
+// init
 search_button.onclick = goSearch;
 document.getElementById("byCrn").onclick = changeType;
 document.getElementById("byIns").onclick = changeType;
+document.getElementById("back").onclick = goBack;
 
 document
   .getElementById("course_input")
-  .setAttribute("onkeypress", "if(event.keyCode==13) {searcher()}");
+  .setAttribute("onkeypress", "if(event.keyCode==13) {goSearch()}");
 
 document.getElementById("course_input").value = "";
 
-//document.getElementById("search_instructor").onclick = redirect_ins;
+goBack();
 
-//document  .getElementById("ins_name")  .setAttribute("onkeypress", "if(event.keyCode==13) {redirect_ins()}");

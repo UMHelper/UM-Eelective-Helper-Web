@@ -1,3 +1,7 @@
+<!--
+    https://fluentdesignforweb.github.io/documentation/#/progress_bar
+-->
+
 <!doctype html>
 
 <html lang="en-US">
@@ -7,9 +11,9 @@
     <title>澳大選咩課 What2Reg @UM</title>
     <meta name="description" content="澳大選咩課 What2Reg @UM">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <link rel="stylesheet" href="https://fluentdesignforweb.github.io/fluent.min.css">
-    <link rel="stylesheet" href="https://fluentdesignforweb.github.io/fluent-icons.css">
+    <link href="https://fluentdesignforweb.github.io/fluent-icons.css" rel="stylesheet" type="text/css" />
+
     <meta name="theme-color" content="#ffffff">
 
 </head>
@@ -23,42 +27,110 @@
     }
 
     #logo {
-        margin-bottom: 0.5cm;
+        margin-bottom: 0.2cm;
         height: 1.7cm;
         width: 1.7cm;
     }
-    
+
     .select {
-        display:inline-block;
+        display: inline-block;
         width: auto;
+    }
+
+    .bar {
+        height: 0.15cm;
+        width: 100%;
+        background-color: lightgrey;
+    }
+
+    .barcontent {
+        height: 0.15cm;
+        width: 100%;
+        background-color: #06A7DD;
+    }
+
+    .ins_info {
+        padding: 0.5cm;
+        display: inline-block;
+        margin: 0.5cm;
+    }
+
+    .flex_text {
+        display: inline-block;
+        padding-right: 20px;
     }
 </style>
 
 <body>
-    <main class="column large7 medium10 small12 page_container center">
-        <br><br>
-        <br><br>
-        <!-- Search panel -->>
-        <div id="entry" class="page_container primary_white zi2" style="padding: 1.5cm; vertical-align: middle;">
-            <img id="logo" src="https://web.umeh.top/images/badge.png" alt="icon">
+    <br><br>
+    <!-- Search panel -->
+    <main id="entry" class="column large7 medium10 small12 page_container center" style="padding:0;">
 
+        <br><br>
+
+        <div class="page_container primary_white zi2" style="padding: 1cm; padding-bottom: 0; vertical-align: middle;">
+
+            <img id="logo" src="https://web.umeh.top/images/badge.png" alt="icon">
             <h6>What2Reg @UM</h6>
             <br>
             <input type="text" id="course_input" placeholder="Eg. ACCT1000" class="btm_brdr transparent" />
 
             <p>Search by course code or formal name of instructor.</p>
 
-            <span class="select"><input type="radio" name="bool" id="byCrn" checked/> Filter by course </span> 
-            <span class="select"><input type="radio" name="bool" id="byIns"/> Filter by
-            instructor</span>
-            <br>
-            <br>
-            <button id="search" class="primary_blue small right">Search</button>
-            <br>
-        </div>
+            <span class="select"><input type="radio" name="bool" id="byCrn" checked /> Filter by course </span>
+            <span class="select"><input type="radio" name="bool" id="byIns" /> Filter by
+                instructor</span>
 
+            <button id="search" class="primary_blue small dlevel2 right"
+                style="margin-top:1cm;margin-bottom:1cm">Search</button>
+            <div class="indeterminate_progress_bar" id="progress" style="width: 100%; visibility: hidden;"></div>
+        </div>
+        <br><br>
     </main>
 
+    <!-- Course info panel -->
+    <main id="info" class="column large9 medium12 small12 page_container center" style="padding:0;">
+        <br><br>
+        <div class="page_container primary_white" style="padding:0;vertical-align: middle;">
+            <!-- Row 1 -->
+            <div class="primary_blue" style="width: 100%; padding: 1cm;">
+                <button id="back" class="primary_blue"
+                    style="padding:0; margin-right: 10px; display: inline-block;vertical-align: middle;"><i
+                        class="ms-Icon ms-Icon--Back icon-medium"></i></button>
+                <h6 id="title" style="display: inline-block; vertical-align: middle;">CRN1000</h6>
+                <br><br>
+
+                <span class="flex_text">
+                    <div class="bold" style="font-size:x-large;" id="course_name">LOADING
+                        COURSE INFO</div>
+                </span>
+                <span class="flex_text">
+                    <div class="bold" style="font-size:x-large;" id="course_name_chi">加載課程信息
+                    </div>
+                </span>
+                <br><br>
+
+                <span class="flex_text">
+                    <div id="credits">0.0 Credits </div>
+                </span>
+                <span class="flex_text">
+                    <div id="course_info">Offered by DEPT, FCT </div>
+                </span>
+                <span class="flex_text">
+                    <div id="medium">Language Instruction </div>
+                </span>
+                <span class="flex_text">
+                    <div id="course_rank">Average: 0/10</div>
+                </span>
+            </div>
+
+            <!-- Row 2 -->
+            <div id="ins_panel" class="primary_white" style="width: 100%; padding: 0.4cm; ">
+            </div>
+            <br><br>
+    </main>
+
+    <br><br>
     <script src="https://fluentdesignforweb.github.io/fluent.js" async></script>
     <script src="./scripts/search.js"></script>
 
