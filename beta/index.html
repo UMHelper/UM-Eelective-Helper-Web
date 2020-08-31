@@ -1,0 +1,67 @@
+<!doctype html>
+
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <title>澳大選咩課 What2Reg @UM</title>
+    <meta name="description" content="澳大選咩課 What2Reg @UM">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://fluentdesignforweb.github.io/fluent.min.css">
+    <link rel="stylesheet" href="https://fluentdesignforweb.github.io/fluent-icons.css">
+    <meta name="theme-color" content="#ffffff">
+
+</head>
+<style>
+    body {
+        background-image: url('src/bg.jpg');
+
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+
+    #logo {
+        margin-bottom: 0.5cm;
+        height: 1.7cm;
+        width: 1.7cm;
+    }
+    
+    .select {
+        display:inline-block;
+        width: auto;
+    }
+</style>
+
+<body>
+    <main class="column large7 medium10 small12 page_container center">
+        <br><br>
+        <br><br>
+        <!-- Search panel -->>
+        <div id="entry" class="page_container primary_white zi2" style="padding: 1.5cm; vertical-align: middle;">
+            <img id="logo" src="https://web.umeh.top/images/badge.png" alt="icon">
+
+            <h6>What2Reg @UM</h6>
+            <br>
+            <input type="text" id="course_input" placeholder="Eg. ACCT1000" class="btm_brdr transparent" />
+
+            <p>Search by course code or formal name of instructor.</p>
+
+            <span class="select"><input type="radio" name="bool" id="byCrn" checked/> Filter by course </span> 
+            <span class="select"><input type="radio" name="bool" id="byIns"/> Filter by
+            instructor</span>
+            <br>
+            <br>
+            <button id="search" class="primary_blue small right">Search</button>
+            <br>
+        </div>
+
+    </main>
+
+    <script src="https://fluentdesignforweb.github.io/fluent.js" async></script>
+    <script src="./scripts/search.js"></script>
+
+</body>
+
+</html>
