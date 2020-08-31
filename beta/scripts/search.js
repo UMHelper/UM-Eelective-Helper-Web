@@ -23,7 +23,7 @@ function goSearch() {
 
 function goBack() {
 
-  document.getElementById("ins_panel").innerHTML ="";
+  document.getElementById("ins_panel").innerHTML = "";
   document.getElementById("entry").style.visibility = "visible";
   document.getElementById("info").style.visibility = "hidden";
 }
@@ -71,23 +71,9 @@ function searcher(crn) {
             rank = 0;
             for (i in resp_json.prof_info) {
               rank += resp_json.prof_info[i].result;
-              document.getElementById("ins_panel").innerHTML += '<div class="ins_info page_container primary_white large5 medium5 small10 zi2"><a href="./instructor.html?New_code=' + encodeURIComponent(resp_json.course_info.New_code) + "&prof_name=" + encodeURIComponent(resp_json.prof_info[i].name) +
-                '" target="_blank"><span class="flex_text"> <div>' + resp_json.prof_info[i].name + ' </div></span> </a>  <span class="flex_text"> <div>' + resp_json.prof_info[i].num + ' Comments </div>   </span>  <span class="flex_text"> <div>' + String((resp_json.prof_info[i].result * 2).toFixed(2)) + '/10</div> </span>    <div class="bar" style="margin-top:0.5cm">   <div class="barcontent" style="width: ' + resp_json.prof_info[i].result * 20 + '%"></div></div></div>'
+              document.getElementById("ins_panel").innerHTML += '<div class="page_container primary_white large10 medium10 small10 zi2 ins_info"><a href="./instructor.html?New_code=' + encodeURIComponent(resp_json.course_info.New_code) + "&prof_name=" + encodeURIComponent(resp_json.prof_info[i].name) +
+                '" target="_blank"><div>' + resp_json.prof_info[i].name + '</div></a><span class="flex_text"> <div>' + resp_json.prof_info[i].num + ' Comments</div></span><span class="flex_text"><div>' + String((resp_json.prof_info[i].result * 2).toFixed(2)) + '/10</div></span><div class="bar" style="margin-top:0.5cm"><div class="barcontent" style="width: ' + resp_json.prof_info[i].result * 20 + '%"></div></div></div>'
 
-
-
-
-
-              /*'<tr><td class="mdl-data-table__cell--non-numeric"><a href="./instructor.html?New_code=' +
-                encodeURIComponent(resp_json.course_info.New_code) +
-                "&prof_name=" +
-                encodeURIComponent(resp_json.prof_info[i].name) +
-                '" target="_blank">' +
-                resp_json.prof_info[i].name +
-                "</a>" +
-                "</td><td>" +
-                String((resp_json.prof_info[i].result * 2).toFixed(2)) +
-                "/10</td></tr>";*/
             }
 
             document.getElementById("course_rank").innerHTML = "Average: " +
