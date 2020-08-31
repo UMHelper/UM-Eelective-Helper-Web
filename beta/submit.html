@@ -71,64 +71,76 @@
 
         <div class="page_container primary_white zi2" style="padding: 1cm; padding-bottom: 0; vertical-align: middle;">
 
-            <img id="logo" src="https://web.umeh.top/images/badge.png" alt="icon">
+            <button id="back" class="primary_white"
+                style="padding:0; margin-right: 10px; display: inline-block;vertical-align: middle;"><i
+                    class="ms-Icon ms-Icon--Back icon-medium"></i></button>
+            <br><br>
+            <img id="logo" src="https://web.umeh.top/images/badge.png" alt="icon" style="display: block;">
+            <br>
             <div id="view">
                 <h1 id="reminder" style="font-size:0.5cm;"></h1>
                 <form action="https://mpserver.umeh.top/submit_comment/" method="POST" target="nm_iframe" id="sub_form">
-                    <legend style="margin:0.5cm auto 0 auto;">課程編號</legend>
-                    <input class="btm_brdr transparent" type="text" name="New_code" value="" id="course_number">
-                    <legend style="margin:0.5cm auto 0 auto;">講師名稱</legend>
-                    <input class="btm_brdr transparent" type="text" name="prof_name" value="" id="prof_name">
-                    <legend style="margin:0.5cm auto 0 auto;">簽到情況</legend>
-                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="attend_none">
-                        <input type="radio" id="attend_none" class="mdl-radio__button" name="attendance" value="5">
-                        <span class="mdl-radio__label">不需要</span>
+                    <legend style="margin:0.5cm auto 0 auto;">Course Code 課程編號 </legend>
+                    <input class="btm_brdr transparent" type="text" name="New_code" value="" id="course_number"
+                        readonly>
+                    <legend style="margin:0.5cm auto 0 auto;">Name of Instructor 講師名稱</legend>
+                    <input class="btm_brdr transparent" type="text" name="prof_name" value="" id="prof_name" readonly>
+                    <legend style="margin:0.5cm auto 0 auto;">Attendance Checking 出席計算</legend>
+                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="attend_all">
+                        <input type="radio" id="attend_all" class="mdl-radio__button" name="attendance" value="1"
+                            style="display: inline-block;" checked>
+                        <span class="mdl-radio__label">Always 總是需要</span>
                     </label>
-                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="attend_occasion">
+                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="attend_occasion"
+                        style="display: inline-block;">
                         <input type="radio" id="attend_occasion" class="mdl-radio__button" name="attendance"
                             value="2.5">
-                        <span class="mdl-radio__label">有時需要</span>
+                        <span class="mdl-radio__label">Sometimes 有時需要</span>
                     </label>
-                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="attend_all">
-                        <input type="radio" id="attend_all" class="mdl-radio__button" name="attendance" value="1">
-                        <span class="mdl-radio__label">總是需要</span>
+                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="attend_none"
+                        style="display: inline-block;">
+                        <input type="radio" id="attend_none" class="mdl-radio__button" name="attendance" value="5">
+                        <span class="mdl-radio__label">Never 不需要</span>
                     </label>
-                    <legend style="margin:0.5cm auto 0 auto;">做pre情況</legend>
-                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="pre_none">
-                        <input type="radio" id="pre_none" class="mdl-radio__button" name="pre" value="0">
-                        <span class="mdl-radio__label">不需要</span>
+                    <legend style="margin:0.5cm auto 0 auto;">Presentations</legend>
+                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="pre_all"
+                        style="display: inline-block;">
+                        <input type="radio" id="pre_all" class="mdl-radio__button" name="pre" value="1" checked>
+                        <span class="mdl-radio__label">Multiple 多次</span>
                     </label>
-                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="pre_occasion">
+                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="pre_occasion"
+                        style="display: inline-block;">
                         <input type="radio" id="pre_occasion" class="mdl-radio__button" name="pre" value="2.5">
-                        <span class="mdl-radio__label">一次</span>
+                        <span class="mdl-radio__label">Once 一次</span>
                     </label>
-                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="pre_all">
-                        <input type="radio" id="pre_all" class="mdl-radio__button" name="pre" value="1">
-                        <span class="mdl-radio__label">多次/小組展示</span>
+                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="pre_none"
+                        style="display: inline-block;">
+                        <input type="radio" id="pre_none" class="mdl-radio__button" name="pre" value="0">
+                        <span class="mdl-radio__label">Never 不需要</span>
                     </label>
-                    <legend style="margin:0.5cm auto 0 auto;">給分情況（左側代表不好，右側代表好）</legend>
+                    <legend style="margin:0.5cm auto 0 auto;">Good Marks 給分情況</legend>
                     <input class="mdl-slider mdl-js-slider" type="range" min="0" max="5" value="2" tabindex="0"
                         name="grade">
-                    <legend style="margin:0.5cm auto 0 auto;">辛苦程度（左側代表辛苦，右側代表輕鬆）</legend>
+                    <legend style="margin:0.5cm auto 0 auto;">Light Workload 輕鬆程度</legend>
                     <input class="mdl-slider mdl-js-slider" type="range" min="0" max="5" value="2" tabindex="0"
                         name="hard">
-                    <legend style="margin:0.5cm auto 0 auto;">收穫程度（左側代表收穫少，右側代表收穫多）</legend>
+                    <legend style="margin:0.5cm auto 0 auto;">Learning Outcome 收穫程度</legend>
                     <input class="mdl-slider mdl-js-slider" type="range" min="0" max="5" value="2" tabindex="0"
                         name="reward">
-                    <legend style="margin:0.5cm auto 0 auto;">功課多少（左側代表功課多，右側代表功課少）</legend>
+                    <legend style="margin:0.5cm auto 0 auto;">Easy Asgmt 輕鬆功課</legend>
                     <input class="mdl-slider mdl-js-slider" type="range" min="0" max="5" value="2" tabindex="0"
                         name="assignment">
-                    <legend style="margin:0.5cm auto 0 auto;">總評（左側代表不推薦，右側代表推薦）</legend>
+                    <legend style="margin:0.5cm auto 0 auto;">Overall Recom. 總體推薦</legend>
                     <input class="mdl-slider mdl-js-slider" type="range" min="0" max="5" value="2" tabindex="0"
                         name="recommend">
-                    <legend style="margin:0.5cm auto 0 auto;">閣下還有想説的嗎？</legend>
+                    <legend style="margin:0.5cm auto 0 auto;">Comment 閣下還有想説的嗎？</legend>
                     <textarea class="mdl-textfield__input" type="text" rows="3" name="content" id="sdfghb"
-                        placeholder="請在此暢所欲言..." class="transparent"
+                        placeholder="Leave your Comment here 請在此暢所欲言..." class="transparent"
                         style="border:none; border-bottom:1px solid black; width:100%"></textarea>
                     <p></p>
                     <button class="primary_blue dlevel2 small"
-                        style="margin:1cm auto 1cm auto; position:relative; left:65%" id="submit_btn">
-                        提交！
+                        style="margin:1cm auto 1cm auto; position:relative; left:65%" id="submit_btn">Submit
+                        提交
                     </button>
                     <iframe id="id_iframe" name="nm_iframe" style="display:none;"></iframe>
                 </form>
@@ -141,15 +153,21 @@
     <br><br>
     <script src="./scripts/fluent.js" async></script>
     <script>
+        function goBack() {
+            document.location.href = './instructor.html?New_code=' + encodeURIComponent(url_params.get("New_code")) + "&prof_name=" + encodeURIComponent(url_params.get("prof_name"));
+        }
+
         var url_params = new URLSearchParams(window.location.search);
-        document.getElementById("reminder").innerHTML = `正在為編號爲 ${url_params.get("New_code")} 的課程的講師 ${url_params.get("prof_name")} 評價。`;
+        document.getElementById("reminder").innerHTML = `Commenting on course ${url_params.get("New_code")} for instructor ${url_params.get("prof_name")}.`;
         document.getElementById("course_number").setAttribute("value", url_params.get("New_code"));
         document.getElementById("prof_name").setAttribute("value", url_params.get("prof_name"));
         document.getElementById("submit_btn").onclick = function () {
             document.getElementById("sub_form").submit();
             document.getElementById("sub_form").style.display = "none";
-            document.getElementById("reminder").innerHTML = "感謝您的評價！"
+            document.getElementById("reminder").innerHTML = "Thanks for your comment! 感謝您的評價！"
         }
+        document.getElementById("back").onclick = goBack;
+
     </script>
 
 </body>

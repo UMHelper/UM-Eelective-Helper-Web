@@ -61,7 +61,7 @@ function searcher(crn) {
           document.getElementById("credits").innerHTML = resp_json.course_info.Credits + " Credits";
           document.getElementById("entry").style.height = 0;
 
-          search_button.innerHTML = "Search";
+          search_button.innerHTML = "Search 搜索";
           search_button.removeAttribute("disabled");
           document.getElementById("course_input").removeAttribute("disabled");
 
