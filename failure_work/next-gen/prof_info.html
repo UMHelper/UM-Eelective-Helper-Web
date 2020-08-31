@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./styles/resp_skeleton.css" rel="stylesheet" type="text/css">
+    <link href="./styles/prof_info.html.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+    <!--
+        Noto Sans TC
+        使用方法：CSS里加入
+        font-family: 'Noto Sans TC', sans-serif;
+    -->
+    <title>澳大选咩课</title>
+
+</head>
+
+<body>
+
+    <!-- 侧边栏 -->
+    <div class="side_box">
+
+        <!--
+            侧边栏的菜单项示例如下
+        -->
+        <div class="side_box_entry" style="background-color: #212121;"
+            onclick="window.open('https:\/\/web.umeh.top/');">
+
+            <!--
+                第一项菜单
+            -->
+
+            <img class="side_box_icon" src="./images/badge.png">
+
+            <span class="side_box_text" style="color:#FFFFFF;">澳大選咩課</span>
+
+        </div>
+
+        <div class="side_box_entry" style="background-color: #212121;">
+            <!--
+                第二项菜单
+            -->
+            <img class="side_box_icon" src="./images/black_pixel.png">
+
+            <span class="side_box_text" style="color:#FFFFFF;">更多功能盡情期待</span>
+        </div>
+
+    </div>
+
+    <div class="main_box">
+        <!--
+        主界面在这里书写
+        -->
+
+        <div class="main_box_header"></div>
+
+        <div id="umeh_main_interactive">
+            <!--
+                課程主信息
+            -->
+            <div class="header_info_container">
+                <h1 class="course_id" id="prof_name">教授名稱</h1>
+            </div>
+
+            <!--
+                課程教授讲课列表
+            -->
+
+            <div class="prof_course_list_container" id="prof_course_list_container">
+                <div class="prof_course_entry">
+                    <h2 class="course_id"><a href="" class="link_course" target="_blank">課程號</a></h2>
+                    <h3 class="course_id">課程名</h3>
+                    <h3 class="course_id">學院和專業</h3>
+                    <progress class="judge_progress" max="100" value="70"></progress>
+                    <p class="input_label">總評：x.xx/xx</p>
+                    <progress class="judge_progress" max="100" value="70"></progress>
+                    <p class="input_label">總評：x.xx/xx</p>
+                    <progress class="judge_progress" max="100" value="70"></progress>
+                    <p class="input_label">總評：x.xx/xx</p>
+                    <progress class="judge_progress" max="100" value="70"></progress>
+                    <p class="input_label">總評：x.xx/xx</p>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+</body>
+
+</html>
