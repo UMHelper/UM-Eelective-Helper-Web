@@ -1,0 +1,88 @@
+<!--
+    https://fluentdesignforweb.github.io/documentation/#/progress_bar
+-->
+
+<!doctype html>
+
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <title>澳大選咩課 What2Reg @UM</title>
+    <meta name="description" content="澳大選咩課 What2Reg @UM">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://fluentdesignforweb.github.io/fluent.min.css">
+    <link href="https://fluentdesignforweb.github.io/fluent-icons.css" rel="stylesheet" type="text/css" />
+
+    <meta name="theme-color" content="#ffffff">
+
+</head>
+<style>
+    body {
+        background-image: url('src/bg.jpg');
+
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+
+    #logo {
+        margin-bottom: 0.2cm;
+        height: 1.7cm;
+        width: 1.7cm;
+    }
+
+    .select {
+        display: inline-block;
+        width: auto;
+    }
+
+    .bar {
+        height: 0.15cm;
+        width: 100%;
+        background-color: lightgrey;
+    }
+
+    .barcontent {
+        height: 0.15cm;
+        width: 100%;
+        background-color: #06A7DD;
+    }
+
+    .ins_info {
+        padding: 0.5cm;
+        vertical-align: text-top;
+        margin: 0.5cm;
+    }
+
+    .flex_text {
+        display: inline-block;
+        padding-right: 20px;
+        vertical-align: text-top;
+    }
+</style>
+
+<body>
+    <br><br>
+    <!-- Search panel -->
+    <main id="entry" class="column large7 medium10 small12 page_container center" style="padding:0;">
+
+        <br><br>
+
+        <div class="page_container primary_white zi2" style="padding: 1cm; padding-bottom: 0; vertical-align: middle;">
+
+            <img id="logo" src="https://web.umeh.top/images/badge.png" alt="icon">
+            <h6>In active development...</h6>
+            <br>
+            <div class="indeterminate_progress_bar" id="progress" style="width: 100%;"></div>
+        </div>
+        <br><br>
+    </main>
+
+    <br><br>
+    <script src="https://fluentdesignforweb.github.io/fluent.js" async></script>
+    <script src="./scripts/search.js"></script>
+
+</body>
+
+</html>
