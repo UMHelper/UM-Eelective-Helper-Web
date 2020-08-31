@@ -2,6 +2,16 @@
 <html lang="zh-CN">
 
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-176853327-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-176853327-1');
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>澳大選咩課 講師課程頁</title>
@@ -136,9 +146,9 @@
                             window.location = "./index.html"
                         }
                     } catch (e) {
-                        
+
                         alert("Instructor not found or he runs no course. " + String(e));
-                                window.location = "./index.html"
+                        window.location = "./index.html"
                     }
                 }
             };
