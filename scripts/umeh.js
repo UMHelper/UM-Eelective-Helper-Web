@@ -28,7 +28,7 @@ function searcher() {
           document.getElementById("course_info").innerHTML =
             "學院：" +
             resp_json.course_info.Offering_Unit +
-            "&nbsp;&nbsp;&nbsp;專業：" +
+            "&nbsp;&nbsp;&nbsp;學系：" +
             resp_json.course_info.Offering_Department;
 
           document.getElementById("judge_table").removeAttribute("hidden");

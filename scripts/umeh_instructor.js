@@ -7,7 +7,7 @@ function modify_title(course_json_obj) {
     course_json_obj.course_info.courseTitleEng;
   document.getElementById("course_info").innerHTML =
     `學院：${course_json_obj.course_info.Offering_Unit}` +
-    `&nbsp;&nbsp;&nbsp;專業：${course_json_obj.course_info.Offering_Department}`;
+    `&nbsp;&nbsp;&nbsp;學系：${course_json_obj.course_info.Offering_Department}`;
   document.getElementById("instructor_name").innerHTML =
     course_json_obj.prof_info.name;
   document
