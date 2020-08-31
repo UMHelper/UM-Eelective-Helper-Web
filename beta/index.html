@@ -1,19 +1,15 @@
-<!--
-    https://fluentdesignforweb.github.io/documentation/#/progress_bar
--->
-
 <!doctype html>
 
 <html lang="zh-TW">
 
 <head>
+
     <meta charset="utf-8">
-    <title>澳大選咩課 What2Reg @UM</title>
-    <meta name="description" content="澳大選咩課 What2Reg @UM">
+    <title>澳大選咩課</title>
+    <meta name="description" content="澳大選咩課">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="./css/fluent.min.css">
     <link href="./css/fluent-icons.css" rel="stylesheet" type="text/css" />
-
     <meta name="theme-color" content="#ffffff">
 
 </head>
@@ -24,6 +20,7 @@
         background-repeat: no-repeat;
         background-attachment: fixed;
         background-size: cover;
+        background-position:center 0;
     }
 
     #logo {
@@ -65,34 +62,33 @@
 <body>
     <br><br>
     <!-- Search panel -->
-    <main id="entry" class="column large7 medium10 small12 page_container center" style="padding:0;">
+    <main id="entry" class="column large7 medium10 small12 page_container center" style="padding:0; max-width:13.5cm;">
 
         <br><br>
 
         <div class="page_container primary_white zi2" style="padding: 1cm; padding-bottom: 0; vertical-align: middle;">
 
             <img id="logo" src="https://web.umeh.top/images/badge.png" alt="icon">
-            <h6>What2Reg @UM</h6>
-            <br>
-            <input type="text" id="course_input" placeholder="Eg. ACCT1000" class="btm_brdr transparent" />
+            <h6>澳大選咩課</h6>
+            <input type="text" id="course_input" placeholder="例如：ACCT1000" class="btm_brdr transparent" />
 
-            <p>Search by course code or formal name of instructor.</p>
+            <p>閣下可搜索課程代號或教授英文名。</p>
 
-            <span class="select"><input type="radio" name="bool" id="byCrn" checked /> Filter by course </span>
-            <span class="select"><input type="radio" name="bool" id="byIns" /> Filter by
-                instructor</span>
+            <span class="select"><input type="radio" name="bool" id="byCrn" checked /> 透過課程代號搜索 </span>
+            <span class="select"><input type="radio" name="bool" id="byIns" /> 透過教授英文名搜索 </span>
 
             <button id="search" class="primary_blue small dlevel2 right"
-                style="margin-top:1cm;margin-bottom:1cm">Search</button>
+                style="margin-top:1cm;margin-bottom:1cm">搜索</button>
             <div class="indeterminate_progress_bar" id="progress" style="width: 100%; visibility: hidden;"></div>
         </div>
         <br><br>
     </main>
 
     <!-- Course info panel -->
-    <main id="info" class="column large8 medium10 small12 page_container center" style="padding:0;">
+    <main id="info" class="column large8 medium10 small12 page_container center" style="padding:0; max-width:25cm;">
         <br><br>
-        <div class="page_container primary_white" style="padding:0;vertical-align: middle;">
+        <div class="page_container primary_white"
+            style="padding:0;vertical-align: middle;">
             <!-- Row 1 -->
             <div class="primary_blue" style="width: 100%; padding: 1cm;">
                 <button id="back" class="primary_blue"
@@ -102,8 +98,7 @@
                 <br><br>
 
                 <span class="flex_text">
-                    <div class="bold" style="font-size:x-large;" id="course_name">LOADING
-                        COURSE INFO</div>
+                    <div class="bold" style="font-size:x-large;" id="course_name">加載課程數據</div>
                 </span>
                 <span class="flex_text">
                     <div class="bold" style="font-size:x-large;" id="course_name_chi">加載課程信息

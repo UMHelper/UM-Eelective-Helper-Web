@@ -3,7 +3,7 @@ var API_server = "https://mpserver.umeh.top";
 var search_button = document.getElementById("search");
 
 function changeType() {
-  document.getElementById("course_input").placeholder = "Eg. " + (document.getElementById("byCrn").checked == true ? "ACCT1000" : "CHAN TAI MAN");
+  document.getElementById("course_input").placeholder = "例如：" + (document.getElementById("byCrn").checked == true ? "ACCT1000" : "CHAN TAI MAN");
 }
 
 function goSearch() {
@@ -42,7 +42,7 @@ function searcher(crn) {
         try {
           var resp_json = JSON.parse(resp_text);
           if (resp_json.course_info.New_code === undefined) {
-            throw "Undefined: New_code. Contact developers for help.";
+            throw "New_Code未定義. 請和開發者聯係，謝謝！";
           }
 
           document.getElementById("title").innerHTML =
@@ -55,28 +55,28 @@ function searcher(crn) {
             resp_json.course_info.courseTitleChi;
 
           document.getElementById("course_info").innerHTML =
-            "Offered by " + resp_json.course_info.Offering_Department + ", " + resp_json.course_info.Offering_Unit;
+            "授課單位：" + resp_json.course_info.Offering_Department + ", " + resp_json.course_info.Offering_Unit;
 
-          document.getElementById("medium").innerHTML = resp_json.course_info.Medium_of_Instruction + " Instruction";
-          document.getElementById("credits").innerHTML = resp_json.course_info.Credits + " Credits";
+          document.getElementById("medium").innerHTML = resp_json.course_info.Medium_of_Instruction + " ：講課語言";
+          document.getElementById("credits").innerHTML = resp_json.course_info.Credits + " 學分";
           document.getElementById("entry").style.height = 0;
 
-          search_button.innerHTML = "Search";
+          search_button.innerHTML = "搜索";
           search_button.removeAttribute("disabled");
           document.getElementById("course_input").removeAttribute("disabled");
 
           if (resp_json.prof_info.length === 0) {
-            document.getElementById("course_rank").innerHTML = "Average: Not Available";
+            document.getElementById("course_rank").innerHTML = "平均得分：暫無數據";
           } else {
             rank = 0;
             for (i in resp_json.prof_info) {
               rank += resp_json.prof_info[i].result;
               document.getElementById("ins_panel").innerHTML += '<div class="page_container primary_white large10 medium10 small10 zi2 ins_info"><a href="./instructor.html?New_code=' + encodeURIComponent(resp_json.course_info.New_code) + "&prof_name=" + encodeURIComponent(resp_json.prof_info[i].name) +
-                '" target="_blank"><div>' + resp_json.prof_info[i].name + '</div></a><span class="flex_text"> <div>' + resp_json.prof_info[i].num + ' Comments</div></span><span class="flex_text"><div>' + String((resp_json.prof_info[i].result * 2).toFixed(2)) + '/10</div></span><div class="bar" style="margin-top:0.5cm"><div class="barcontent" style="width: ' + resp_json.prof_info[i].result * 20 + '%"></div></div></div>'
+                '" target="_blank"><div>' + resp_json.prof_info[i].name + '</div></a><span class="flex_text"> <div>' + resp_json.prof_info[i].num + ' 評論</div></span><span class="flex_text"><div>' + String((resp_json.prof_info[i].result * 2).toFixed(2)) + '/10</div></span><div class="bar" style="margin-top:0.5cm"><div class="barcontent" style="width: ' + resp_json.prof_info[i].result * 20 + '%"></div></div></div>'
 
             }
 
-            document.getElementById("course_rank").innerHTML = "Average: " +
+            document.getElementById("course_rank").innerHTML = "平均得分: " +
               String(((rank / resp_json.prof_info.length) * 2).toFixed(2)) +
               "/10";
 
@@ -87,9 +87,9 @@ function searcher(crn) {
             document.getElementById("info").style.visibility = "visible";
           }
         } catch (e) {
-          alert("Invalid course code. \rError：" + String(e));
+          alert("課程代號無效. \r錯誤代碼：" + String(e));
 
-          search_button.innerHTML = "Search";
+          search_button.innerHTML = "搜索";
           search_button.removeAttribute("disabled");
           document.getElementById("course_input").removeAttribute("disabled");
           document.getElementById("progress").style.visibility = "hidden";
@@ -111,7 +111,7 @@ function searcher(crn) {
 
     request_search.send();
   } catch (e) {
-    alert("Network issue. Contact developers for help. " + String(e));
+    alert("網絡錯誤. 錯誤代碼：" + String(e));
   }
 }
 
