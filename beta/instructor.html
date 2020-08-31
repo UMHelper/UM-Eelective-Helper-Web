@@ -1,0 +1,155 @@
+<!--
+    https://fluentdesignforweb.github.io/documentation/#/progress_bar
+-->
+
+<!doctype html>
+
+<html lang="zh-TW">
+
+<head>
+    <meta charset="utf-8">
+    <title>澳大選咩課 What2Reg @UM</title>
+    <meta name="description" content="澳大選咩課 What2Reg @UM">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./css/fluent.min.css">
+    <link href="./css/fluent-icons.css" rel="stylesheet" type="text/css" />
+
+    <meta name="theme-color" content="#ffffff">
+
+</head>
+<style>
+    body {
+        background-image: url('src/bg.jpg');
+
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+
+    #logo {
+        margin-bottom: 0.2cm;
+        height: 1.7cm;
+        width: 1.7cm;
+    }
+
+    .select {
+        display: inline-block;
+        width: auto;
+    }
+
+    .bar {
+        height: 0.15cm;
+        width: 100%;
+        background-color: lightgrey;
+    }
+
+    .barcontent {
+        height: 0.15cm;
+        width: 100%;
+        background-color: #06A7DD;
+    }
+
+    .ins_info {
+        padding: 0.5cm;
+        vertical-align: text-top;
+        margin: 0.5cm;
+        display: inline-block;
+
+    }
+
+    p {
+        font-size: medium;
+        color: black;
+    }
+
+    .flex_text {
+        display: inline-block;
+        padding-right: 20px;
+        vertical-align: text-top;
+    }
+
+    .score {
+        color: #0078D7;
+        font-size: small;
+        text-align-last: right;
+    }
+</style>
+
+<body>
+    <div class="primary_blue" style="width: 100%; padding: 1cm;">
+        <button id="back" class="primary_blue"
+            style="padding:0; margin-right: 10px; display: inline-block;vertical-align: middle;"><i
+                class="ms-Icon ms-Icon--Back icon-medium"></i></button>
+        <h6 id="title" style="display: inline-block; vertical-align: middle;">CRN1000</h6>
+        <br><br>
+
+        <span class="flex_text">
+            <div class="bold" style="font-size:x-large;" id="course_name">LOADING
+                COURSE INFO</div>
+        </span>
+        <span class="flex_text">
+            <div class="bold" style="font-size:x-large;" id="course_name_chi">加載課程信息
+            </div>
+        </span>
+        <br><br>
+
+        <span class="flex_text">
+            <div id="credits">0.0 Credits </div>
+        </span>
+        <span class="flex_text">
+            <div id="course_info">Offered by DEPT, FCT </div>
+        </span>
+        <span class="flex_text">
+            <div id="medium">Language Instruction </div>
+        </span>
+    </div>
+
+    <!-- Row 2 -->
+    <div id="ins_panel" class="primary_white"
+        style="width: 100%; padding: 1.2cm; vertical-align: text-top; background-color: #ECEFF1;">
+
+        <div class="column large3 medium4 small12 primary_white" style="padding-right: 1cm; background-color: #ECEFF1;">
+            <a id="ins" href="#" style="font-size: x-large;">CHAN TAI MAN</a>
+            <p id="or">Overall Recommended</p>
+            <div class="bar" style="margin-top:0.5cm">
+                <div id="overall" class="barcontent"></div>
+            </div>
+            <p id="lw">Light Workload</p>
+            <div class="bar" style="margin-top:0.5cm">
+                <div id="tension" class="barcontent"></div>
+            </div>
+            <p id="ac">Attendance Checking</p>
+            <div class="bar" style="margin-top:0.5cm">
+                <div id="attendance" class="barcontent"></div>
+            </div>
+            <p id="gm">Good Marks</p>
+            <div class="bar" style="margin-top:0.5cm">
+                <div id="marks" class="barcontent"></div>
+            </div>
+
+            <p id="lo">Learning Outcome</p>
+            <div class="bar" style="margin-top:0.5cm">
+                <div id="clo" class="barcontent"></div>
+            </div>
+
+            <button id="submit" class="primary_blue small dlevel2 " style="margin-top:1cm;margin-bottom:0.3cm">Submit
+                your
+                review</button>
+            <button id="sharecmt" class="primary_green small dlevel2 " style="margin-bottom:0.3cm">
+                Share instructor</button>
+        </div>
+        <div id="reviews" class="column large9 medium8 small12 primary_white" style=" background-color: #ECEFF1;">
+
+        </div>
+
+    </div>
+
+
+    <br><br>
+    <br><br>
+    <script src="./scripts/fluent.js" async></script>
+    <script src="./scripts/reviews.js"></script>
+
+</body>
+
+</html>

@@ -7,7 +7,7 @@ function modify_title(course_json_obj) {
     course_json_obj.course_info.courseTitleEng;
   document.getElementById("course_info").innerHTML =
     `學院：${course_json_obj.course_info.Offering_Unit}` +
-    `&nbsp;&nbsp;&nbsp;學系：${course_json_obj.course_info.Offering_Department}`;
+    `&nbsp;&nbsp;&nbsp;專業：${course_json_obj.course_info.Offering_Department}`;
   document.getElementById("instructor_name").innerHTML =
     course_json_obj.prof_info.name;
   document
@@ -23,7 +23,7 @@ function modify_title(course_json_obj) {
       .MaterialProgress.setProgress(
         10 * (course_json_obj.prof_info.result * 2)
       );
-  } catch (e) { }
+  } catch (e) {}
   document.getElementById("result1").innerHTML = `總評：${(
     course_json_obj.prof_info.result * 2
   ).toFixed(2)}/10`;
@@ -38,7 +38,7 @@ function modify_title(course_json_obj) {
     document
       .getElementById("progress_relax")
       .MaterialProgress.setProgress(10 * (course_json_obj.prof_info.hard * 2));
-  } catch (e) { }
+  } catch (e) {}
   document.getElementById("result2").innerHTML = `輕鬆程度：${(
     course_json_obj.prof_info.hard * 2
   ).toFixed(2)}/10`;
@@ -53,7 +53,7 @@ function modify_title(course_json_obj) {
     document
       .getElementById("progress_score")
       .MaterialProgress.setProgress(10 * (course_json_obj.prof_info.grade * 2));
-  } catch (e) { }
+  } catch (e) {}
   document.getElementById("result3").innerHTML = `給分情況：${(
     course_json_obj.prof_info.grade * 2
   ).toFixed(2)}/10`;
@@ -70,7 +70,7 @@ function modify_title(course_json_obj) {
       .MaterialProgress.setProgress(
         10 * (course_json_obj.prof_info.reward * 2)
       );
-  } catch (e) { }
+  } catch (e) {}
   document.getElementById("result4").innerHTML = `學習收穫：${(
     course_json_obj.prof_info.reward * 2
   ).toFixed(2)}/10`;
@@ -82,7 +82,6 @@ function comment_gen(course_json_obj) {
     ).innerHTML += `<tr><td class="mdl-shadow--2dp">${course_json_obj.comments[i].content}</td></tr>`;
   }
 }
-
 try {
   var req = new XMLHttpRequest();
 
@@ -110,10 +109,10 @@ try {
   req.open(
     "GET",
     API_server +
-    "/comment_info/?New_code=" +
-    encodeURIComponent(url_params.get("New_code")) +
-    "&prof_name=" +
-    encodeURIComponent(url_params.get("prof_name"))
+      "/comment_info/?New_code=" +
+      encodeURIComponent(url_params.get("New_code")) +
+      "&prof_name=" +
+      encodeURIComponent(url_params.get("prof_name"))
   );
   req.send();
 } catch (e) {
