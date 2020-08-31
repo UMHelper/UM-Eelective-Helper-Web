@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
     <meta charset="UTF-8">
@@ -24,7 +24,7 @@
         <!--
             侧边栏的菜单项示例如下
         -->
-        <div class="side_box_entry" style="background-color: #F06292;"
+        <div class="side_box_entry" style="background-color: #212121;"
             onclick="window.open('https:\/\/web.umeh.top/');">
 
             <!--
@@ -46,18 +46,6 @@
             <span class="side_box_text" style="color:#FFFFFF;">更多功能盡情期待</span>
         </div>
 
-        <div class="side_box_entry" style="background-color: #29B6F6;">
-
-        </div>
-
-        <div class="side_box_entry" style="background-color: #FFCA28;">
-
-        </div>
-
-        <div class="side_box_entry" style="background-color: #E57373;">
-
-        </div>
-
     </div>
 
     <div class="main_box">
@@ -71,20 +59,11 @@
             <!--
                 課程主信息
             -->
-            <h1 class="course_id" id="course_id">ACCT1000</h1>
-            <h2 class="course_info_h2" id="course_name">某某課程</h2>
-            <h2 class="course_info_h2" id="course_info">某某學院某某專業</h2>
-
-            <label for="course_number_input" class="input_label">請輸入課程代號，如ACCT1000：</label>
-            <input type="text" class="input_info" id="course_number_input">
-            <button class="btn_query" id="query_by_id">查詢課程信息</button>
-
-            <p class="input_label">或者</p>
-
-            <label for="instructor_name_input" class="input_label">請輸入講師名稱，英文名，姓名之間只有一個空格：</label>
-            <input type="text" class="input_info" id="instructor_name_input">
-            <button class="btn_query" id="query_by_name">查詢講師信息</button>
-
+            <div class="header_info_container">
+                <h1 class="course_id" id="course_id">ACCT1000</h1>
+                <h2 class="course_info_h2" id="course_name">某某課程</h2>
+                <h2 class="course_info_h2" id="course_info">某某學院某某專業</h2>
+            </div>
             <!--
                 課程教授評分表
             -->
@@ -102,6 +81,15 @@
                 <tbody id="judge_table_body">
                 </tbody>
             </table>
+
+            <input type="text" class="input_info" id="course_number_input" placeholder="請輸入課程代號，如ACCT1000">
+            <button class="btn_query" id="query_by_id">查詢課程信息</button>
+
+            <p class="input_label">或者</p>
+
+            <input type="text" class="input_info" id="instructor_name_input" placeholder="請輸入講師名稱，英文名，姓名之間只有一個空格">
+            <button class="btn_query" id="query_by_name">查詢講師信息</button>
+
         </div>
 
 

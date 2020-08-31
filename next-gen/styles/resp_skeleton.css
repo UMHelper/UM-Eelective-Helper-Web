@@ -50,7 +50,7 @@ body {
   left: -0.8cm;
   font-size: 0.6cm;
   text-decoration-line: none;
-  font-family: 'Noto Sans TC', sans-serif;
+  font-family: "Noto Sans TC", sans-serif;
 }
 
 /* =====主视图布局===== */
@@ -64,6 +64,10 @@ body {
   position: absolute;
   top: 0cm;
   left: 8cm;
+  background-image: url("../images/background.png");
+  background-repeat: fixed;
+  background-size: cover;
+  background-position: center 0;
 }
 
 /* =====移动端适配===== */
@@ -117,5 +121,9 @@ body {
     position: absolute;
     top: 1.3cm;
     left: 0;
+    background-image: url("../images/background.png");
+    background-repeat: fixed;
+    background-size: cover;
+    background-position: center 0;
   }
 }
