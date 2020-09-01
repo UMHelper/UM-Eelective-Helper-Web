@@ -61,7 +61,7 @@ function share(content) {
       url: document.URL,
     })
       .then(() => console.log('Successful share'))
-      .catch((error) => console.log('Error sharing', error));
+      .catch((error) => alert('Error sharing, due to you browser\'s lack of API support. 你的瀏覽器似乎并不支持分享功能', error));
   }
 }
 
