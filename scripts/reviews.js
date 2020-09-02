@@ -46,7 +46,7 @@ function getComments(course_json_obj) {
   var no = 1;
   for (var i in course_json_obj.comments) {
 
-    document.getElementById("reviews").innerHTML += '<div class="page_container primary_white large3 medium5 small12 zi2 ins_info"><a href="#">' + no + '#<a/><p>' + course_json_obj.comments[i].content + '</p><p class="score">(Light ' + (course_json_obj.comments[i].hard * 2).toFixed(0) + '/10, Marks ' + (course_json_obj.comments[i].grade * 2).toFixed(0) + '/10)</p> </div>'
+    document.getElementById("reviews").innerHTML += '<div class="page_container primary_white large3 medium5 small12 zi2 ins_info"><a href="#">' + no + '#' + ((no === 1) ? " Newest" : "") + '<a/><p>' + course_json_obj.comments[i].content + '</p><p class="score">(Light ' + (course_json_obj.comments[i].hard * 2).toFixed(0) + '/10, Marks ' + (course_json_obj.comments[i].grade * 2).toFixed(0) + '/10)</p> </div>'
     //<button id="share" class="primary_green right" style="display: inline-block;vertical-align: middle;padding:0.15cm"><i class="ms-Icon ms-Icon--Share icon-small"></i></button>
     no++;
   }
