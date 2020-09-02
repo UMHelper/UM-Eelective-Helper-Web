@@ -21,7 +21,8 @@
 
     <meta charset="utf-8">
     <title>澳大選咩課 What2Reg @UM</title>
-    <meta name="description" content="澳大人，唔知add邊個課目同professor？同我入黎【澳大選咩課】，靚grade、workload、同學既review全都知！Hey UMers, not sure about which course or session to reg or drop? Come here at [What2Reg @UM], with reviews on professors, grades, workload... and everything you love! 澳大选咩课，澳大人的选课帮手">
+    <meta name="description"
+        content="澳大人，唔知add邊個課目同professor？同我入黎【澳大選咩課】，靚grade、workload、同學既review全都知！Hey UMers, not sure about which course or session to reg or drop? Come here at [What2Reg @UM], with reviews on professors, grades, workload... and everything you love! 澳大选咩课，澳大人的选课帮手">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="./css/fluent.min.css">
     <link href="./css/fluent-icons.css" rel="stylesheet" type="text/css" />
@@ -91,9 +92,14 @@
 
             <p>Search by course code or formal name of instructor. 可搜索課程編號或英文名。</p>
 
-            <span class="select"><input type="radio" name="bool" id="byCrn" checked /> Filter by course 搜課程 </span>
-            <span class="select"><input type="radio" name="bool" id="byIns" /> Filter by
-                instructor 搜講師</span>
+            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="byCrn" style="display: inline-block;">
+                <input type="radio" id="byCrn" class="mdl-radio__button" name="filterby" value="5">
+                <span class="mdl-radio__label">Filter by course 搜課程</span>
+            </label>
+            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="byIns" style="display: inline-block;">
+                <input type="radio" id="byIns" class="mdl-radio__button" name="filterby" value="5">
+                <span class="mdl-radio__label">Filter by instructor 搜講師</span>
+            </label>
 
             <button id="search" class="primary_blue small dlevel2 right" style="margin-top:1cm;margin-bottom:1cm">Search
                 搜索</button>
