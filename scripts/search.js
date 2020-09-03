@@ -24,8 +24,11 @@ function goSearch() {
 function goBack() {
 
   document.getElementById("ins_panel").innerHTML = "";
-  document.getElementById("entry").style.visibility = "visible";
-  document.getElementById("info").style.visibility = "hidden";
+  
+  document.getElementById("entry").style.display = "inherit";
+  document.getElementById("info").style.display = "none";
+  //document.getElementById("entry").style.visibility = "visible";
+  //document.getElementById("info").style.visibility = "hidden";
 }
 
 function searcher(crn) {
@@ -83,8 +86,8 @@ function searcher(crn) {
             //document              .getElementById("judge_table_body")              .removeAttribute("hidden");
             // document              .getElementById("judge_table_head")              .removeAttribute("hidden");
             document.getElementById("progress").style.visibility = "hidden";
-            document.getElementById("entry").style.visibility = "hidden";
-            document.getElementById("info").style.visibility = "visible";
+            document.getElementById("entry").style.display = "none";
+            document.getElementById("info").style.display = "inherit";
           }
         } catch (e) {
           alert("Invalid course code. \rError：" + String(e));
@@ -94,8 +97,8 @@ function searcher(crn) {
           document.getElementById("course_input").removeAttribute("disabled");
           document.getElementById("progress").style.visibility = "hidden";
 
-          document.getElementById("entry").style.visibility = "visible";
-          document.getElementById("info").style.visibility = "hidden";
+          document.getElementById("entry").style.display = "none";
+          document.getElementById("info").style.display = "inherit";
         }
       }
     };
@@ -107,7 +110,7 @@ function searcher(crn) {
     );
 
     document.getElementById("course_input").value = "";
-    document.getElementById("course_input").setAttribute("disabled", "");
+    //document.getElementById("course_input").setAttribute("disabled", "");
 
     request_search.send();
   } catch (e) {

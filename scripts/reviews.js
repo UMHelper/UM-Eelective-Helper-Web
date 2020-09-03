@@ -64,8 +64,32 @@ function share(content) {
   }
 }
 
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({ pageLanguage: "en" }, 'google_translate_element');
+}
 
+function changeLanguageByButtonClick(language) {
+  //var language = document.getElementById("language").value;
+  var selectField = document.querySelector("#google_translate_element select");
+  for (var i = 0; i < selectField.children.length; i++) {
+    var option = selectField.children[i];
+    // find desired langauge and change the former language of the hidden selection-field 
+    if (option.value == language) {
+      selectField.selectedIndex = i;
+      // trigger change event afterwards to make google-lib translate this side
+      selectField.dispatchEvent(new Event('change'));
+      break;
+    }
+  }
+}
 
+function realTranslate() {
+  opendialog1();
+  //document.getElementById("translate").style.display = "none";
+  changeLanguageByButtonClick("fr");
+  setTimeout(() => { changeLanguageByButtonClick("en"); }, 3000);
+  setTimeout(() => { closedialog1(); }, 5000);
+}
 
 
 // init
@@ -73,6 +97,7 @@ document.getElementById("back").onclick = goBack;
 document.getElementById("submit").onclick = submitReviews;
 document.getElementById("share").onclick = share;
 document.getElementById("feedback").onclick = goFb;
+document.getElementById("translate").onclick = realTranslate;
 
 
 try {
@@ -102,17 +127,18 @@ try {
         document.getElementById("clo").style.width = "0%";
         alert("Hey you are the one😲 — There's no comment yet for this course. Be the first to submit your review! \n嘿，也許這是一個巧合——這門課還沒有評價！做第一個評價的人吧~");
       }
-
-      var resp_text = req.responseText;
-      var resp_json = JSON.parse(resp_text);
-      try {
-        if (resp_json.course_info.New_code === undefined) {
-          throw "Undefined New_code. Contact developers for help.";
+      else {
+        var resp_text = req.responseText;
+        var resp_json = JSON.parse(resp_text);
+        try {
+          if (resp_json.course_info.New_code === undefined) {
+            throw "Undefined New_code. Contact developers for help.";
+          }
+          getCourseInfo(resp_json);
+          getComments(resp_json);
+        } catch (e) {
+          alert(`Seems to be a backend issue; please try again and contact developers. Error: ${e}.`);
         }
-        getCourseInfo(resp_json);
-        getComments(resp_json);
-      } catch (e) {
-        alert(`Seems to be a backend issue; please try again and contact developers. Error: ${e}.`);
       }
     }
 
