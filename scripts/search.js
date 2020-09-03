@@ -83,8 +83,6 @@ function searcher(crn) {
               String(((rank / resp_json.prof_info.length) * 2).toFixed(2)) +
               "/10";
 
-            //document              .getElementById("judge_table_body")              .removeAttribute("hidden");
-            // document              .getElementById("judge_table_head")              .removeAttribute("hidden");
             document.getElementById("progress").style.visibility = "hidden";
             document.getElementById("entry").style.display = "none";
             document.getElementById("info").style.display = "inherit";
@@ -96,9 +94,7 @@ function searcher(crn) {
           search_button.removeAttribute("disabled");
           document.getElementById("course_input").removeAttribute("disabled");
           document.getElementById("progress").style.visibility = "hidden";
-
-          document.getElementById("entry").style.display = "none";
-          document.getElementById("info").style.display = "inherit";
+          goBack()
         }
       }
     };
