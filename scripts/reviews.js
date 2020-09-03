@@ -45,7 +45,7 @@ function getComments(course_json_obj) {
   var no = 1;
   for (var i in course_json_obj.comments) {
 
-    document.getElementById("reviews").innerHTML += '<div class="page_container primary_white large3 medium5 small12 zi2 ins_info"><a href="#">' + no + '#' + ((no === 1) ? " Newest" : "") + '<a/><p>' + course_json_obj.comments[i].content + '</p><p class="score">(Light ' + (course_json_obj.comments[i].hard * 2).toFixed(0) + '/10, Marks ' + (course_json_obj.comments[i].grade * 2).toFixed(0) + '/10)</p> </div>'
+    document.getElementById("reviews").innerHTML += '<div class="page_container primary_white large3 medium5 small12 zi2 ins_info"><a href="#">' + no + '#' + ((no === 1) ? " Newest" : "") + '<a/><p>' + course_json_obj.comments[i].content + '</p><p class="score">(Light ' + (course_json_obj.comments[i].hard * 2).toFixed(0) + '/10, Marks ' + (course_json_obj.comments[i].grade * 2).toFixed(0) + '/10)</p> </div>';
     //<button id="share" class="primary_green right" style="display: inline-block;vertical-align: middle;padding:0.15cm"><i class="ms-Icon ms-Icon--Share icon-small"></i></button>
     no++;
   }
@@ -64,13 +64,24 @@ function share(content) {
   }
 }
 
+
+
+
+
+// init
+document.getElementById("back").onclick = goBack;
+document.getElementById("submit").onclick = submitReviews;
+document.getElementById("share").onclick = share;
+document.getElementById("feedback").onclick = goFb;
+
+
 try {
   var req = new XMLHttpRequest();
 
   req.onreadystatechange = function () {
     if (req.readyState === XMLHttpRequest.DONE) {
       if (this.status == 500) {
-        document.getElementById("reviews").innerHTML += '<div class="page_container primary_white large3 medium5 small12 zi2 ins_info"><p>No reviews yet 😥 Be the first to submit!</p><p>暫無評價，做第一個開路者吧！</p> </div>'
+        document.getElementById("reviews").innerHTML += '<div class="page_container primary_white large3 medium5 small12 zi2 ins_info"><p>No reviews yet 😥 Be the first to submit!</p><p>暫無評價，做第一個開路者吧！</p> </div>';
 
         document.getElementById("title").innerHTML = url_params.get("New_code");
 
@@ -89,7 +100,7 @@ try {
         document.getElementById("attendance").style.width = "0%";
         document.getElementById("marks").style.width = "0%";
         document.getElementById("clo").style.width = "0%";
-        alert("Hey you are the one😲 — There's no comment yet for this course. Be the first to submit your review! \n嘿，也許這是一個巧合——這門課還沒有評價！做第一個評價的人吧~")
+        alert("Hey you are the one😲 — There's no comment yet for this course. Be the first to submit your review! \n嘿，也許這是一個巧合——這門課還沒有評價！做第一個評價的人吧~");
       }
 
       var resp_text = req.responseText;
@@ -124,14 +135,6 @@ try {
   alert(`Network issue; please try again or contact developers. Error: ${e}.`);
 }
 
-
-
-
-// init
-document.getElementById("back").onclick = goBack;
-document.getElementById("submit").onclick = submitReviews;
-document.getElementById("share").onclick = share;
-document.getElementById("feedback").onclick = goFb;
 
 
 
