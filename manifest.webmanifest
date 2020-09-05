@@ -1,0 +1,18 @@
+{
+    "short_name": "澳大選咩課",
+    "name": "What2Reg @UM 澳大選咩課",
+    "description": "UM course review platform",
+    "icons": [
+      {
+        "src": "/src/maskable_icon.png",
+        "type": "image/png",
+        "sizes": "300x300"
+      }
+    ],
+    "start_url": "/?source=pwa",
+    "background_color": "#FFFFFF",
+    "display": "standalone",
+    "scope": "/",
+    "theme_color": "#0078D7",
+    "shortcuts": []
+  }
