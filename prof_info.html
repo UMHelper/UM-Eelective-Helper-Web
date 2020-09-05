@@ -8,13 +8,12 @@
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
-
         gtag('config', 'UA-176924130-2');
     </script>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>What2Reg @UM 澳大選咩課 | Search Instructor</title>
+    <title>Search Instructor | What2Reg @UM 澳大選咩課</title>
     <meta name="description"
     content="澳大人，唔知add邊個課目同professor？同我入黎【澳大選咩課】，靚grade、workload、同學既review全都知！Hey UMers, not sure about which course or session to reg or drop? Come here at [What2Reg @UM], with reviews on professors, grades, workload... and everything you love! 澳大选咩课，澳大人的选课帮手">
 
@@ -62,117 +61,8 @@
         }
     </style>
 
-    <script>
-        var API_server = "https://mpserver.umeh.top";
-        function add_course(course_json_obj, course_number) {
-            document.getElementById("name_of_prof").innerHTML = url_params.get("prof_name");
-            document.getElementById("viewport").innerHTML += `
-            <h2><a target="_blank" href="./instructor.html?New_code=${encodeURIComponent(course_json_obj.course_info.New_code)}&prof_name=${encodeURIComponent(course_json_obj.prof_info.name)}">${course_json_obj.course_info.New_code}</a></h2>
-            <h2>
-            ${course_json_obj.course_info.courseTitleEng}
-            </h2>
-            <h2>
-                Offered by ${course_json_obj.course_info.Offering_Department}, ${course_json_obj.course_info.Offering_Unit}
-            </h2>
-            <div class="mdl-card mdl-shadow--2dp" style="margin:0 auto;">
-            <div class="mdl-card__title">
-            </div>
-            <div class="mdl-card__supporting-text">
-                <div class="mdl-slider__container">
-  <input disabled class="mdl-slider mdl-js-slider is-upgraded" type="range" min="0" max="100" value="${10 * (course_json_obj.prof_info.result * 2)}" tabindex="0" data-upgraded=",MaterialSlider"><div class="mdl-slider__background-flex">
-  <div class="mdl-slider__background-lower" style="flex: ${0.1 * (course_json_obj.prof_info.result * 2)} 1 0%;">
-  </div>
-  <div class="mdl-slider__background-upper" style="flex: ${1 - (0.1 * (course_json_obj.prof_info.result * 2))} 1 0%;"></div>
-  </div>
-</div>
-                <p>Overall Recommended: ${(
-                    course_json_obj.prof_info.result * 2
-                ).toFixed(2)}/10</p>
-                <div class="mdl-slider__container">
-  <input disabled class="mdl-slider mdl-js-slider is-upgraded" type="range" min="0" max="100" value="${10 * (course_json_obj.prof_info.hard * 2)}" tabindex="0" data-upgraded=",MaterialSlider"><div class="mdl-slider__background-flex">
-  <div class="mdl-slider__background-lower" style="flex: ${0.1 * (course_json_obj.prof_info.hard * 2)} 1 0%;">
-  </div>
-  <div class="mdl-slider__background-upper" style="flex: ${1 - (0.1 * (course_json_obj.prof_info.hard * 2))} 1 0%;"></div>
-  </div>
-</div>
-                <p>Light Workload: ${(
-                    course_json_obj.prof_info.hard * 2
-                ).toFixed(2)}/10</p>
-                <div class="mdl-slider__container">
-  <input disabled class="mdl-slider mdl-js-slider is-upgraded" type="range" min="0" max="100" value="${10 * (course_json_obj.prof_info.grade * 2)}" tabindex="0" data-upgraded=",MaterialSlider"><div class="mdl-slider__background-flex">
-  <div class="mdl-slider__background-lower" style="flex: ${0.1 * (course_json_obj.prof_info.grade * 2)} 1 0%;">
-  </div>
-  <div class="mdl-slider__background-upper" style="flex: ${1 - (0.1 * (course_json_obj.prof_info.grade * 2))} 1 0%;"></div>
-  </div>
-</div>
-                <p>Good Marks: ${(
-                    course_json_obj.prof_info.grade * 2
-                ).toFixed(2)}/10</p>
-                <div class="mdl-slider__container">
-  <input disabled class="mdl-slider mdl-js-slider is-upgraded" type="range" min="0" max="100" value="${10 * (course_json_obj.prof_info.reward * 2)}" tabindex="0" data-upgraded=",MaterialSlider"><div class="mdl-slider__background-flex">
-  <div class="mdl-slider__background-lower" style="flex: ${0.1 * (course_json_obj.prof_info.reward * 2)} 1 0%;">
-  </div>
-  <div class="mdl-slider__background-upper" style="flex: ${1 - (0.1 * (course_json_obj.prof_info.reward * 2))} 1 0%;"></div>
-  </div>
-</div>
-                <p>Learning Outcome: ${(
-                    course_json_obj.prof_info.reward * 2
-                ).toFixed(2)}/10</p>
-            </div>
-            </div>
-            `
-        }
 
-        try {
-            var req = new XMLHttpRequest();
-
-            req.onreadystatechange = function () {
-                if (req.readyState === XMLHttpRequest.DONE) {
-                    var resp_text = req.responseText;
-                    try {
-                        var resp_json = JSON.parse(resp_text);
-
-                        try {
-                            if (resp_json.prof_info.name === undefined) {
-                                throw "name未定義。";
-                            }
-
-                            for (var k in resp_json.course) {
-                                add_course(resp_json.course[k], k);
-                            }
-
-                            if (resp_json.course.length === 0) {
-                                alert("Instructor not found or he runs no course.");
-                                window.location = "./index.html"
-                            }
-                        } catch (e) {
-                            alert(`Seems to be a backend issue. ${e}; please try again.`);
-                            window.location = "./index.html"
-                        }
-                    } catch (e) {
-
-                        alert("Instructor not found or he runs no course. " + String(e));
-                        window.location = "./index.html"
-                    }
-                }
-            };
-
-            var url_params = new URLSearchParams(window.location.search);
-
-            req.open(
-                "GET",
-                API_server +
-                "/prof_info/?name=" +
-                encodeURIComponent(url_params.get("prof_name"))
-            );
-            req.send();
-        } catch (e) {
-            alert(`網路鏈結異常，錯誤代號：${e}，請重試。`);
-        }
-
-    </script>
-
-    <!--MDL js库-->
+    <script src="./scripts/info.js"></script>
     <script src="./scripts/material.min.js"></script>
 
 

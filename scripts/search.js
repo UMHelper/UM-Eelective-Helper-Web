@@ -7,7 +7,7 @@ function changeType() {
 }
 
 function myAlert(msg) {
-  if (confirm(msg + '\n\nPress [OK] to feedback this issue. 按[確認]鍵向開發團隊反饋.\nPress [Cancel] to go back. 按[取消]返回.')) {
+  if (confirm(msg + '\n\nPress [OK] to feedback this issue. Press [Cancel] to go back.\n 按[確認]鍵向開發團隊反饋. 按[取消]返回.')) {
     location.href='./feedback.html';
   } else {
   }
@@ -97,7 +97,7 @@ function searcher(crn) {
         } catch (e) {
 
           if (String(e).includes("New_Code"))
-            myAlert("Cannot find the course, typo? 找不到這個課程，鍵入錯了嗎？ " + document.getElementById("course_input").value.toUpperCase());
+            myAlert("Cannot find the course, typo? \n找不到這個課程，鍵入錯了嗎？ " + document.getElementById("course_input").value.toUpperCase());
           else
             myAlert("Unexpected error \rError：" + String(e));
           search_button.innerHTML = "Search";

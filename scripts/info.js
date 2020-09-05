@@ -1,120 +1,115 @@
+
 var API_server = "https://mpserver.umeh.top";
 
-function modify_title(course_json_obj) {
-  document.getElementById("title").innerHTML =
-    course_json_obj.course_info.New_code;
-  document.getElementById("course_name").innerHTML =
-    course_json_obj.course_info.courseTitleEng;
-  document.getElementById("course_info").innerHTML =
-    `學院：${course_json_obj.course_info.Offering_Unit}` +
-    `&nbsp;&nbsp;&nbsp;專業：${course_json_obj.course_info.Offering_Department}`;
-  document.getElementById("instructor_name").innerHTML =
-    course_json_obj.prof_info.name;
-  document
-    .getElementById("progress_total")
-    .addEventListener("mdl-componentupgraded", function () {
-      this.MaterialProgress.setProgress(
-        10 * (course_json_obj.prof_info.result * 2)
-      );
-    });
-  try {
-    document
-      .getElementById("progress_total")
-      .MaterialProgress.setProgress(
-        10 * (course_json_obj.prof_info.result * 2)
-      );
-  } catch (e) {}
-  document.getElementById("result1").innerHTML = `總評：${(
-    course_json_obj.prof_info.result * 2
-  ).toFixed(2)}/10`;
-  document
-    .getElementById("progress_relax")
-    .addEventListener("mdl-componentupgraded", function () {
-      this.MaterialProgress.setProgress(
-        10 * (course_json_obj.prof_info.hard * 2)
-      );
-    });
-  try {
-    document
-      .getElementById("progress_relax")
-      .MaterialProgress.setProgress(10 * (course_json_obj.prof_info.hard * 2));
-  } catch (e) {}
-  document.getElementById("result2").innerHTML = `輕鬆程度：${(
-    course_json_obj.prof_info.hard * 2
-  ).toFixed(2)}/10`;
-  document
-    .getElementById("progress_score")
-    .addEventListener("mdl-componentupgraded", function () {
-      this.MaterialProgress.setProgress(
-        10 * (course_json_obj.prof_info.grade * 2)
-      );
-    });
-  try {
-    document
-      .getElementById("progress_score")
-      .MaterialProgress.setProgress(10 * (course_json_obj.prof_info.grade * 2));
-  } catch (e) {}
-  document.getElementById("result3").innerHTML = `給分情況：${(
-    course_json_obj.prof_info.grade * 2
-  ).toFixed(2)}/10`;
-  document
-    .getElementById("progress_harvest")
-    .addEventListener("mdl-componentupgraded", function () {
-      this.MaterialProgress.setProgress(
-        10 * (course_json_obj.prof_info.reward * 2)
-      );
-    });
-  try {
-    document
-      .getElementById("progress_harvest")
-      .MaterialProgress.setProgress(
-        10 * (course_json_obj.prof_info.reward * 2)
-      );
-  } catch (e) {}
-  document.getElementById("result4").innerHTML = `學習收穫：${(
-    course_json_obj.prof_info.reward * 2
-  ).toFixed(2)}/10`;
-}
-function comment_gen(course_json_obj) {
-  for (var i in course_json_obj.comments) {
-    document.getElementById(
-      "comment_li_real_part"
-    ).innerHTML += `<tr><td class="mdl-shadow--2dp">${course_json_obj.comments[i].content}</td></tr>`;
+function mymyAlert(msg) {
+  if (confirm(msg + '\n\nPress [OK] to feedback this issue. Press [Cancel] to go back.\n 按[確認]鍵向開發團隊反饋. 按[取消]返回.')) {
+    location.href='./feedback.html';
+  } else {
   }
 }
+
+function add_course(course_json_obj, course_number) {
+  document.getElementById("name_of_prof").innerHTML = url_params.get("prof_name");
+  document.getElementById("viewport").innerHTML += `
+            <h2><a target="_blank" href="./instructor.html?New_code=${encodeURIComponent(course_json_obj.course_info.New_code)}&prof_name=${encodeURIComponent(course_json_obj.prof_info.name)}">${course_json_obj.course_info.New_code}</a></h2>
+            <h2>
+            ${course_json_obj.course_info.courseTitleEng}
+            </h2>
+            <h2>
+                Offered by ${course_json_obj.course_info.Offering_Department}, ${course_json_obj.course_info.Offering_Unit}
+            </h2>
+            <div class="mdl-card mdl-shadow--2dp" style="margin:0 auto;">
+            <div class="mdl-card__title">
+            </div>
+            <div class="mdl-card__supporting-text">
+                <div class="mdl-slider__container">
+  <input disabled class="mdl-slider mdl-js-slider is-upgraded" type="range" min="0" max="100" value="${10 * (course_json_obj.prof_info.result * 2)}" tabindex="0" data-upgraded=",MaterialSlider"><div class="mdl-slider__background-flex">
+  <div class="mdl-slider__background-lower" style="flex: ${0.1 * (course_json_obj.prof_info.result * 2)} 1 0%;">
+  </div>
+  <div class="mdl-slider__background-upper" style="flex: ${1 - (0.1 * (course_json_obj.prof_info.result * 2))} 1 0%;"></div>
+  </div>
+</div>
+                <p>Overall Recommended: ${(
+      course_json_obj.prof_info.result * 2
+    ).toFixed(2)}/10</p>
+                <div class="mdl-slider__container">
+  <input disabled class="mdl-slider mdl-js-slider is-upgraded" type="range" min="0" max="100" value="${10 * (course_json_obj.prof_info.hard * 2)}" tabindex="0" data-upgraded=",MaterialSlider"><div class="mdl-slider__background-flex">
+  <div class="mdl-slider__background-lower" style="flex: ${0.1 * (course_json_obj.prof_info.hard * 2)} 1 0%;">
+  </div>
+  <div class="mdl-slider__background-upper" style="flex: ${1 - (0.1 * (course_json_obj.prof_info.hard * 2))} 1 0%;"></div>
+  </div>
+</div>
+                <p>Light Workload: ${(
+      course_json_obj.prof_info.hard * 2
+    ).toFixed(2)}/10</p>
+                <div class="mdl-slider__container">
+  <input disabled class="mdl-slider mdl-js-slider is-upgraded" type="range" min="0" max="100" value="${10 * (course_json_obj.prof_info.grade * 2)}" tabindex="0" data-upgraded=",MaterialSlider"><div class="mdl-slider__background-flex">
+  <div class="mdl-slider__background-lower" style="flex: ${0.1 * (course_json_obj.prof_info.grade * 2)} 1 0%;">
+  </div>
+  <div class="mdl-slider__background-upper" style="flex: ${1 - (0.1 * (course_json_obj.prof_info.grade * 2))} 1 0%;"></div>
+  </div>
+</div>
+                <p>Good Marks: ${(
+      course_json_obj.prof_info.grade * 2
+    ).toFixed(2)}/10</p>
+                <div class="mdl-slider__container">
+  <input disabled class="mdl-slider mdl-js-slider is-upgraded" type="range" min="0" max="100" value="${10 * (course_json_obj.prof_info.reward * 2)}" tabindex="0" data-upgraded=",MaterialSlider"><div class="mdl-slider__background-flex">
+  <div class="mdl-slider__background-lower" style="flex: ${0.1 * (course_json_obj.prof_info.reward * 2)} 1 0%;">
+  </div>
+  <div class="mdl-slider__background-upper" style="flex: ${1 - (0.1 * (course_json_obj.prof_info.reward * 2))} 1 0%;"></div>
+  </div>
+</div>
+                <p>Learning Outcome: ${(
+      course_json_obj.prof_info.reward * 2
+    ).toFixed(2)}/10</p>
+            </div>
+            </div>
+            `
+}
+
 try {
   var req = new XMLHttpRequest();
 
   req.onreadystatechange = function () {
     if (req.readyState === XMLHttpRequest.DONE) {
       var resp_text = req.responseText;
-      var resp_json = JSON.parse(resp_text);
       try {
-        if (resp_json.course_info.New_code === undefined) {
-          throw "New_code未定義。";
+        var resp_json = JSON.parse(resp_text);
+
+        try {
+          if (resp_json.prof_info.name === undefined) {
+            throw "name未定義。";
+          }
+
+          for (var k in resp_json.course) {
+            add_course(resp_json.course[k], k);
+          }
+
+          if (resp_json.course.length === 0) {
+            myAlert("Instructor not found or he runs no course.");
+            window.location = "./index.html"
+          }
+        } catch (e) {
+          myAlert(`Seems to be a backend issue. ${e}; please try again.`);
+          window.location = "./index.html"
         }
-        modify_title(resp_json);
-        comment_gen(resp_json);
       } catch (e) {
-        alert(`後臺出現異常，錯誤代號：${e}，請重試。`);
+
+        myAlert("Instructor not found or he runs no course. " + String(e));
+        window.location = "./index.html"
       }
     }
   };
 
   var url_params = new URLSearchParams(window.location.search);
-  document
-    .getElementById("make_comment")
-    .setAttribute("href", "./comment.html" + window.location.search);
 
   req.open(
     "GET",
     API_server +
-      "/comment_info/?New_code=" +
-      encodeURIComponent(url_params.get("New_code")) +
-      "&prof_name=" +
-      encodeURIComponent(url_params.get("prof_name"))
+    "/prof_info/?name=" +
+    encodeURIComponent(url_params.get("prof_name"))
   );
   req.send();
 } catch (e) {
-  alert(`網路鏈結異常，錯誤代號：${e}，請重試。`);
+  myAlert(`Network issue. 網路鏈結異常，錯誤代號：${e}，請重試。`);
 }

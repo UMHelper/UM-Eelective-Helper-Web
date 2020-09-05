@@ -9,8 +9,8 @@ function goFb() {
 }
 
 function myAlert(msg) {
-  if (confirm(msg + '\n\nPress [OK] to feedback this issue. 按[確認]鍵向開發團隊反饋.\nPress [Cancel] to go back. 按[取消]返回.')) {
-    location.href = './feedback.html';
+  if (confirm(msg + '\n\nPress [OK] to feedback this issue. Press [Cancel] to go back.\n 按[確認]鍵向開發團隊反饋. 按[取消]返回.')) {
+    location.href='./feedback.html';
   } else {
   }
 }
