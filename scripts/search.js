@@ -133,7 +133,7 @@ function redirect_ins(ins) {
 function getNums(resp_json) {
   var com = resp_json.faculty_detail;
 
-  document.getElementById("numsPanel").innerHTML = "";
+  document.getElementById("connecting").innerHTML = "DATABASE OF REVIEWS";
   for (var i in com) {
     document.getElementById("numsPanel").innerHTML += '<div class="numsItem"><div style="font-weight: bolder;">' + i + '</div><div>' + com[i].comment + '</div></div>'
   }
