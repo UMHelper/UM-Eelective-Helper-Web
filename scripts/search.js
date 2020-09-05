@@ -6,6 +6,13 @@ function changeType() {
   document.getElementById("course_input").placeholder = "Eg. " + (document.getElementById("byCrn").checked == true ? "ACCT1000" : "CHAN TAI MAN");
 }
 
+function myAlert(msg) {
+  if (confirm(msg + '\n\nPress [OK] to feedback this issue. 按[確認]鍵向開發團隊反饋.\nPress [Cancel] to go back. 按[取消]返回.')) {
+    location.href='./feedback.html';
+  } else {
+  }
+}
+
 function goSearch() {
   if (document.getElementById("course_input").value.length < 4) {
     document.getElementById("progress").style.visibility = "visible";
@@ -24,7 +31,7 @@ function goSearch() {
 function goBack() {
 
   document.getElementById("ins_panel").innerHTML = "";
-  
+
   document.getElementById("entry").style.display = "inherit";
   document.getElementById("info").style.display = "none";
   //document.getElementById("entry").style.visibility = "visible";
@@ -45,7 +52,7 @@ function searcher(crn) {
         try {
           var resp_json = JSON.parse(resp_text);
           if (resp_json.course_info.New_code === undefined) {
-            throw "Undefined: New_code. Contact developers for help.";
+            throw "Undefined: New_Code. Contact developers for help.";
           }
 
           document.getElementById("title").innerHTML =
@@ -88,8 +95,11 @@ function searcher(crn) {
             document.getElementById("info").style.display = "inherit";
           }
         } catch (e) {
-          alert("Invalid course code. \rError：" + String(e));
 
+          if (String(e).includes("New_Code"))
+            myAlert("Cannot find the course, typo? 找不到這個課程，鍵入錯了嗎？ " + document.getElementById("course_input").value.toUpperCase());
+          else
+            myAlert("Unexpected error \rError：" + String(e));
           search_button.innerHTML = "Search";
           search_button.removeAttribute("disabled");
           document.getElementById("course_input").removeAttribute("disabled");
