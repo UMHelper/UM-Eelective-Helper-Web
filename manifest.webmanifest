@@ -6,7 +6,8 @@
       {
         "src": "/src/maskable_icon.png",
         "type": "image/png",
-        "sizes": "300x300"
+        "sizes": "300x300",
+        "purpose": "any maskable"
       }
     ],
     "start_url": "/?source=pwa",
