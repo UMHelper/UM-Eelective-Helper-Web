@@ -3,7 +3,7 @@ var API_server = "https://mpserver.umeh.top";
 
 function mymyAlert(msg) {
   if (confirm(msg + '\n\nPress [OK] to feedback this issue. Press [Cancel] to go back.\n 按[確認]鍵向開發團隊反饋. 按[取消]返回.')) {
-    location.href='./feedback.html';
+    location.href='/feedback.html';
   } else {
   }
 }
@@ -11,7 +11,7 @@ function mymyAlert(msg) {
 function add_course(course_json_obj, course_number) {
   document.getElementById("name_of_prof").innerHTML = url_params.get("prof_name");
   document.getElementById("viewport").innerHTML += `
-            <h2><a target="_blank" href="./instructor.html?New_code=${encodeURIComponent(course_json_obj.course_info.New_code)}&prof_name=${encodeURIComponent(course_json_obj.prof_info.name)}">${course_json_obj.course_info.New_code}</a></h2>
+            <h2><a target="_blank" href="/instructor.html?New_code=${encodeURIComponent(course_json_obj.course_info.New_code)}&prof_name=${encodeURIComponent(course_json_obj.prof_info.name)}">${course_json_obj.course_info.New_code}</a></h2>
             <h2>
             ${course_json_obj.course_info.courseTitleEng}
             </h2>
@@ -87,16 +87,16 @@ try {
 
           if (resp_json.course.length === 0) {
             myAlert("Instructor not found or he runs no course.");
-            window.location = "./index.html"
+            window.location = "/index.html"
           }
         } catch (e) {
           myAlert(`Seems to be a backend issue. ${e}; please try again.`);
-          window.location = "./index.html"
+          window.location = "/index.html"
         }
       } catch (e) {
 
         myAlert("Instructor not found or he runs no course. " + String(e));
-        window.location = "./index.html"
+        window.location = "/index.html"
       }
     }
   };
