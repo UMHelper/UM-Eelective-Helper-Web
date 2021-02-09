@@ -8,7 +8,7 @@ function changeType() {
 
 function myAlert(msg) {
   if (confirm(msg + '\n\nPress [OK] to feedback this issue. Press [Cancel] to go back.\n 按[確認]鍵向開發團隊反饋. 按[取消]返回.')) {
-    location.href = './feedback.html';
+    location.href = '/feedback.html';
   } else {
   }
 }
@@ -81,9 +81,9 @@ function searcher(crn) {
             rank = 0;
             for (i in resp_json.prof_info) {
               rank += resp_json.prof_info[i].result;
-              //document.getElementById("ins_panel").innerHTML += '<div class="page_container primary_white large10 medium10 small10 zi2 ins_info"><a href="./instructor.html?New_code=' + encodeURIComponent(resp_json.course_info.New_code) + "&prof_name=" + encodeURIComponent(resp_json.prof_info[i].name) + '" target="_blank"><div>' + resp_json.prof_info[i].name + '</div></a><span class="flex_text"> <div>' + resp_json.prof_info[i].num + ' Comments</div></span><span class="flex_text"><div>' + String((resp_json.prof_info[i].result * 2).toFixed(2)) + '/10</div></span><div class="bar" style="margin-top:0.5cm"><div class="barcontent" style="width: ' + resp_json.prof_info[i].result * 20 + '%"></div></div></div>'
+              //document.getElementById("ins_panel").innerHTML += '<div class="page_container primary_white large10 medium10 small10 zi2 ins_info"><a href="/instructor.html?New_code=' + encodeURIComponent(resp_json.course_info.New_code) + "&prof_name=" + encodeURIComponent(resp_json.prof_info[i].name) + '" target="_blank"><div>' + resp_json.prof_info[i].name + '</div></a><span class="flex_text"> <div>' + resp_json.prof_info[i].num + ' Comments</div></span><span class="flex_text"><div>' + String((resp_json.prof_info[i].result * 2).toFixed(2)) + '/10</div></span><div class="bar" style="margin-top:0.5cm"><div class="barcontent" style="width: ' + resp_json.prof_info[i].result * 20 + '%"></div></div></div>'
 
-              document.getElementById("ins_panel").innerHTML += '<div class="page_container primary_white large10 medium10 small10 zi2 ins_info"><a href="./instructor.html?New_code=' + encodeURIComponent(resp_json.course_info.New_code) + "&prof_name=" + encodeURIComponent(resp_json.prof_info[i].name) + '" target="_blank"><div class="flex_text">' + resp_json.prof_info[i].name + '</div></a><div class="flex_text">' + resp_json.prof_info[i].num + ' Comments</div><div class="flex_text">' + String((resp_json.prof_info[i].result * 2).toFixed(2)) + '/10</div><div class="bar" style="margin-top:0.5cm"><div class="barcontent" style="width: ' + resp_json.prof_info[i].result * 20 + '%"></div></div></div>'
+              document.getElementById("ins_panel").innerHTML += '<div class="page_container primary_white large10 medium10 small10 zi2 ins_info"><a href="/instructor/' + encodeURIComponent(resp_json.course_info.New_code) + "/" + encodeURIComponent(resp_json.prof_info[i].name) +"?New_code="+ encodeURIComponent(resp_json.course_info.New_code) + "&prof_name=" + encodeURIComponent(resp_json.prof_info[i].name) +'" target="_blank"><div class="flex_text">' + resp_json.prof_info[i].name + '</div></a><div class="flex_text">' + resp_json.prof_info[i].num + ' Comments</div><div class="flex_text">' + String((resp_json.prof_info[i].result * 2).toFixed(2)) + '/10</div><div class="bar" style="margin-top:0.5cm"><div class="barcontent" style="width: ' + resp_json.prof_info[i].result * 20 + '%"></div></div></div>'
             }
 
             document.getElementById("course_rank").innerHTML = "Average: " +
@@ -126,7 +126,7 @@ function searcher(crn) {
 
 function redirect_ins(ins) {
   document.location.href =
-    "./prof_info.html?prof_name=" +
+    "/prof_info.html?prof_name=" +
     encodeURIComponent(ins);
 }
 

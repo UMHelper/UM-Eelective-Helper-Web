@@ -1,22 +1,21 @@
 var API_server = "https://mpserver.umeh.top";
-
 function goBack() {
-  window.location.href = './index.html';
+  window.location.href = '/index.html';
 }
 
 function goFb() {
-  window.location.href = './feedback.html';
+  window.location.href = '/feedback.html';
 }
 
 function myAlert(msg) {
   if (confirm(msg + '\n\nPress [OK] to feedback this issue. Press [Cancel] to go back.\n 按[確認]鍵向開發團隊反饋. 按[取消]返回.')) {
-    location.href='./feedback.html';
+    location.href='/feedback.html';
   } else {
   }
 }
 
 function submitReviews() {
-  window.location.href = './submit.html?New_code=' + url_params.get("New_code") + '&prof_name=' + url_params.get("prof_name");
+  window.location.href = '/submit.html?New_code=' + window.location.pathname.split('/')[2] + '&prof_name=' + window.location.pathname.split('/')[3];
 }
 
 function getCourseInfo(resp_json) {
@@ -113,7 +112,7 @@ function getComments(course_json_obj) {
 }
 
 function share(content) {
-  content = "\n" + url_params.get("New_code") + " " + url_params.get("prof_name") + "\n" + "Come and see more reviews on this course! 快來看一下有關此課程的更多評論吧\n\n" + content;
+  content = "\n" + window.location.pathname.split('/')[2] + " " + window.location.pathname.split('/')[3] + "\n" + "Come and see more reviews on this course! 快來看一下有關此課程的更多評論吧\n\n" + content;
   if (navigator.share) {
     navigator.share({
       title: document.title,
@@ -162,9 +161,9 @@ function realTranslate() {
 
 // init
 var url_params = new URLSearchParams(window.location.search);
-document.getElementById("title").innerHTML = url_params.get("New_code");
-document.getElementById("ins").innerHTML = url_params.get("prof_name");
-document.title = url_params.get("prof_name") + " " + url_params.get("New_code") + " | 澳大選咩課 What2Reg @UM";
+document.getElementById("title").innerHTML = window.location.pathname.split('/')[2];
+document.getElementById("ins").innerHTML = window.location.pathname.split('/')[3];
+document.title = window.location.pathname.split('/')[3] + " " + window.location.pathname.split('/')[2] + " | 澳大選咩課 What2Reg @UM";
 document.getElementById("back").onclick = goBack;
 document.getElementById("submit").onclick = submitReviews;
 document.getElementById("share").onclick = share;
@@ -177,8 +176,8 @@ try {
   req.onreadystatechange = function () {
     if (req.readyState === XMLHttpRequest.DONE) {
       if (this.status == 500) { // the backend just return 500 when no comments found.
-        document.getElementById("title").innerHTML = url_params.get("New_code");
-        document.getElementById("ins").innerHTML = url_params.get("prof_name");
+        document.getElementById("title").innerHTML = window.location.pathname.split('/')[2];
+        document.getElementById("ins").innerHTML = window.location.pathname.split('/')[3];
         document.getElementById("reviews").innerHTML += '<div class="page_container primary_white large3 medium5 small12 zi2 ins_info"><p>No reviews yet 😥 Be the first to submit!</p><p>暫無評價，做第一個開路者吧！</p> </div>';
         document.getElementById("course_name").innerHTML = "NO REVIEWS YET";
         document.getElementById("course_name_chi").innerHTML = "無評價";
@@ -218,9 +217,9 @@ try {
     "GET",
     API_server +
     "/all_comment_info/?New_code=" +
-    encodeURIComponent(url_params.get("New_code")) +
+    encodeURIComponent(window.location.pathname.split('/')[2]) +
     "&prof_name=" +
-    encodeURIComponent(url_params.get("prof_name"))
+    encodeURIComponent(decodeURI(window.location.pathname.split('/')[3]))
   );
   req.send();
 } catch (e) {
