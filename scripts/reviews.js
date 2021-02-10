@@ -109,6 +109,7 @@ function getComments(course_json_obj) {
       + ' </div>';
     if(i == 0) 
     {
+      const metas = document.getElementsByTagName('meta');
       for (let j = 0; j < metas.length; j++) {
         if (metas[j].getAttribute('name') === metaName) {
           metas[j].setAttribute('description', '講師' + prof_name + '在' + course_code + '課程中的評價。' + course_json_obj.comments[i].content);
@@ -185,9 +186,6 @@ document.getElementById("submit").onclick = submitReviews;
 document.getElementById("share").onclick = share;
 document.getElementById("feedback").onclick = goFb;
 document.getElementById("translate").onclick = realTranslate;
-
-const metas = document.getElementsByTagName('meta');
-
 
 try {
   var req = new XMLHttpRequest();
