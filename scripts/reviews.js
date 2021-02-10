@@ -15,7 +15,7 @@ function myAlert(msg) {
 }
 
 function submitReviews() {
-  window.location.href = '/submit.html?New_code=' + encodeURIComponent(course_code) + '&prof_name=' + encodeURIComponent(prof_name);
+  window.location.href = '/submit.html?New_code=' +course_code + '&prof_name=' + prof_name;
 }
 
 function getCourseInfo(resp_json) {
