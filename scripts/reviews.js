@@ -15,7 +15,7 @@ function myAlert(msg) {
 }
 
 function submitReviews() {
-  window.location.href = '/submit.html?New_code=' + window.location.pathname.split('/')[2] + '&prof_name=' + window.location.pathname.split('/')[3];
+  window.location.href = '/submit.html?New_code=' + encodeURIComponent(course_code) + '&prof_name=' + encodeURIComponent(prof_name);
 }
 
 function getCourseInfo(resp_json) {
@@ -107,7 +107,16 @@ function getComments(course_json_obj) {
       + generateAttitude(course_json_obj.comments[i].attendance, "attendance", true)
       + generateAttitude(course_json_obj.comments[i].grade, "marks", true)
       + ' </div>';
-    //'<button id="share"' + no + ' class="primary_green right" style="display: inline-block;vertical-align: middle;padding:0.15cm"><i class="ms-Icon ms-Icon--Share icon-small"></i></button>'
+    if(i == 0) 
+    {
+      for (let j = 0; j < metas.length; j++) {
+        if (metas[j].getAttribute('name') === metaName) {
+          metas[j].setAttribute('description', '講師' + prof_name + '在' + course_code + '課程中的評價。' + course_json_obj.comments[i].content);
+          break;
+        }
+        //'<button id="share"' + no + ' class="primary_green right" style="display: inline-block;vertical-align: middle;padding:0.15cm"><i class="ms-Icon ms-Icon--Share icon-small"></i></button>'
+      }
+    }
   }
 }
 
@@ -176,6 +185,9 @@ document.getElementById("submit").onclick = submitReviews;
 document.getElementById("share").onclick = share;
 document.getElementById("feedback").onclick = goFb;
 document.getElementById("translate").onclick = realTranslate;
+
+const metas = document.getElementsByTagName('meta');
+
 
 try {
   var req = new XMLHttpRequest();
