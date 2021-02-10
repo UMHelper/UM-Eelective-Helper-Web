@@ -161,23 +161,29 @@ function realTranslate() {
 
 // init
 var url_params = new URLSearchParams(window.location.search);
-document.getElementById("title").innerHTML = window.location.pathname.split('/')[2];
-document.getElementById("ins").innerHTML = window.location.pathname.split('/')[3];
-document.title = window.location.pathname.split('/')[3] + " " + window.location.pathname.split('/')[2] + " | 澳大選咩課 What2Reg @UM";
+var course_code = url_params.get("New_code");
+var prof_name = url_params.get("prof_name");
+if (course_code == null)
+{
+  course_code = decodeURI(window.location.pathname.split('/')[2]);
+  prof_name = decodeURI(window.location.pathname.split('/')[3]);
+}
+document.getElementById("title").innerHTML = course_code;
+document.getElementById("ins").innerHTML = prof_name;
+document.title = prof_name + " " + course_code + " | 澳大選咩課 What2Reg @UM";
 document.getElementById("back").onclick = goBack;
 document.getElementById("submit").onclick = submitReviews;
 document.getElementById("share").onclick = share;
 document.getElementById("feedback").onclick = goFb;
 document.getElementById("translate").onclick = realTranslate;
 
-
 try {
   var req = new XMLHttpRequest();
   req.onreadystatechange = function () {
     if (req.readyState === XMLHttpRequest.DONE) {
       if (this.status == 500) { // the backend just return 500 when no comments found.
-        document.getElementById("title").innerHTML = window.location.pathname.split('/')[2];
-        document.getElementById("ins").innerHTML = window.location.pathname.split('/')[3];
+        document.getElementById("title").innerHTML = course_code;
+        document.getElementById("ins").innerHTML = prof_name;
         document.getElementById("reviews").innerHTML += '<div class="page_container primary_white large3 medium5 small12 zi2 ins_info"><p>No reviews yet 😥 Be the first to submit!</p><p>暫無評價，做第一個開路者吧！</p> </div>';
         document.getElementById("course_name").innerHTML = "NO REVIEWS YET";
         document.getElementById("course_name_chi").innerHTML = "無評價";
@@ -217,15 +223,13 @@ try {
     "GET",
     API_server +
     "/all_comment_info/?New_code=" +
-    encodeURIComponent(window.location.pathname.split('/')[2]) +
+    encodeURIComponent(course_code) +
     "&prof_name=" +
-    encodeURIComponent(decodeURI(window.location.pathname.split('/')[3]))
+    encodeURIComponent(prof_name)
   );
   req.send();
 } catch (e) {
   myAlert(`Network issue; please try again or contact developers. Error: ${e}.`);
 }
-
-
 
 
