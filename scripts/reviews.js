@@ -111,7 +111,7 @@ function getComments(course_json_obj) {
     {
       const metas = document.getElementsByTagName('meta');
       for (let j = 0; j < metas.length; j++) {
-        if (metas[j].getAttribute('name') === metaName) {
+        if (metas[j].getAttribute('name') === 'description') {
           metas[j].setAttribute('description', '講師' + prof_name + '在' + course_code + '課程中的評價。' + course_json_obj.comments[i].content);
           break;
         }
