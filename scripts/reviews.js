@@ -112,7 +112,7 @@ function getComments(course_json_obj) {
       const metas = document.getElementsByTagName('meta');
       for (let j = 0; j < metas.length; j++) {
         if (metas[j].getAttribute('name') === 'description') {
-          metas[j].setAttribute('description', '講師' + prof_name + '在' + course_code + '課程中的評價。' + course_json_obj.comments[i].content);
+          metas[j].setAttribute('content', '講師' + prof_name + '在' + course_code + '課程中的評價。' + course_json_obj.comments[i].content);
           break;
         }
         //'<button id="share"' + no + ' class="primary_green right" style="display: inline-block;vertical-align: middle;padding:0.15cm"><i class="ms-Icon ms-Icon--Share icon-small"></i></button>'
