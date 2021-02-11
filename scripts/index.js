@@ -41,7 +41,7 @@ function goSearch() {
     }
     else {
         document.location.href =
-        "/instructor/" +
+        "/professor/" +
         encodeURIComponent(document.getElementById("course_input").value.toUpperCase());
     }
     document.getElementById("progress").style.visibility = "hidden";

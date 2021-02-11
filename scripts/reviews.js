@@ -1,6 +1,6 @@
 var API_server = "https://mpserver.umeh.top";
 function goBack() {
-  window.location.href = '/course/'+course_code;
+  window.location.href = '/course/' + course_code;
 }
 
 function goFb() {
@@ -9,13 +9,13 @@ function goFb() {
 
 function myAlert(msg) {
   if (confirm(msg + '\n\nPress [OK] to feedback this issue. Press [Cancel] to go back.\n 按[確認]鍵向開發團隊反饋. 按[取消]返回.')) {
-    location.href='/feedback.html';
+    location.href = '/feedback.html';
   } else {
   }
 }
 
 function submitReviews() {
-  window.location.href = '/submit.html?New_code=' +course_code + '&prof_name=' + prof_name;
+  window.location.href = '/submit/' + course_code + '/' + prof_name;
 }
 
 function getCourseInfo(resp_json) {
@@ -94,10 +94,11 @@ function generateAttitude(value, type, style) { //style: boolean
         break;
     }
   }
-  return (style==false ? msg : ('<div class="score" style="color: ' + color + '">' + msg + '</div>')) ;
+  return (style == false ? msg : ('<div class="score" style="color: ' + color + '">' + msg + '</div>'));
 }
 
 function getComments(course_json_obj) {
+  var meta_desc = '講師' + prof_name + '在' + course_code + '課程中的評價。';
   for (var i in course_json_obj.comments) {
     document.getElementById("reviews").innerHTML +=
       '<div class="page_container primary_white large3 medium5 small12 zi2 ins_info">'
@@ -107,18 +108,12 @@ function getComments(course_json_obj) {
       + generateAttitude(course_json_obj.comments[i].attendance, "attendance", true)
       + generateAttitude(course_json_obj.comments[i].grade, "marks", true)
       + ' </div>';
-    if(i == 0) 
-    {
-      const metas = document.getElementsByTagName('meta');
-      for (let j = 0; j < metas.length; j++) {
-        if (metas[j].getAttribute('name') === 'description') {
-          metas[j].setAttribute('content', '講師' + prof_name + '在' + course_code + '課程中的評價。' + course_json_obj.comments[i].content);
-          break;
-        }
-        //'<button id="share"' + no + ' class="primary_green right" style="display: inline-block;vertical-align: middle;padding:0.15cm"><i class="ms-Icon ms-Icon--Share icon-small"></i></button>'
-      }
+    if (i < 3) {
+      meta_desc += course_json_obj.comments[i].content.replace(/(\r\n|\n|\r)/gm, "") + ' ';
     }
+    //'<button id="share"' + no + ' class="primary_green right" style="display: inline-block;vertical-align: middle;padding:0.15cm"><i class="ms-Icon ms-Icon--Share icon-small"></i></button>'
   }
+  metas[index_desc].setAttribute('content', meta_desc);
 }
 
 function share(content) {
@@ -171,12 +166,11 @@ function realTranslate() {
 
 // init
 var url_params = new URLSearchParams(window.location.search);
-var course_code = url_params.get("New_code");
-var prof_name = url_params.get("prof_name");
-if (course_code == null)
-{
-  course_code = decodeURI(window.location.pathname.split('/')[2]);
-  prof_name = decodeURI(window.location.pathname.split('/')[3]);
+var course_code = decodeURI(window.location.pathname.split('/')[2]).toUpperCase();
+var prof_name = decodeURI(window.location.pathname.split('/')[3]).toUpperCase();
+if (course_code == "UNDEFINED") {
+  course_code = url_params.get("New_code");
+  prof_name = url_params.get("prof_name");
 }
 
 document.getElementById("title").innerHTML = course_code;
@@ -187,6 +181,16 @@ document.getElementById("submit").onclick = submitReviews;
 document.getElementById("share").onclick = share;
 document.getElementById("feedback").onclick = goFb;
 document.getElementById("translate").onclick = realTranslate;
+
+//find description meta
+var index_desc;
+var metas = document.getElementsByTagName('meta');
+for (let j = 0; j < metas.length; j++) {
+  if (metas[j].getAttribute('name') === 'description') {
+    index_desc = j;
+  }
+}
+
 
 try {
   var req = new XMLHttpRequest();

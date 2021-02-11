@@ -26,7 +26,8 @@
 
         gtag('config', 'UA-176924130-2');
     </script>
-    <script data-ad-client="ca-pub-6229219222351733" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script data-ad-client="ca-pub-6229219222351733" async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 </head>
 <style>
     body {
@@ -185,13 +186,21 @@
     <script src="/scripts/fluent.js" async></script>
     <script>
         function goBack() {
-            document.location.href = '/instructor.html?New_code=' + encodeURIComponent(url_params.get("New_code")) + "&prof_name=" + encodeURIComponent(url_params.get("prof_name"));
+            document.location.href = '/reviews/' + encodeURIComponent(course_code) + "/" + encodeURIComponent(prof_name);
         }
 
+        // init
         var url_params = new URLSearchParams(window.location.search);
-        document.getElementById("reminder").innerHTML = `Commenting on course ${url_params.get("New_code")} for instructor ${url_params.get("prof_name")}.`;
-        document.getElementById("course_number").setAttribute("value", url_params.get("New_code"));
-        document.getElementById("prof_name").setAttribute("value", url_params.get("prof_name"));
+        var course_code = decodeURI(window.location.pathname.split('/')[2]).toUpperCase();
+        var prof_name = decodeURI(window.location.pathname.split('/')[3]).toUpperCase();
+        if (course_code == "UNDEFINED") {
+            course_code = url_params.get("New_code");
+            prof_name = url_params.get("prof_name");
+        }
+        
+        document.getElementById("reminder").innerHTML = `Commenting on course ${course_code} for instructor ${prof_name}.`;
+        document.getElementById("course_number").setAttribute("value", course_code);
+        document.getElementById("prof_name").setAttribute("value", prof_name);
         document.getElementById("submit_btn").onclick = function () {
             document.getElementById("sub_form").submit();
             document.getElementById("sub_form").style.display = "none";

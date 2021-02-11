@@ -1,7 +1,7 @@
 
 var API_server = "https://mpserver.umeh.top";
 
-function mymyAlert(msg) {
+function myAlert(msg) {
   if (confirm(msg + '\n\nPress [OK] to feedback this issue. Press [Cancel] to go back.\n 按[確認]鍵向開發團隊反饋. 按[取消]返回.')) {
     location.href = '/feedback.html';
   } else {
@@ -69,10 +69,10 @@ function add_course(course_json_obj, course_number) {
 
 // init
 var url_params = new URLSearchParams(window.location.search);
-var course_code = url_params.get("New_code");
-if (course_code == null)
+var course_code = decodeURI(window.location.pathname.split('/')[2]).toUpperCase();
+if (course_code == "UNDEFINED")
 {
-  course_code = decodeURI(window.location.pathname.split('/')[2]);
+  course_code = url_params.get("New_code");
 }
 
 try {

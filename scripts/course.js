@@ -46,18 +46,23 @@ function searcher(crn) {
             document.getElementById("course_rank").innerHTML = "Average: Not Available";
           } else {
             rank = 0;
+            var meta_desc = '課程' + course_code + '中的講師評價。' ;
             for (i in resp_json.prof_info) {
               rank += resp_json.prof_info[i].result;
               //document.getElementById("ins_panel").innerHTML += '<div class="page_container primary_white large10 medium10 small10 zi2 ins_info"><a href="/reivews.html?New_code=' + encodeURIComponent(resp_json.course_info.New_code) + "&prof_name=" + encodeURIComponent(resp_json.prof_info[i].name) + '" target="_blank"><div>' + resp_json.prof_info[i].name + '</div></a><span class="flex_text"> <div>' + resp_json.prof_info[i].num + ' Comments</div></span><span class="flex_text"><div>' + String((resp_json.prof_info[i].result * 2).toFixed(2)) + '/10</div></span><div class="bar" style="margin-top:0.5cm"><div class="barcontent" style="width: ' + resp_json.prof_info[i].result * 20 + '%"></div></div></div>'
               //+"?New_code="+ encodeURIComponent(resp_json.course_info.New_code) + "&prof_name=" + encodeURIComponent(resp_json.prof_info[i].name) 
-              document.getElementById("ins_panel").innerHTML += '<div class="page_container primary_white large10 medium10 small10 zi2 ins_info"><a href="/reviews/' + encodeURIComponent(resp_json.course_info.New_code) + "/" + encodeURIComponent(resp_json.prof_info[i].name) +'" target="_blank"><div class="flex_text">' + resp_json.prof_info[i].name + '</div></a><div class="flex_text">' + resp_json.prof_info[i].num + ' Comments</div><div class="flex_text">' + String((resp_json.prof_info[i].result * 2).toFixed(2)) + '/10</div><div class="bar" style="margin-top:0.5cm"><div class="barcontent" style="width: ' + resp_json.prof_info[i].result * 20 + '%"></div></div></div>'
+              document.getElementById("ins_panel").innerHTML += '<div class="page_container primary_white large10 medium10 small10 zi2 ins_info"><a href="/reviews/' + encodeURIComponent(resp_json.course_info.New_code) + "/" + encodeURIComponent(resp_json.prof_info[i].name) + '" target="_blank"><div class="flex_text">' + resp_json.prof_info[i].name + '</div></a><div class="flex_text">' + resp_json.prof_info[i].num + ' Comments</div><div class="flex_text">' + String((resp_json.prof_info[i].result * 2).toFixed(2)) + '/10</div><div class="bar" style="margin-top:0.5cm"><div class="barcontent" style="width: ' + resp_json.prof_info[i].result * 20 + '%"></div></div></div>'
+              
+              meta_desc += resp_json.prof_info[i].name + ' ' + String((resp_json.prof_info[i].result * 2).toFixed(2)) + ' ';
             }
-
-            document.getElementById("course_rank").innerHTML = "Average: " +
-              String(((rank / resp_json.prof_info.length) * 2).toFixed(2)) +
-              "/10";
-
+            metas[index_desc].setAttribute('content', meta_desc);
           }
+
+          document.getElementById("course_rank").innerHTML = "Average: " +
+            String(((rank / resp_json.prof_info.length) * 2).toFixed(2)) +
+            "/10";
+
+
         } catch (e) {
 
           if (String(e).includes("New_Code"))
@@ -82,11 +87,20 @@ function searcher(crn) {
 
 // init
 var url_params = new URLSearchParams(window.location.search);
-var course_code = url_params.get("New_code").toUpperCase();
-if (course_code == null)
-{
-  course_code = decodeURI(window.location.pathname.split('/')[2]).toUpperCase();
+var course_code = decodeURI(window.location.pathname.split('/')[2]).toUpperCase();
+if (course_code == "UNDEFINED") {
+  course_code = url_params.get("New_code");
 }
+
+//find description meta
+var index_desc;
+var metas = document.getElementsByTagName('meta');
+for (let j = 0; j < metas.length; j++) {
+  if (metas[j].getAttribute('name') === 'description') {
+    index_desc = j;
+  }
+}
+
 document.title = course_code + " | 澳大選咩課 What2Reg @UM";
 document.getElementById("back").onclick = goBack;
 searcher(course_code)
