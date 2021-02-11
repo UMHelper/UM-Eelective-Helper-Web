@@ -26,24 +26,25 @@ function getNums(resp_json) {
 
 
 function redirect_ins(ins) {
-    document.location.href =
-        "/prof_info.html?prof_name=" +
-        encodeURIComponent(ins);
+    
 }
 
 function goSearch() {
+    document.getElementById("progress").style.visibility = "visible";
     if (document.getElementById("course_input").value.length < 4) {
-        document.getElementById("progress").style.visibility = "visible";
-        alert("Length too short. Please type in accurate information to search. 多鍵入幾個字吧，太短了！");
-        document.getElementById("progress").style.visibility = "hidden";
+        alert("Length too short. 多鍵入幾個字吧，太短了！");
     }
     else if (document.getElementById("byCrn").checked == true) {
-        searcher(document.getElementById("course_input").value.toUpperCase());
+        document.location.href =
+        "/course/" +
+        encodeURIComponent(document.getElementById("course_input").value.toUpperCase());
     }
     else {
-        redirect_ins(document.getElementById("course_input").value.toUpperCase());
+        document.location.href =
+        "/instructor/" +
+        encodeURIComponent(document.getElementById("course_input").value.toUpperCase());
     }
-
+    document.getElementById("progress").style.visibility = "hidden";
 }
 
 // init

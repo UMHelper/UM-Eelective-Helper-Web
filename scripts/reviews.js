@@ -1,6 +1,6 @@
 var API_server = "https://mpserver.umeh.top";
 function goBack() {
-  window.location.href = '/index.html';
+  window.location.href = '/course/'+course_code;
 }
 
 function goFb() {
@@ -178,6 +178,7 @@ if (course_code == null)
   course_code = decodeURI(window.location.pathname.split('/')[2]);
   prof_name = decodeURI(window.location.pathname.split('/')[3]);
 }
+
 document.getElementById("title").innerHTML = course_code;
 document.getElementById("ins").innerHTML = prof_name;
 document.title = prof_name + " " + course_code + " | 澳大選咩課 What2Reg @UM";

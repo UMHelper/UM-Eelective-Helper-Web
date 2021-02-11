@@ -7,6 +7,74 @@
 <html lang="zh-Hant-HK">
 
 <head>
+    <meta charset="utf-8">
+    <title>Index | 澳大選咩課 What2Reg @UM</title>
+    <meta name="description" content="澳大人，唔知add邊個課目同professor？同我入黎【澳大選咩課】，靚grade、workload、同學既review全都知！">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="/src/badge.png">
+    <link rel="manifest" href="/manifest.webmanifest">
+
+    <link rel="stylesheet" href="/css/fluent.min.css" media="print" onload="this.media='all'">
+    <link href="/css/fluent-icons.css" rel="stylesheet" type="text/css" media="print" onload="this.media='all'" />
+    <meta name="theme-color" content="#ffffff">
+    <style>
+        body {
+            background-image: url('/src/bg.jpg');
+
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center 0;
+        }
+
+        #logo {
+            margin-bottom: 0.2cm;
+            height: 1.7cm;
+            width: 1.7cm;
+        }
+
+        .select {
+            display: inline-block;
+            width: auto;
+        }
+
+        .bar {
+            height: 0.1cm;
+            width: 100%;
+            background-color: lightgrey;
+        }
+
+        .barcontent {
+            height: 0.1cm;
+            width: 100%;
+            background-color: #006ec9;
+        }
+
+        .ins_info {
+            padding: 0.5cm;
+            vertical-align: middle;
+            margin: 0.5cm;
+        }
+
+        .flex_text {
+            display: inline-block;
+            padding-right: 20px;
+            vertical-align: middle;
+        }
+
+        .footnote {
+            font-size: small;
+            color: rgba(165, 165, 165, 0.651);
+            text-align-last: center;
+        }
+
+        .numsItem {
+            display: inline-block;
+            text-align: center;
+            margin: 0.2cm 0.35cm 0.2cm 0.35cm;
+        }
+    </style>
+
     <script src="/scripts/fluent.js" async></script>
     <script src="/scripts/course.js" async></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -21,84 +89,6 @@
     <script data-ad-client="ca-pub-6229219222351733" async
         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <meta name="yandex-verification" content="00017b03cfc824e5" />
-    <meta charset="utf-8">
-    <title>Index | 澳大選咩課 What2Reg @UM</title>
-    <meta name="description"
-        content="澳大人，唔知add邊個課目同professor？同我入黎【澳大選咩課】，靚grade、workload、同學既review全都知！澳大选咩课 Hey UMers, not sure about which course or session to reg or drop? Come here at [What2Reg @UM], with reviews on professors, grades, workload... and everything you love! ">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/css/fluent.min.css">
-    <link rel="icon" href="/src/badge.png">
-    <link rel="manifest" href="/manifest.webmanifest">
-
-    <link href="/css/fluent-icons.css" rel="stylesheet" type="text/css" />
-    <meta name="theme-color" content="#ffffff">
-
-    <!--Apple icon，添加到主屏幕上时有图标-->
-    <!-- third-generation iPad with high-resolution Retina display: -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/src/badge.png">
-    <!-- iPhone with high-resolution Retina display: -->
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/src/badge.png">
-    <!-- first- and second-generation iPad: -->
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/src/badge.png">
-    <!-- non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
-    <link rel="apple-touch-icon-precomposed" href="/src/badge.png">
-    <style>
-        body {
-            background-image: url('/src/bg.jpg');
-    
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-size: cover;
-            background-position: center 0;
-        }
-    
-        #logo {
-            margin-bottom: 0.2cm;
-            height: 1.7cm;
-            width: 1.7cm;
-        }
-    
-        .select {
-            display: inline-block;
-            width: auto;
-        }
-    
-        .bar {
-            height: 0.1cm;
-            width: 100%;
-            background-color: lightgrey;
-        }
-    
-        .barcontent {
-            height: 0.1cm;
-            width: 100%;
-            background-color: #006ec9;
-        }
-    
-        .ins_info {
-            padding: 0.5cm;
-            vertical-align: middle;
-            margin: 0.5cm;
-        }
-    
-        .flex_text {
-            display: inline-block;
-            padding-right: 20px;
-            vertical-align: middle;
-        }
-    
-        .footnote {
-            font-size: small;
-            color: rgba(165, 165, 165, 0.651);
-            text-align-last: center;
-        }
-    
-        .numsItem {
-            display: inline-block;
-            text-align: center;
-            margin: 0.2cm 0.35cm 0.2cm 0.35cm;
-        }
-    </style>
 </head>
 
 
@@ -117,26 +107,26 @@
                 <br><br>
 
                 <span class="flex_text">
-                    <div class="bold" style="font-size:x-large;" id="course_name">LOADING
-                        COURSE INFO</div>
+                    <span class="bold" style="font-size:x-large;" id="course_name">LOADING
+                        COURSE INFO</span>
                 </span>
                 <span class="flex_text">
-                    <div class="bold" style="font-size:x-large;" id="course_name_chi">加載課程信息
-                    </div>
+                    <span class="bold" style="font-size:x-large;" id="course_name_chi">加載課程信息
+                    </span>
                 </span>
                 <br><br>
 
                 <span class="flex_text">
-                    <div id="credits">0.0 Credits </div>
+                    <span id="credits">0.0 Credits </span>
                 </span>
                 <span class="flex_text">
-                    <div id="course_info">Offered by DEPT, FCT</div>
+                    <span id="course_info">Offered by DEPT, FCT</span>
                 </span>
                 <span class="flex_text">
-                    <div id="medium">Language Instruction </div>
+                    <span id="medium">Language Instruction </span>
                 </span>
                 <span class="flex_text">
-                    <div id="course_rank">Average: 0/10</div>
+                    <span id="course_rank">Average: 0/10</span>
                 </span>
 
             </div>
@@ -147,6 +137,7 @@
 
             </div>
             <br>
+        </div>
     </main>
     <br>
 

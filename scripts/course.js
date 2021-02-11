@@ -5,23 +5,15 @@ function myAlert(msg) {
   if (confirm(msg + '\n\nPress [OK] to feedback this issue. Press [Cancel] to go back.\n 按[確認]鍵向開發團隊反饋. 按[取消]返回.')) {
     location.href = '/feedback.html';
   } else {
+    goBack();
   }
 }
 
 function goBack() {
-
-  document.getElementById("ins_panel").innerHTML = "";
-
-  document.getElementById("entry").style.display = "inherit";
-  document.getElementById("info").style.display = "none";
-  //document.getElementById("entry").style.visibility = "visible";
-  //document.getElementById("info").style.visibility = "hidden";
+  document.location.href = "/";
 }
 
 function searcher(crn) {
-  document.getElementById("progress").style.visibility = "visible";
-  search_button.setAttribute("disabled", "");
-  search_button.innerHTML = "Processing...";
   var request_search = new XMLHttpRequest();
 
   try {
@@ -49,11 +41,6 @@ function searcher(crn) {
 
           document.getElementById("medium").innerHTML = resp_json.course_info.Medium_of_Instruction + " Instruction";
           document.getElementById("credits").innerHTML = resp_json.course_info.Credits + " Credits";
-          document.getElementById("entry").style.height = 0;
-
-          search_button.innerHTML = "Search 搜索";
-          search_button.removeAttribute("disabled");
-          document.getElementById("course_input").removeAttribute("disabled");
 
           if (resp_json.prof_info.length === 0) {
             document.getElementById("course_rank").innerHTML = "Average: Not Available";
@@ -61,30 +48,22 @@ function searcher(crn) {
             rank = 0;
             for (i in resp_json.prof_info) {
               rank += resp_json.prof_info[i].result;
-              //document.getElementById("ins_panel").innerHTML += '<div class="page_container primary_white large10 medium10 small10 zi2 ins_info"><a href="/instructor.html?New_code=' + encodeURIComponent(resp_json.course_info.New_code) + "&prof_name=" + encodeURIComponent(resp_json.prof_info[i].name) + '" target="_blank"><div>' + resp_json.prof_info[i].name + '</div></a><span class="flex_text"> <div>' + resp_json.prof_info[i].num + ' Comments</div></span><span class="flex_text"><div>' + String((resp_json.prof_info[i].result * 2).toFixed(2)) + '/10</div></span><div class="bar" style="margin-top:0.5cm"><div class="barcontent" style="width: ' + resp_json.prof_info[i].result * 20 + '%"></div></div></div>'
+              //document.getElementById("ins_panel").innerHTML += '<div class="page_container primary_white large10 medium10 small10 zi2 ins_info"><a href="/reivews.html?New_code=' + encodeURIComponent(resp_json.course_info.New_code) + "&prof_name=" + encodeURIComponent(resp_json.prof_info[i].name) + '" target="_blank"><div>' + resp_json.prof_info[i].name + '</div></a><span class="flex_text"> <div>' + resp_json.prof_info[i].num + ' Comments</div></span><span class="flex_text"><div>' + String((resp_json.prof_info[i].result * 2).toFixed(2)) + '/10</div></span><div class="bar" style="margin-top:0.5cm"><div class="barcontent" style="width: ' + resp_json.prof_info[i].result * 20 + '%"></div></div></div>'
               //+"?New_code="+ encodeURIComponent(resp_json.course_info.New_code) + "&prof_name=" + encodeURIComponent(resp_json.prof_info[i].name) 
-              document.getElementById("ins_panel").innerHTML += '<div class="page_container primary_white large10 medium10 small10 zi2 ins_info"><a href="/instructor/' + encodeURIComponent(resp_json.course_info.New_code) + "/" + encodeURIComponent(resp_json.prof_info[i].name) +'" target="_blank"><div class="flex_text">' + resp_json.prof_info[i].name + '</div></a><div class="flex_text">' + resp_json.prof_info[i].num + ' Comments</div><div class="flex_text">' + String((resp_json.prof_info[i].result * 2).toFixed(2)) + '/10</div><div class="bar" style="margin-top:0.5cm"><div class="barcontent" style="width: ' + resp_json.prof_info[i].result * 20 + '%"></div></div></div>'
+              document.getElementById("ins_panel").innerHTML += '<div class="page_container primary_white large10 medium10 small10 zi2 ins_info"><a href="/reviews/' + encodeURIComponent(resp_json.course_info.New_code) + "/" + encodeURIComponent(resp_json.prof_info[i].name) +'" target="_blank"><div class="flex_text">' + resp_json.prof_info[i].name + '</div></a><div class="flex_text">' + resp_json.prof_info[i].num + ' Comments</div><div class="flex_text">' + String((resp_json.prof_info[i].result * 2).toFixed(2)) + '/10</div><div class="bar" style="margin-top:0.5cm"><div class="barcontent" style="width: ' + resp_json.prof_info[i].result * 20 + '%"></div></div></div>'
             }
 
             document.getElementById("course_rank").innerHTML = "Average: " +
               String(((rank / resp_json.prof_info.length) * 2).toFixed(2)) +
               "/10";
 
-            document.getElementById("progress").style.visibility = "hidden";
-            document.getElementById("entry").style.display = "none";
-            document.getElementById("info").style.display = "inherit";
           }
         } catch (e) {
 
           if (String(e).includes("New_Code"))
-            myAlert("Cannot find the course, typo? \n找不到這個課程，鍵入錯了嗎？ " + document.getElementById("course_input").value.toUpperCase());
+            myAlert("Cannot find the course, typo? \n找不到這個課程，鍵入錯了嗎？ " + course_code);
           else
             myAlert("Unexpected error \rError：" + String(e));
-          search_button.innerHTML = "Search";
-          search_button.removeAttribute("disabled");
-          document.getElementById("course_input").removeAttribute("disabled");
-          document.getElementById("progress").style.visibility = "hidden";
-          goBack()
         }
       }
     };
@@ -95,11 +74,19 @@ function searcher(crn) {
       "/course_info/?New_code=" + crn
     );
 
-    document.getElementById("course_input").value = "";
-    //document.getElementById("course_input").setAttribute("disabled", "");
-
     request_search.send();
   } catch (e) {
     alert("Network issue. Contact developers for help. " + String(e));
   }
 }
+
+// init
+var url_params = new URLSearchParams(window.location.search);
+var course_code = url_params.get("New_code").toUpperCase();
+if (course_code == null)
+{
+  course_code = decodeURI(window.location.pathname.split('/')[2]).toUpperCase();
+}
+document.title = course_code + " | 澳大選咩課 What2Reg @UM";
+document.getElementById("back").onclick = goBack;
+searcher(course_code)

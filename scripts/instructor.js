@@ -3,15 +3,15 @@ var API_server = "https://mpserver.umeh.top";
 
 function mymyAlert(msg) {
   if (confirm(msg + '\n\nPress [OK] to feedback this issue. Press [Cancel] to go back.\n 按[確認]鍵向開發團隊反饋. 按[取消]返回.')) {
-    location.href='/feedback.html';
+    location.href = '/feedback.html';
   } else {
   }
 }
 
 function add_course(course_json_obj, course_number) {
-  document.getElementById("name_of_prof").innerHTML = url_params.get("prof_name");
+  document.getElementById("name_of_prof").innerHTML = course_code;
   document.getElementById("viewport").innerHTML += `
-            <h2><a target="_blank" href="/instructor.html?New_code=${encodeURIComponent(course_json_obj.course_info.New_code)}&prof_name=${encodeURIComponent(course_json_obj.prof_info.name)}">${course_json_obj.course_info.New_code}</a></h2>
+            <h2><a target="_blank" href="/reviews/${encodeURIComponent(course_json_obj.course_info.New_code)}/${encodeURIComponent(course_json_obj.prof_info.name)}">${course_json_obj.course_info.New_code}</a></h2>
             <h2>
             ${course_json_obj.course_info.courseTitleEng}
             </h2>
@@ -67,6 +67,14 @@ function add_course(course_json_obj, course_number) {
             `
 }
 
+// init
+var url_params = new URLSearchParams(window.location.search);
+var course_code = url_params.get("New_code");
+if (course_code == null)
+{
+  course_code = decodeURI(window.location.pathname.split('/')[2]);
+}
+
 try {
   var req = new XMLHttpRequest();
 
@@ -107,7 +115,7 @@ try {
     "GET",
     API_server +
     "/prof_info/?name=" +
-    encodeURIComponent(url_params.get("prof_name"))
+    encodeURIComponent(course_code)
   );
   req.send();
 } catch (e) {
