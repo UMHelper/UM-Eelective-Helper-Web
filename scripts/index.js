@@ -37,7 +37,13 @@ function goSearch() {
     }
   }
   
-  
+
+  function redirect_ins(ins) {
+    document.location.href =
+      "/prof_info.html?prof_name=" +
+      encodeURIComponent(ins);
+  }
+    
   
 // init
 search_button.onclick = goSearch;

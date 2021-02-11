@@ -103,9 +103,3 @@ function searcher(crn) {
     alert("Network issue. Contact developers for help. " + String(e));
   }
 }
-
-function redirect_ins(ins) {
-  document.location.href =
-    "/prof_info.html?prof_name=" +
-    encodeURIComponent(ins);
-}
