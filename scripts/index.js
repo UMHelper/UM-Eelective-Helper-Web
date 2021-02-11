@@ -33,7 +33,6 @@ function goSearch() {
 search_button.onclick = goSearch;
 document.getElementById("byCrn").onclick = changeType;
 document.getElementById("byIns").onclick = changeType;
-document.getElementById("back").onclick = goBack
 
 document
   .getElementById("course_input")
