@@ -1,14 +1,3 @@
-var API_server = "https://mpserver.umeh.top";
-
-
-function myAlert(msg) {
-  if (confirm(msg + '\n\nPress [OK] to feedback this issue. Press [Cancel] to go back.\n 按[確認]鍵向開發團隊反饋. 按[取消]返回.')) {
-    location.href = '/feedback.html';
-  } else {
-    goBack();
-  }
-}
-
 function goBack() {
   document.location.href = "/";
 }

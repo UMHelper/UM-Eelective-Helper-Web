@@ -8,26 +8,26 @@
 
 <head>
     <meta charset="utf-8">
-    <title>澳大選咩課 What2Reg @UM</title>
+    <title>Submit | 澳大選咩課 What2Reg @UM</title>
     <meta name="description"
         content="澳大人，唔知add邊個課目同professor？同我入黎【澳大選咩課】，靚grade、workload、同學既review全都知！Hey UMers, not sure about which course or session to reg or drop? Come here at [What2Reg @UM], with reviews on professors, grades, workload... and everything you love! 澳大选咩课，澳大人的选课帮手">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/css/fluent.min.css">
-    <link href="/css/fluent-icons.css" rel="stylesheet" type="text/css" />
 
+    <link rel="stylesheet" href="/css/fluent.min.css" media="print" onload="this.media='all'">
+    <link href="/css/fluent-icons.css" rel="stylesheet" type="text/css" media="print" onload="this.media='all'" />
     <link rel="icon" href="/src/badge.png">
-    <meta name="theme-color" content="#ffffff">
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-176924130-2"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0078D7">
 
-        gtag('config', 'UA-176924130-2');
-    </script>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-176924130-2"></script>
     <script data-ad-client="ca-pub-6229219222351733" async
         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+    <!-- scripts -->
+    <script src="/scripts/common.js" async></script>
+    <script src="/scripts/submit.js" async></script>
+    <script src="/scripts/fluent.js" async></script>
 </head>
 <style>
     body {
@@ -183,35 +183,6 @@
     </main>
 
     <br><br>
-    <script src="/scripts/fluent.js" async></script>
-    <script>
-        function goBack() {
-            document.location.href = '/reviews/' + encodeURIComponent(course_code) + "/" + encodeURIComponent(prof_name);
-        }
-
-        // init
-        var url_params = new URLSearchParams(window.location.search);
-        var course_code = decodeURI(window.location.pathname.split('/')[2]).toUpperCase();
-        var prof_name = decodeURI(window.location.pathname.split('/')[3]).toUpperCase();
-        if (course_code == "UNDEFINED") {
-            course_code = url_params.get("New_code");
-            prof_name = url_params.get("prof_name");
-        }
-        
-        document.getElementById("reminder").innerHTML = `Commenting on course ${course_code} for instructor ${prof_name}.`;
-        document.getElementById("course_number").setAttribute("value", course_code);
-        document.getElementById("prof_name").setAttribute("value", prof_name);
-        document.getElementById("submit_btn").onclick = function () {
-            document.getElementById("sub_form").submit();
-            document.getElementById("sub_form").style.display = "none";
-            document.getElementById("reminder").innerHTML = "Thanks for your comment! 感謝您的評價！<br>Redirecting back..."
-            setTimeout(() => { goBack(); }, 2000);
-
-        }
-        document.getElementById("back").onclick = goBack;
-
-    </script>
-
 </body>
 
 </html>

@@ -1,12 +1,3 @@
-var API_server = "https://mpserver.umeh.top";
-
-function myAlert(msg) {
-    if (confirm(msg + '\n\nPress [OK] to feedback this issue. Press [Cancel] to go back.\n 按[確認]鍵向開發團隊反饋. 按[取消]返回.')) {
-        location.href = '/feedback.html';
-    } else {
-    }
-}
-
 var search_button = document.getElementById("search");
 
 function changeType() {
@@ -22,11 +13,6 @@ function getNums(resp_json) {
     for (var i in com) {
         document.getElementById("numsPanel").innerHTML += '<div class="numsItem"><div style="font-weight: bolder;">' + i + '</div><div>' + com[i].comment + '</div></div>'
     }
-}
-
-
-function redirect_ins(ins) {
-    
 }
 
 function goSearch() {

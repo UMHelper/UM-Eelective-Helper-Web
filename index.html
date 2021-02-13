@@ -1,7 +1,3 @@
-<!--
-    https://fluentdesignforweb.github.io/documentation/#/progress_bar
--->
-
 <!doctype html>
 
 <html lang="zh-Hant-HK">
@@ -11,12 +7,7 @@
     <title>Index | 澳大選咩課 What2Reg @UM</title>
     <meta name="description"
         content="澳大人，唔知add邊個課目同professor？同我入黎【澳大選咩課】，靚grade、workload、同學既review全都知！澳大选咩课 Hey UMers, not sure about which course or session to reg or drop? Come here at [What2Reg @UM], with reviews on professors, grades, workload... and everything you love! ">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="manifest" href="/manifest.webmanifest">
-    <meta name="yandex-verification" content="00017b03cfc824e5" />
-
-    <meta name="theme-color" content="#ffffff">
-
+    <!-- style -->
     <style>
         body {
             background-image: url('/src/bg.jpg');
@@ -77,26 +68,24 @@
     <link rel="stylesheet" href="/css/fluent.min.css" media="print" onload="this.media='all'">
     <link href="/css/fluent-icons.css" rel="stylesheet" type="text/css" media="print" onload="this.media='all'" />
     <link rel="icon" href="/src/badge.png">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0078D7">
 
-    <script src="/scripts/fluent.js" async></script>
-    <script src="/scripts/index.js" async></script>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <link rel="apple-touch-icon" href="/src/icon-192x192.png">
+    <meta name="apple-mobile-web-app-title" content="What2Reg@UM 澳大選咩課">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-176924130-2"></script>
     <script data-ad-client="ca-pub-6229219222351733" async
         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'UA-176924130-2');
-
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/sw.js', { scope: '/' })
-            .then(reg => console.log('Service Worker registered', reg))
-            .catch(err => console.log('Error!', err));
-        }
-    </script>
+        
+    <!-- scripts -->
+    <script src="/scripts/common.js" async></script>
+    <script src="/scripts/index.js" async></script>
+    <script src="/scripts/fluent.js" async></script>
 
 </head>
 

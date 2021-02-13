@@ -1,17 +1,9 @@
-var API_server = "https://mpserver.umeh.top";
 function goBack() {
   window.location.href = '/course/' + course_code;
 }
 
 function goFb() {
   window.location.href = '/feedback.html';
-}
-
-function myAlert(msg) {
-  if (confirm(msg + '\n\nPress [OK] to feedback this issue. Press [Cancel] to go back.\n 按[確認]鍵向開發團隊反饋. 按[取消]返回.')) {
-    location.href = '/feedback.html';
-  } else {
-  }
 }
 
 function submitReviews() {
