@@ -20,9 +20,7 @@ function submitReviews() {
 
 function getCourseInfo(resp_json) {
 
-  document.getElementById("title").innerHTML = resp_json.course_info.New_code;
   document.getElementById("course_name").innerHTML = resp_json.course_info.courseTitleEng;
-  document.getElementById("ins").innerHTML = resp_json.prof_info.name;
   document.getElementById("course_name_chi").innerHTML = resp_json.course_info.courseTitleChi;
   document.getElementById("course_info").innerHTML = "Offered by " + resp_json.course_info.Offering_Department + ", " + resp_json.course_info.Offering_Unit;
   document.getElementById("medium").innerHTML = resp_json.course_info.Medium_of_Instruction + " Instruction";
@@ -102,7 +100,7 @@ function getComments(course_json_obj) {
   for (var i in course_json_obj.comments) {
     document.getElementById("reviews").innerHTML +=
       '<div class="page_container primary_white large3 medium5 small12 zi2 ins_info">'
-      + '<a href="#"><div>' + ((i == 0) ? "New " : i + "# ") + generateAttitude(course_json_obj.comments[i].recommend, "recommend", false) + '</div></a>'
+      + '<a class="link" href="#"><h4>' + course_json_obj.comments[i].pub_time + " " + generateAttitude(course_json_obj.comments[i].recommend, "recommend", false) + '</h4></a>'
       + '<p class="context">' + course_json_obj.comments[i].content + '</p>'
       + generateAttitude(course_json_obj.comments[i].hard, "workload", true)
       + generateAttitude(course_json_obj.comments[i].attendance, "attendance", true)
@@ -173,8 +171,10 @@ if (course_code == "UNDEFINED") {
   prof_name = url_params.get("prof_name");
 }
 
-document.getElementById("title").innerHTML = course_code;
+document.getElementById("title").innerHTML = course_code ;
+document.getElementById("title_url").setAttribute("href", "/course/" + course_code) ;
 document.getElementById("ins").innerHTML = prof_name;
+document.getElementById("ins_url").setAttribute("href", "/professor/" + prof_name) ;
 document.title = prof_name + " " + course_code + " | 澳大選咩課 What2Reg @UM";
 document.getElementById("back").onclick = goBack;
 document.getElementById("submit").onclick = submitReviews;
@@ -197,8 +197,6 @@ try {
   req.onreadystatechange = function () {
     if (req.readyState === XMLHttpRequest.DONE) {
       if (this.status == 500) { // the backend just return 500 when no comments found.
-        document.getElementById("title").innerHTML = course_code;
-        document.getElementById("ins").innerHTML = prof_name;
         document.getElementById("reviews").innerHTML += '<div class="page_container primary_white large3 medium5 small12 zi2 ins_info"><p>No reviews yet 😥 Be the first to submit!</p><p>暫無評價，做第一個開路者吧！</p> </div>';
         document.getElementById("course_name").innerHTML = "NO REVIEWS YET";
         document.getElementById("course_name_chi").innerHTML = "無評價";
