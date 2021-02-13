@@ -23,7 +23,7 @@
       "type": "image/png"
     }
   ],
-  "name": "What2Reg @UM 澳大選咩課",
+  "name": "What2Reg@UM 澳大選咩課",
   "short_name": "澳大選咩課",
   "start_url": "/?source=pwa",
   "display": "standalone",
