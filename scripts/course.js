@@ -81,8 +81,6 @@ if (course_code == "UNDEFINED") {
   course_code = url_params.get("New_code");
 }
 
-$('head').append('<link rel="canonical" href="https://www.umeh.top/course/'+ course_code + '" />');
-
 document.title = course_code + " | 澳大選咩課 What2Reg @UM";
 document.getElementById("back").onclick = goBack;
 

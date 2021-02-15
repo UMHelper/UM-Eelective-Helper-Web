@@ -13,8 +13,12 @@ gtag('js', new Date());
 
 gtag('config', 'UA-176924130-2');
 
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js', { scope: '/' })
-        .then(reg => console.log('Service Worker registered', reg))
-        .catch(err => console.log('Error!', err));
+try {
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js', { scope: '/' })
+            .then(reg => console.log('Service Worker registered', reg))
+            .catch(err => console.log('Not supported.', err));
+    }
+} catch (error) {
+
 }
