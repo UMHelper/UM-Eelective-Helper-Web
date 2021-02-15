@@ -163,6 +163,12 @@ if (course_code == "UNDEFINED") {
   prof_name = url_params.get("prof_name");
 }
 
+//add cononical label
+var meta = document.createElement('link');
+meta.setAttribute('rel', 'canonical');
+meta.setAttribute('href', 'https://www.umeh.top/reviews/'+ course_code + '/' + prof_name);
+document.getElementsByTagName('head')[0].appendChild(meta);
+
 document.getElementById("title").innerHTML = course_code ;
 document.getElementById("title_url").setAttribute("href", "/course/" + course_code) ;
 document.getElementById("ins").innerHTML = prof_name;

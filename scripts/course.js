@@ -81,6 +81,17 @@ if (course_code == "UNDEFINED") {
   course_code = url_params.get("New_code");
 }
 
+$('head').append('<link rel="canonical" href="https://www.umeh.top/course/'+ course_code + '" />');
+
+document.title = course_code + " | 澳大選咩課 What2Reg @UM";
+document.getElementById("back").onclick = goBack;
+
+//add cononical label
+var meta = document.createElement('link');
+meta.setAttribute('rel', 'canonical');
+meta.setAttribute('href', 'https://www.umeh.top/course/'+ course_code);
+document.getElementsByTagName('head')[0].appendChild(meta);
+
 //find description meta
 var index_desc;
 var metas = document.getElementsByTagName('meta');
@@ -90,6 +101,4 @@ for (let j = 0; j < metas.length; j++) {
   }
 }
 
-document.title = course_code + " | 澳大選咩課 What2Reg @UM";
-document.getElementById("back").onclick = goBack;
 searcher(course_code)
