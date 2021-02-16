@@ -89,12 +89,9 @@ try {
           }
         } catch (e) {
           myAlert(`Seems to be a backend issue. ${e}; please try again.`);
-          window.location = "/index.html"
         }
       } catch (e) {
-
         myAlert("Instructor not found or he runs no course. " + String(e));
-        window.location = "/index.html"
       }
     }
   };
