@@ -104,6 +104,7 @@ function getComments(course_json_obj) {
     //'<button id="share"' + no + ' class="primary_green right" style="display: inline-block;vertical-align: middle;padding:0.15cm"><i class="ms-Icon ms-Icon--Share icon-small"></i></button>'
   }
   metas[index_desc].setAttribute('content', meta_desc);
+  document.getElementById("progress").style.visibility = "hidden";
 }
 
 function share(content) {
@@ -117,40 +118,6 @@ function share(content) {
       .then(() => console.log('Successful share'))
       .catch((error) => myAlert('I guess you canceled sharing. If not, it is because you browser\'s lack of sharing API support. \n我猜你取消了分享。如果并没有的话，你的瀏覽器應該并不支持分享功能API。', error));
   }
-}
-
-
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({ pageLanguage: "en" }, 'google_translate_element');
-}
-
-function changeLanguageByButtonClick(language) {
-  //var language = document.getElementById("language").value;
-  var selectField = document.querySelector("#google_translate_element select");
-  for (var i = 0; i < selectField.children.length; i++) {
-    var option = selectField.children[i];
-    // find desired langauge and change the former language of the hidden selection-field 
-    if (option.value == language) {
-      selectField.selectedIndex = i;
-      // trigger change event afterwards to make google-lib translate this side
-      selectField.dispatchEvent(new Event('change'));
-      break;
-    }
-  }
-}
-
-
-/** 
- * Note: 
- * If you are confused by my intension to write like this:
- * I also wonder why Google's API doesn't even support translation to English!
- * Just keep it before better way's out.
-*/
-function realTranslate() {
-  opendialog1();
-  changeLanguageByButtonClick("fr");
-  setTimeout(() => { changeLanguageByButtonClick("en"); }, 3000);
-  setTimeout(() => { closedialog1(); }, 5000);
 }
 
 
@@ -178,7 +145,6 @@ document.getElementById("back").onclick = goBack;
 document.getElementById("submit").onclick = submitReviews;
 document.getElementById("share").onclick = share;
 document.getElementById("feedback").onclick = goFb;
-document.getElementById("translate").onclick = realTranslate;
 
 //find description meta
 var index_desc;
@@ -224,11 +190,7 @@ try {
         }
       }
     }
-
-
-
   };
-
 
   req.open(
     "GET",

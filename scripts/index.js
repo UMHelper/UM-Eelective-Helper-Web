@@ -13,6 +13,8 @@ function getNums(resp_json) {
     for (var i in com) {
         document.getElementById("numsPanel").innerHTML += '<div class="numsItem"><div style="font-weight: bolder;">' + i + '</div><div>' + com[i].comment + '</div></div>'
     }
+    
+    document.getElementById("progress").style.visibility = "hidden";
 }
 
 function goSearch() {
@@ -22,15 +24,14 @@ function goSearch() {
     }
     else if (document.getElementById("byCrn").checked == true) {
         document.location.href =
-        "/course/" +
-        encodeURIComponent(document.getElementById("course_input").value.toUpperCase());
+            "/course/" +
+            encodeURIComponent(document.getElementById("course_input").value.toUpperCase());
     }
     else {
         document.location.href =
-        "/professor/" +
-        encodeURIComponent(document.getElementById("course_input").value.toUpperCase());
+            "/professor/" +
+            encodeURIComponent(document.getElementById("course_input").value.toUpperCase());
     }
-    document.getElementById("progress").style.visibility = "hidden";
 }
 
 // init
@@ -59,4 +60,3 @@ try {
 } catch (e) {
     myAlert(`Network issue or we're down😇. \n網路問題或者我們的服務中斷\n Error: ${e}.`);
 }
-

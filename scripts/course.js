@@ -50,8 +50,8 @@ function searcher(crn) {
           document.getElementById("course_rank").innerHTML = "Average: " +
             String(((rank / resp_json.prof_info.length) * 2).toFixed(2)) +
             "/10";
-
-
+          document.getElementById("progress").style.visibility = "hidden";
+          
         } catch (e) {
 
           if (String(e).includes("New_Code"))

@@ -94,8 +94,6 @@
 </head>
 
 <body>
-    <div id="google_translate_element" style="display:none"></div>
-
     <div class="primary_blue" style="width: 100%; padding: 1cm; background-color: #0076d7cc;">
         <button id="back" class="primary_blue"
             style="padding:0; margin-right: 10px; display: inline-block;vertical-align: middle; background-color: #0076d700;">
@@ -127,7 +125,6 @@
     <!-- Row 2 -->
     <div id="ins_panel" class="primary_white"
         style="width: 100%; padding: 1.2cm; vertical-align: text-top; background-color: rgba(250, 250, 250, 0.92);">
-
         <div class="column large3 medium4 small12 primary_white"
             style="padding-right: 1cm; background-color: rgba(250, 250, 250, 0);">
 
@@ -185,35 +182,22 @@
                 <span style="display: inline-block;">Rich 充實</span>
             </div>
             <br>
-            <button id="submit" class="primary_blue small dlevel1 " style="margin-bottom:0.3cm"><i
-                    class="ms-Icon ms-Icon--ChatInviteFriend"> </i> Comment 評論</button>
-            <button id="share" class="primary_green small dlevel1 " style="margin-bottom:0.3cm;"><i
-                    class="ms-Icon ms-Icon--Share "> </i> Share 分享</button><br>
         </div>
         <div class="column large9 medium8 small12 primary_white" style=" background-color: rgba(250, 250, 250, 0);">
             <div>
+                <button id="submit" class="primary_blue small dlevel1 " style="margin-bottom:0.3cm"><i
+                        class="ms-Icon ms-Icon--ChatInviteFriend"> </i> Comment 評論</button>
+                <button id="share" class="primary_green small dlevel1 " style="margin-bottom:0.3cm;"><i
+                        class="ms-Icon ms-Icon--Share "> </i> Share 分享</button>
                 <button id="feedback" class="primary_white small dlevel1 " style="margin-bottom:0.3cm;"><i
-                        class="ms-Icon ms-Icon--Bug " style="height: 0.2cm;"> </i> Feedback 反饋</button>
-                <button id="translate" class="primary_white small dlevel1 " style="margin-bottom:0.3cm;"><i
-                        class="ms-Icon ms-Icon--Translate " style="height: 0.2cm;"> </i> Translate</button>
+                        class="ms-Icon ms-Icon--Bug "> </i> Feedback 反饋</button>
             </div>
-            <div id="reviews"></div>
-
-
-        </div>
-
-    </div>
-
-    <div class="dialogue_box" id="dialog1">
-        <div class="dialogue_pane large12">
-        </div>
-        <div class="dialogue_content large12" style="text-align-last: center;">
-
-            <p class="spinner l"></p>
-            <p>LOADING Google API... </p>
-            <p>很抱歉，本頁面在中國大陸可能無法訪問。</p>
+            <div id="reviews">
+                <div class="indeterminate_progress_bar" id="progress" style="width: 100%; "></div>
+            </div>
 
         </div>
+
     </div>
 
     <div class="column large12 medium12 small12 pivot_container primary_inverted"
