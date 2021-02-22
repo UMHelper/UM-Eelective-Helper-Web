@@ -7,7 +7,7 @@ function goFb() {
 }
 
 function submitReviews() {
-  window.location.href = '/submit/' + course_code + '/' + prof_name;
+  window.location.href = '/submit/' + course_code + '/' + prof_name.replace('/', '%2F');
 }
 
 function getCourseInfo(resp_json) {
