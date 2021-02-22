@@ -25,6 +25,8 @@ function searcher(crn) {
           document.getElementById("course_name_chi").innerHTML =
             resp_json.course_info.courseTitleChi;
 
+          document.title = course_code + " " + resp_json.course_info.courseTitleEng +" | 澳大選咩課 What2Reg @UM";
+
           document.getElementById("course_info").innerHTML =
             "Offered by " + resp_json.course_info.Offering_Department + ", " + resp_json.course_info.Offering_Unit;
 
@@ -35,13 +37,13 @@ function searcher(crn) {
             document.getElementById("course_rank").innerHTML = "Average: Not Available";
           } else {
             rank = 0;
-            var meta_desc = '課程' + course_code + '中的講師評價。' ;
+            var meta_desc = '課程' + course_code + '中的講師評價。';
             for (i in resp_json.prof_info) {
               rank += resp_json.prof_info[i].result;
               //document.getElementById("ins_panel").innerHTML += '<div class="page_container primary_white large10 medium10 small10 zi2 ins_info"><a href="/reivews.html?New_code=' + encodeURIComponent(resp_json.course_info.New_code) + "&prof_name=" + encodeURIComponent(resp_json.prof_info[i].name) + '" target="_blank"><div>' + resp_json.prof_info[i].name + '</div></a><span class="flex_text"> <div>' + resp_json.prof_info[i].num + ' Comments</div></span><span class="flex_text"><div>' + String((resp_json.prof_info[i].result * 2).toFixed(2)) + '/10</div></span><div class="bar" style="margin-top:0.5cm"><div class="barcontent" style="width: ' + resp_json.prof_info[i].result * 20 + '%"></div></div></div>'
               //+"?New_code="+ encodeURIComponent(resp_json.course_info.New_code) + "&prof_name=" + encodeURIComponent(resp_json.prof_info[i].name) 
               document.getElementById("ins_panel").innerHTML += '<div class="page_container primary_white large10 medium10 small10 zi2 ins_info"><a class="link" href="/reviews/' + encodeURIComponent(resp_json.course_info.New_code) + "/" + encodeURIComponent(resp_json.prof_info[i].name) + '" target="_blank"><div class="flex_text">' + resp_json.prof_info[i].name + '</div></a><div class="flex_text">' + resp_json.prof_info[i].num + ' Comments</div><div class="flex_text">' + String((resp_json.prof_info[i].result * 2).toFixed(2)) + '/10</div><div class="bar" style="margin-top:0.5cm"><div class="barcontent" style="width: ' + resp_json.prof_info[i].result * 20 + '%"></div></div></div>'
-              
+
               meta_desc += resp_json.prof_info[i].name + ' ' + String((resp_json.prof_info[i].result * 2).toFixed(2)) + ' ';
             }
             metas[index_desc].setAttribute('content', meta_desc);
@@ -51,7 +53,7 @@ function searcher(crn) {
             String(((rank / resp_json.prof_info.length) * 2).toFixed(2)) +
             "/10";
           document.getElementById("progress").style.visibility = "hidden";
-          
+
         } catch (e) {
 
           if (String(e).includes("New_Code"))
@@ -87,7 +89,7 @@ document.getElementById("back").onclick = goBack;
 //add cononical label
 var meta = document.createElement('link');
 meta.setAttribute('rel', 'canonical');
-meta.setAttribute('href', 'https://www.umeh.top/course/'+ course_code);
+meta.setAttribute('href', 'https://www.umeh.top/course/' + course_code);
 document.getElementsByTagName('head')[0].appendChild(meta);
 
 //find description meta

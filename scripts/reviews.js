@@ -124,7 +124,7 @@ function share(content) {
 // init
 var url_params = new URLSearchParams(window.location.search);
 var course_code = decodeURI(window.location.pathname.split('/')[2]).toUpperCase();
-var prof_name = decodeURI(window.location.pathname.split('/')[3]).toUpperCase();
+var prof_name = decodeURI(window.location.pathname.split('/')[3]).replace('%2F', '/').toUpperCase();
 if (course_code == "UNDEFINED") {
   course_code = url_params.get("New_code");
   prof_name = url_params.get("prof_name");

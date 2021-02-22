@@ -22,10 +22,12 @@ document.getElementById("reminder").innerHTML = `Commenting on course ${course_c
 document.getElementById("course_number").setAttribute("value", course_code);
 document.getElementById("prof_name").setAttribute("value", prof_name);
 document.getElementById("submit_btn").onclick = function () {
+    document.getElementById("progress").style.visibility = "visible";
     document.getElementById("sub_form").submit();
     document.getElementById("sub_form").style.display = "none";
-    document.getElementById("reminder").innerHTML = "Thanks for your comment! 感謝您的評價！<br>Redirecting back..."
-    setTimeout(() => { goBack(); }, 2000);
+    document.getElementById("reminder").innerHTML = "Thanks for your comment! 感謝您的評價！<br>Redirecting back...<br><br><br>"
+    setTimeout(() => { goBack(); }, 4000);
 
 }
 document.getElementById("back").onclick = goBack;
+document.getElementById("progress").style.visibility = "hidden";
