@@ -91,7 +91,7 @@ function getComments(course_json_obj) {
   var meta_desc = '講師' + prof_name + '在' + course_code + '課程中的評價。';
   for (var i in course_json_obj.comments) {
     document.getElementById("reviews").innerHTML +=
-      '<div class="page_container primary_white large3 medium5 small12 zi2 ins_info">'
+      '<div class="page_container primary_white large3 medium5 small12 zi2 ins_info" style="height: 6cm">'
       + '<a class="link" href="#"><h4>' + course_json_obj.comments[i].pub_time + " " + generateAttitude(course_json_obj.comments[i].recommend, "recommend", false) + '</h4></a>'
       + '<p class="context">' + course_json_obj.comments[i].content + '</p>'
       + generateAttitude(course_json_obj.comments[i].hard, "workload", true)
