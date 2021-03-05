@@ -99,9 +99,9 @@ function getComments(course_json_obj) {
       + generateAttitude(course_json_obj.comments[i].grade, "marks", true)
       + ' </div>';
     //ads
-    document.getElementById("reviews").innerHTML +=
-      '<div class="page_container primary_white large3 medium5 small12 zi2 ins_info" style="height: 6cm">'
-      + inline_ad + ' </div>';
+    //document.getElementById("reviews").innerHTML +=
+     // '<div class="page_container primary_white large3 medium5 small12 zi2 ins_info" style="height: 6cm">'
+     // + inline_ad + ' </div>';
     if (i < 3) {
       meta_desc += course_json_obj.comments[i].content.replace(/(\r\n|\n|\r)/gm, "") + ' ';
     }
