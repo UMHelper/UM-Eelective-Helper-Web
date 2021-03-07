@@ -35,6 +35,10 @@
 
     <!-- Custom Styles -->
     <style>
+        #header{
+            display: none;
+        }
+
         #logo {
             margin-bottom: 0.4cm;
             height: 1.9cm;
@@ -72,7 +76,7 @@
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v10.0"
         nonce="LuRoULR6"></script>
 
-    <header>
+    <header id="header">
         <nav class="shadow navbar navbar-expand-md navbar-dark fixed-top"
             style="padding: 13px; background-color: #30548b;">
             <div class="container-fluid container-lg">
@@ -155,7 +159,7 @@
     <!-- Description -->
     <section>
         <div class="container card-group" style="padding:1% 3% 5%;">
-            <div class="row">
+            <div class="row" id="intro">
                 <div class="col-md-4">
                     <div class="card h-100 border-0">
                         <div class="card-body" style="padding: 0.6cm"><i class="bi bi-inboxes-fill text-primary"
@@ -250,7 +254,7 @@
     </footer>
 
     <script src="/scripts/common.js"></script>
-    <script src="/scripts/index.js" async></script>
+    <script src="./scripts/index.js" async></script>
 </body>
 
 </html>

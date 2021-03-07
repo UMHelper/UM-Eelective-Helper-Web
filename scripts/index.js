@@ -16,6 +16,18 @@ $('#input_search_main').keypress(function (e) {
         $('#button_search_main').focus().click();
     }
 });
+$(window).on('scroll', function () {
+    var scrollTop     = $(window).scrollTop(),
+        elementOffset = $('#intro').offset().top,
+        distance      = (elementOffset - scrollTop);
+
+    if (distance<70){
+        $('#header').css("display","block");
+    }
+    else {
+        $('#header').css("display","none");
+    }
+});
 
 // get total num
 $.ajax({
@@ -30,3 +42,6 @@ $.ajax({
         $("#numsPanel").append('<div class="alert alert-danger" role="alert" style="padding: 0.3cm">連接伺服器失敗，請重試或向我們反饋！<br>Error connecting to the server. Please try again or send feedback to us!</div>');
     }
 });
+
+
+
