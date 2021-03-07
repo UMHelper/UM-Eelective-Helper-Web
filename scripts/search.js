@@ -2,7 +2,7 @@ var keyword = $.urlParam('keyword').toUpperCase();
 var instructorSearch = $.urlParam('instructor') == "true";
 $("#searchByInstructor").prop("checked", instructorSearch)
 $(document).prop('title', "Results of " + keyword + " | 澳大選咩課 What2Reg @UM");
-$('link[rel="canonical"]').attr('href', 'https://www.umeh.top/search.html?course=' + keyword);
+$('link[rel="canonical"]').attr('href', 'https://www.umeh.top/search.html?course=' + keyword + '?instructor=' + instructorSearch);
 $('#input_search_nav').val(keyword);
 $('#title_search').append(keyword);
 //$("meta[name='description']").attr('content', 'new_description');
