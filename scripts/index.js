@@ -1,56 +1,32 @@
-var search_button = document.getElementById("search");
-
-function changeType() {
-    document.getElementById("course_input").placeholder = "Eg. " + (document.getElementById("byCrn").checked == true ? "ACCT1000" : "CHAN TAI MAN");
+function searchMain() {
+    $('#close_alert').focus().click();
+    if ($("#input_search_main").val().length < 4)
+        $('#search_form').prepend('<div class="alert alert-dismissible alert-danger fade show" id="too_short" role="alert" style="padding: 0.3cm">關鍵字太短了! Keyword too short!<button id="close_alert" type="button" data-bs-dismiss="alert" aria-label="Close" style="visibility: hidden;"></button></div>');
+    else
+        document.location.href = "/search.html?keyword=" + $("#input_search_main").val().trim() + "&instructor=" + $("#searchByInstructor").is(":checked");
 }
 
-function goSearch() {
-    document.getElementById("progress").style.visibility = "visible";
-    if (document.getElementById("course_input").value.length < 4) {
-        alert("Length too short. 多鍵入幾個字吧，太短了！");
-    }
-    else if (document.getElementById("byCrn").checked == true) {
-        document.location.href =
-            "/course/" +
-            encodeURIComponent(document.getElementById("course_input").value.toUpperCase());
-    }
-    else {
-        document.location.href =
-            "/professor/" +
-            encodeURIComponent(document.getElementById("course_input").value.toUpperCase());
-    }
-}
+$('#searchByInstructor').on('change.bootstrapSwitch', function (e) {
+    $("#input_search_main").attr("placeholder", e.target.checked ? "e.g. CHAN Tai Man" : "e.g. ACCT1000 or Accounting");
+});
 
-// init
-/*search_button.onclick = goSearch;
-document
-    .getElementById("course_input")
-    .setAttribute("onkeypress", "if(event.keyCode==13) {goSearch()}");
-
-document.getElementById("course_input").value = "";*/
+$('#input_search_main').keypress(function (e) {
+    if (e.which == 13) {
+        $(this).blur();
+        $('#button_search_main').focus().click();
+    }
+});
 
 // get total num
 $.ajax({
     url: API_server + "/get_stat/",
     dataType: "json",
     success: function (data) {
-        var com = data.faculty_detail;
         for (var i in data.faculty_detail) {
-            $("#numsPanel").append('<div class="numsItem"><div style="font-weight: bolder;">' + i + '</div><div>' + data.faculty_detail[i].comment + '</div></div>');
+            $("#numsPanel").append('<div class="shadow text-secondary numsItem"><h3 class="h5" style="font-weight: bolder; color: black">' + i + '</h3><div>' + data.faculty_detail[i].course + ' courses</div>' + '<div>' + data.faculty_detail[i].comment + ' comments</div></div>');
         }
     },
     error: function (data) {
-        $("#numsPanel").replaceWith("ERROR");
-    }
-});
-
-$.ajax({
-    url: "https://api.github.com/repos/UMHelper/UM-Eelective-Helper-Web/branches/main",
-    dataType: "json",
-    success: function (data) {
-        $('#version').replaceWith('<a href="'+ data.commit.html_url + '">'+ data.commit.commit.author.date);
-    },
-    error: function (data) {
-        $('#version').replaceWith("ERROR");
+        $("#numsPanel").append('<div class="alert alert-danger" role="alert" style="padding: 0.3cm">連接伺服器失敗，請重試或向我們反饋！<br>Error connecting to the server. Please try again or send feedback to us!</div>');
     }
 });
