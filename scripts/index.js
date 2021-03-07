@@ -23,7 +23,7 @@ $.ajax({
     dataType: "json",
     success: function (data) {
         for (var i in data.faculty_detail) {
-            $("#numsPanel").append('<div class="shadow text-secondary numsItem"><h3 class="h5" style="font-weight: bolder; color: black">' + i + '</h3><div>' + data.faculty_detail[i].course + ' courses</div>' + '<div>' + data.faculty_detail[i].comment + ' comments</div></div>');
+            $("#numsPanel").append('<div class="shadow text-secondary numsItem"><h3 class="h6" style="font-weight: bolder; color: black">' + i + '</h3><div>' + data.faculty_detail[i].course + ' courses</div>' + '<div style="font-size: small">' + data.faculty_detail[i].comment + ' comments</div></div>');
         }
     },
     error: function (data) {
