@@ -26,7 +26,7 @@ $.urlParam = function (name) {
 }
 // get current version
 $.ajax({
-    url: "https://api.github.com/repos/UMHelper/UM-Eelective-Helper-Web/branches/main",
+    url: "https://api.github.com/repos/UMHelper/UM-Eelective-Helper-Web/branches/bootstrap",
     dataType: "json",
     success: function (data) {
         $('#version').replaceWith('<a href="' + data.commit.html_url + '">' + data.commit.commit.author.date);
