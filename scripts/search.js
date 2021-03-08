@@ -24,17 +24,15 @@ function addCourse(course, framework, prof, value) {
     + course.Offering_Unit + '</div></div><div class="meta"><div class="attr">Language</div><div class="cont">'
     + (course.Medium_of_Instruction ? course.Medium_of_Instruction : '-') + '</div></div></div></div></div>');
 }
-var dd;
+
 $.ajax({
   url: API_server + "/fuzzy_search/?text=" + keyword + '&type=' + (instructorSearch ? 'prof' : 'course'),
   dataType: "json",
   success: function (data) {
-    dd=data;
     $('#panel_courses').remove();
     var dataLength = (instructorSearch ? data.prof_info : data.course_info).length;
-    if (dataLength == 0) {
+    if (dataLength == 0)
       $("#title_search").after('<div class="alert alert-warning alert-dismissible fade show" role="alert" style="width: 100%">沒有找到任何内容，換一個關鍵字試一試？<br>Nothing found. Try another keyword or send feedback to us! <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
-    }
     else if (instructorSearch) {
       for (var i in data.prof_info) {
         $('#title_search').after('<div class="accordion my-4" id="panel_courses"></div>');
@@ -47,9 +45,14 @@ $.ajax({
     }
     else {
       $('#title_search').after('<div class="row row-cols-1 row-cols-md-2 g-4" id="panel_courses"></div>');
-      for (var i in data.course_info)
+      if(dataLength == 1 && data.course_info[0].New_code == keyword)
+        location.href = "/course/" + keyword;
+      else for (var i in data.course_info)
         addCourse(data.course_info[i], '#panel_courses', null, null);
     }
+
+    if (dataLength > 8)
+      $("#title_search").after('<div class="alert alert-info alert-dismissible fade show" role="alert" style="width: 100%">結果有點多，可以用更多關鍵字細化你的搜索！<br>Many results found. Longer keyword helps to find your target. <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
 
   },
   error: function (data) {

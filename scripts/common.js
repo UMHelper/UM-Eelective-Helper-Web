@@ -40,7 +40,7 @@ $("#button_search_nav").click(function () {
     if ($("#input_search_nav").val().length < 4)
         alert("關鍵字太短了! \nThe keyword is too short!");
     else
-        document.location.href = "/search.html?keyword=" + $("#input_search_nav").val().trim() + "&instructor=false";
+        document.location.href = "/search.html?keyword=" + $("#input_search_nav").val().trim() + "&instructor=" + $("#searchByInstructor").is(":checked");
 });
 
 $('#input_search_nav').keypress(function (e) {
