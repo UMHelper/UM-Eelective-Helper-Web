@@ -1,82 +1,59 @@
 var course_code = decodeURI(window.location.pathname.split('/')[2]).replace('$O', '/').toUpperCase();
-if (course_code == "UNDEFINED")
-  course_code = $.urlParam('course');
 
 $(document).prop('title', course_code + " | 澳大選咩課 What2Reg @UM");
 $('#input_search_nav').val(course_code);
 $('link[rel="canonical"]').attr('href', 'https://www.umeh.top/course/' + course_code);
-$("meta[name='description']").attr('content', '課程 '+course_code+' 的講師評分及評價 ');
+$("meta[name='description']").attr('content', '課程 ' + course_code + ' 的講師評分及評價 ');
 
-function searcher(crn) {
-  var request_search = new XMLHttpRequest();
+$('#title_course').append(course_code)
+$('header > nav').css('background-color', 'rgba(0,0,0,0)');
 
-  try {
-    request_search.onreadystatechange = function () {
-      if (request_search.readyState === XMLHttpRequest.DONE) {
-        var resp_text = request_search.responseText;
+$(window).on('scroll', function () {
+  var scrollTop = $(window).scrollTop(),
+    elementOffset = $('#title_course').offset().top;
+  $('header > nav').css("background-color", (elementOffset - scrollTop < 70 ? "#30548b" : "#30548b00"));
+});
 
-        try {
-          var resp_json = JSON.parse(resp_text);
-          if (resp_json.course_info.New_code === undefined) {
-            throw "Undefined: New_Code. Contact developers for help.";
-          }
-
-          document.getElementById("title").innerHTML =
-            resp_json.course_info.New_code;
-
-          document.getElementById("course_name").innerHTML =
-            resp_json.course_info.courseTitleEng;
-
-          document.getElementById("course_name_chi").innerHTML =
-            resp_json.course_info.courseTitleChi;
-
-          document.title = course_code + " " + resp_json.course_info.courseTitleEng + " | 澳大選咩課 What2Reg @UM";
-
-          document.getElementById("course_info").innerHTML =
-            "Offered by " + resp_json.course_info.Offering_Department + ", " + resp_json.course_info.Offering_Unit;
-
-          document.getElementById("medium").innerHTML = resp_json.course_info.Medium_of_Instruction + " Instruction";
-          document.getElementById("credits").innerHTML = resp_json.course_info.Credits + " Credits";
-
-          if (resp_json.prof_info.length === 0) {
-            document.getElementById("course_rank").innerHTML = "Average: Not Available";
-          } else {
-            rank = 0;
-            var meta_desc = '課程' + course_code + '中的講師評價。';
-            for (i in resp_json.prof_info) {
-              rank += resp_json.prof_info[i].result;
-              //document.getElementById("ins_panel").innerHTML += '<div class="page_container primary_white large10 medium10 small10 zi2 ins_info"><a href="/reivews.html?New_code=' + encodeURIComponent(resp_json.course_info.New_code) + "&prof_name=" + encodeURIComponent(resp_json.prof_info[i].name) + '" target="_blank"><div>' + resp_json.prof_info[i].name + '</div></a><span class="flex_text"> <div>' + resp_json.prof_info[i].num + ' Comments</div></span><span class="flex_text"><div>' + String((resp_json.prof_info[i].result * 2).toFixed(2)) + '/10</div></span><div class="bar" style="margin-top:0.5cm"><div class="barcontent" style="width: ' + resp_json.prof_info[i].result * 20 + '%"></div></div></div>'
-              //+"?New_code="+ encodeURIComponent(resp_json.course_info.New_code) + "&prof_name=" + encodeURIComponent(resp_json.prof_info[i].name) 
-              document.getElementById("ins_panel").innerHTML += '<div class="page_container primary_white large10 medium10 small10 zi2 ins_info"><a class="link" href="/reviews/' + encodeURIComponent(resp_json.course_info.New_code) + "/" + encodeURIComponent(resp_json.prof_info[i].name) + '" target="_blank"><div class="flex_text">' + resp_json.prof_info[i].name + '</div></a><div class="flex_text">' + resp_json.prof_info[i].num + ' Comments</div><div class="flex_text">' + String((resp_json.prof_info[i].result * 2).toFixed(2)) + '/10</div><div class="bar" style="margin-top:0.5cm"><div class="barcontent" style="width: ' + resp_json.prof_info[i].result * 20 + '%"></div></div></div>'
-
-              meta_desc += resp_json.prof_info[i].name + ' ' + String((resp_json.prof_info[i].result * 2).toFixed(2)) + ' ';
-            }
-            metas[index_desc].setAttribute('content', meta_desc);
-          }
-
-          document.getElementById("course_rank").innerHTML = "Average: " +
-            String(((rank / resp_json.prof_info.length) * 2).toFixed(2)) +
-            "/10";
-          document.getElementById("progress").style.visibility = "hidden";
-
-        } catch (e) {
-
-          if (String(e).includes("New_Code"))
-            myAlert("Cannot find the course, typo? \n找不到這個課程，鍵入錯了嗎？ " + course_code);
-          else
-            myAlert("Unexpected error \rError：" + String(e));
-        }
-      }
-    };
-
-    request_search.open(
-      "GET",
-      API_server +
-      "/course_info/?New_code=" + crn
-    );
-
-    request_search.send();
-  } catch (e) {
-    alert("Network issue. Contact developers for help. " + String(e));
-  }
+function showModal(showDesc) {
+  $('.modal-body').html((showDesc ? description : ilo));
+  $('#bannerformmodal').removeClass("hide").modal('show');
 }
+
+var description = '<h6>Course Description</h6><p>', ilo = '<h6>Intended Learning Outcomes</h6><p>';
+
+$.ajax({
+  url: API_server + "/course_info/?New_code=" + course_code,
+  dataType: "json",
+  success: function (data) {
+    $('.breadcrumb').append('<li class="breadcrumb-item"><a href="/search.html&keyword=' + course_code.substring(0, 4) + '">' + course_code.substring(0, 4) + '</a></li>');
+
+    $(document).prop('title', course_code + ' ' + data.course_info.courseTitleEng + " | 澳大選咩課 What2Reg @UM");
+    $('#title_eng').text(data.course_info.courseTitleEng);
+    $('#title_chi').text(data.course_info.courseTitleChi);
+    $('#meta_credits').text(data.course_info.Credits);
+    $('#meta_dept').text(data.course_info.Offering_Department ? data.course_info.Offering_Department : '-');
+    $('#meta_faculty').text(data.course_info.Offering_Unit);
+    $('#meta_lang').text(data.course_info.Medium_of_Instruction ? data.course_info.Medium_of_Instruction : '-');
+    if (data.course_info.courseDescription)
+      description += data.course_info.courseDescription.replaceAll('\n', '</p><p>') + '</p>';
+    if (data.course_info.Intended_Learning_Outcomes)
+      ilo += data.course_info.Intended_Learning_Outcomes.replaceAll('\n', '</p><p>') + '</p>';
+
+    var temp_desc = '';
+    var dataLength = data.prof_info.length;
+    if (dataLength == 0)
+      $("#panel_instructors").append('<div class="alert alert-warning alert-dismissible fade show" role="alert" style="width: 100%">沒有找到任何内容，這個課程存在嗎？請重試或向我們反饋！<br>Nothing found. If the course exists, send feedback to us! <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
+    else {
+      for (var i in data.prof_info) {
+        addInstructor(course_code, data.prof_info[i], '#panel_instructors');
+        temp_desc += data.prof_info[i].name + ' ' + (data.prof_info[i].result * 2).toFixed(1);
+      }
+    }
+
+    $("meta[name='description']").attr('content', data.course_info.courseTitleChi + ' ' + course_code + ' 的講師評分及評價 ' + temp_desc);
+  },
+  error: function (data) {
+    $("#panel_instructors").append('<div class="alert alert-danger alert-dismissible fade show" role="alert" style="width: 100%">數據加載錯誤，請重試或向我們反饋！<br>Error loading data. Please try again or send feedback to us! <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
+  }
+});
+
