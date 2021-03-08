@@ -49,3 +49,17 @@ $('#input_search_nav').keypress(function (e) {
         $('#button_search_nav').focus().click();
     }
 });
+
+function generateColor(value) {
+    var color = "";
+    if (value > 3.33) {
+        color = "bg-success text-light";
+    }
+    else if (value > 1.67) {
+        color = "bg-warning text-dark";
+    }
+    else if (value > 0) {
+        color = "bg-danger text-light";
+    }
+    return color;
+}
