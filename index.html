@@ -50,6 +50,10 @@
             background-color: white;
         }
 
+        .numsItem:hover {
+            background-color: #f9f9f9;
+        }
+
         .bd-footer {
             font-size: .875rem;
             color: #63707c;
@@ -63,21 +67,24 @@
         section button {
             margin-top: 0.2cm;
         }
+
+        .card-group .card-body:hover {
+            box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
+            background-color: #fbfbfb;
+        }
     </style>
 </head>
 
 
 <body>
     <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v10.0"
-        nonce="LuRoULR6"></script>
 
     <header>
         <nav class="shadow navbar navbar-expand-md navbar-dark fixed-top"
             style="padding: 13px; background-color: #30548b;">
             <div class="container-fluid container-lg">
                 <a class="navbar-brand" href="/">選咩課 What2Reg</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                <button class="navbar-toggler mb-2" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
                     aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -141,8 +148,8 @@
                             <label class="form-check-label" for="searchByInstructor">搜講師 Search by instructors</label>
                         </div>
 
-                        <button class="btn btn-block btn-primary text-right mb-4" id="button_search_main"
-                            onclick="searchMain()"><i class="bi bi-search"> </i> 搜索
+                        <button class="btn btn-block btn-primary text-right mb-4" id="button_search_main"><i
+                                class="bi bi-search"> </i> 搜索
                             Search</button><br>
                         <span class="text-secondary">輸入課程代碼或名稱的一部分來查詢。<br>Search by course codes or titles (partial
                             search supported).</span>
@@ -154,11 +161,11 @@
 
     <!-- Description -->
     <section>
-        <div class="container card-group" style="padding:1% 3% 5%;">
+        <div class="container card-group" style="padding:3% 5%;">
             <div class="row">
                 <div class="col-md-4">
                     <div class="card h-100 border-0">
-                        <div class="card-body" style="padding: 0.6cm"><i class="bi bi-inboxes-fill text-primary"
+                        <div class="card-body" style="padding: 0 0.6cm 0.6cm"><i class="bi bi-inboxes-fill text-primary"
                                 style="font-size:3rem; line-height: 8rem;"></i>
                             <h3 class="h4 card-title">搜尋課程 <br>Find Courses</h3><br>
                             <p class="card-text text-secondary">Find course information just by part of the course codes
@@ -171,7 +178,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="card h-100 border-0">
-                        <div class="card-body" style="padding: 0.6cm">
+                        <div class="card-body" style="padding: 0 0.6cm 0.6cm">
                             <i class="bi bi-chat-left-dots-fill text-primary"
                                 style="font-size:3rem; line-height: 8rem;"></i>
                             <h3 class="h4 card-title">閱讀評論<br> Read Comments</h3><br>
@@ -184,8 +191,8 @@
                 </div>
                 <div class="col-md-4">
                     <div class="card h-100 border-0">
-                        <div class="card-body" style="padding: 0.6cm"><i class="bi bi-pencil-square text-primary"
-                                style="font-size:3rem; line-height: 8rem;"></i>
+                        <div class="card-body" style="padding: 0 0.6cm 0.6cm"><i
+                                class="bi bi-pencil-square text-primary" style="font-size:3rem; line-height: 8rem;"></i>
                             <h3 class="h4 card-title">提交反饋<br> Submit Reviews</h3><br>
                             <p class="card-text text-secondary">Help your peers by rating and commenting on your
                                 instructor objectively
@@ -202,23 +209,20 @@
     </section>
 
     <!-- Comments Nums -->
-    <section class="album bg-light text-center" style="padding: 3% 0">
+    <section class="album bg-light text-center" style="padding: 5% 0">
         <div class="container" id="numsPanel">
-            <h2 class="h3 mt-2" id="connecting">評論數量 <br>Our Review Bank
+            <h2 class="h3 my-3" id="connecting">評論數量 <br>Our Review Bank
             </h2>
-            <br>
         </div>
     </section>
 
     <!-- Social -->
-    <section class="album bg-white text-center" style="padding: 3% 3%">
+    <section class="album bg-white text-center" style="padding: 5% 3%">
         <div class="container" id="numsPanel">
-            <h2 class="h3 mt-2">支持我們 <br>Suport Us
-            </h2>
-            <br>
+            <h2 class="h3 my-3">支持我們 <br>Suport Us</h2>
             <p>Please don't block ads on the website. Revernues are only to balance the cost of server and maintenance.
             </p>
-            <div class="fb-comments" data-href="https://www.umeh.top" data-width="auto" data-numposts="5"></div>
+            <div class="fb-comments" data-href="https://www.umeh.top" data-lazy="true" data-width="auto" data-numposts="5"></div>
         </div>
     </section>
 
@@ -251,6 +255,9 @@
 
     <script src="/scripts/common.js"></script>
     <script src="/scripts/index.js" async></script>
+    
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v10.0"
+        nonce="LuRoULR6"></script>
 </body>
 
 </html>

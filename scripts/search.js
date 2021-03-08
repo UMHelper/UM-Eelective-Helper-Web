@@ -1,12 +1,13 @@
 var keyword = $.urlParam('keyword').toUpperCase();
 var instructorSearch = $.urlParam('instructor') == "true";
 $("#searchByInstructor").prop("checked", instructorSearch)
+
 $(document).prop('title', "Results of " + keyword + " | 澳大選咩課 What2Reg @UM");
-$('link[rel="canonical"]').attr('href', 'https://www.umeh.top/search.html?course=' + keyword + '?instructor=' + instructorSearch);
 $('#input_search_nav').val(keyword);
-$('#title_search').append(keyword);
+$('link[rel="canonical"]').attr('href', 'https://www.umeh.top/search.html?course=' + keyword + '?instructor=' + instructorSearch);
 //$("meta[name='description']").attr('content', 'new_description');
 
+$('#title_search').append(keyword);
 $('#searchByInstructor').on('change.bootstrapSwitch', function (e) {
   document.location.href = "/search.html?keyword=" + keyword + "&instructor=" + e.target.checked;
 });
@@ -35,7 +36,7 @@ $.ajax({
     }
     else if (instructorSearch) {
       for (var i in data.prof_info) {
-        $('#title_search').after('<div class="accordion" id="panel_courses"></div>');
+        $('#title_search').after('<div class="accordion my-4" id="panel_courses"></div>');
         $('#panel_courses').append('<div class="accordion-item"><h2 class="accordion-header" id="prof' + i + '"><button class="shadow accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse' + i + '" aria-expanded="false" aria-controls="collapse' + i + '">' + data.prof_info[i].name + '</button></h2><div id="collapse' + i + '" class="accordion-collapse collapse" aria-labelledby="heading' + i + '" data-bs-parent="#panel_courses"><div class="accordion-body py-4">  <div class="row row-cols-1 row-cols-md-2 g-4"  id="instructor' + i + '"></div> </div></div></div>');
 
         for (var j in data.prof_info[i].courses)

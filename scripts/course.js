@@ -1,6 +1,11 @@
-function goBack() {
-  document.location.href = "/";
-}
+var course_code = decodeURI(window.location.pathname.split('/')[2]).replace('$O', '/').toUpperCase();
+if (course_code == "UNDEFINED")
+  course_code = $.urlParam('course');
+
+$(document).prop('title', course_code + " | 澳大選咩課 What2Reg @UM");
+$('#input_search_nav').val(course_code);
+$('link[rel="canonical"]').attr('href', 'https://www.umeh.top/course/' + course_code);
+$("meta[name='description']").attr('content', '課程 '+course_code+' 的講師評分及評價 ');
 
 function searcher(crn) {
   var request_search = new XMLHttpRequest();
@@ -25,7 +30,7 @@ function searcher(crn) {
           document.getElementById("course_name_chi").innerHTML =
             resp_json.course_info.courseTitleChi;
 
-          document.title = course_code + " " + resp_json.course_info.courseTitleEng +" | 澳大選咩課 What2Reg @UM";
+          document.title = course_code + " " + resp_json.course_info.courseTitleEng + " | 澳大選咩課 What2Reg @UM";
 
           document.getElementById("course_info").innerHTML =
             "Offered by " + resp_json.course_info.Offering_Department + ", " + resp_json.course_info.Offering_Unit;
@@ -75,30 +80,3 @@ function searcher(crn) {
     alert("Network issue. Contact developers for help. " + String(e));
   }
 }
-
-// init
-var url_params = new URLSearchParams(window.location.search);
-var course_code = decodeURI(window.location.pathname.split('/')[2]).toUpperCase();
-if (course_code == "UNDEFINED") {
-  course_code = url_params.get("New_code");
-}
-
-document.title = course_code + " | 澳大選咩課 What2Reg @UM";
-document.getElementById("back").onclick = goBack;
-
-//add cononical label
-var meta = document.createElement('link');
-meta.setAttribute('rel', 'canonical');
-meta.setAttribute('href', 'https://www.umeh.top/course/' + course_code);
-document.getElementsByTagName('head')[0].appendChild(meta);
-
-//find description meta
-var index_desc;
-var metas = document.getElementsByTagName('meta');
-for (let j = 0; j < metas.length; j++) {
-  if (metas[j].getAttribute('name') === 'description') {
-    index_desc = j;
-  }
-}
-
-searcher(course_code)
