@@ -45,10 +45,11 @@ $.ajax({
     }
     else {
       $('#title_search').after('<div class="row row-cols-1 row-cols-md-2 g-4" id="panel_courses"></div>');
-      if(dataLength == 1 && data.course_info[0].New_code == keyword)
-        location.href = "/course/" + keyword;
-      else for (var i in data.course_info)
+      for (var i in data.course_info) {
+        if (data.course_info[0].New_code == keyword)
+          location.href = "/course/" + keyword;
         addCourse(data.course_info[i], '#panel_courses', null, null);
+      }
     }
 
     if (dataLength > 8)

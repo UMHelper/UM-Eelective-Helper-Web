@@ -27,7 +27,8 @@ $.ajax({
   success: function (data) {
     $('.breadcrumb').append('<li class="breadcrumb-item"><a href="/search.html&keyword=' + course_code.substring(0, 4) + '">' + course_code.substring(0, 4) + '</a></li>');
 
-    $(document).prop('title', course_code + ' ' + data.course_info.courseTitleEng + " | 澳大選咩課 What2Reg @UM");
+    $(document).prop('title', course_code + ' ' + data.course_info.courseTitleEng + " | 澳大選咩課 What2Reg @UM"); 
+    
     $('#title_eng').text(data.course_info.courseTitleEng);
     $('#title_chi').text(data.course_info.courseTitleChi);
     $('#meta_credits').text(data.course_info.Credits);
@@ -40,14 +41,14 @@ $.ajax({
       ilo += data.course_info.Intended_Learning_Outcomes.replaceAll('\n', '</p><p>') + '</p>';
 
     var temp_desc = '';
-    var dataLength = data.prof_info.length;
-    if (dataLength == 0)
-      $("#panel_instructors").append('<div class="alert alert-warning alert-dismissible fade show" role="alert" style="width: 100%">沒有找到任何内容，這個課程存在嗎？請重試或向我們反饋！<br>Nothing found. If the course exists, send feedback to us! <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
-    else {
-      for (var i in data.prof_info) {
-        addInstructor(course_code, data.prof_info[i], '#panel_instructors');
-        temp_desc += data.prof_info[i].name + ' ' + (data.prof_info[i].result * 2).toFixed(1);
-      }
+    if (data.course_info == 'Error Code')
+      $("#panel_instructors").append('<div class="alert alert-danger alert-dismissible fade show" role="alert" style="width: 100%">課程不存在，請重試或向我們反饋！<br>Course not found. Try again and feedback to us! <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
+    else if (data.prof_info.length == 0)
+      $("#panel_instructors").append('<div class="alert alert-warning alert-dismissible fade show" role="alert" style="width: 100%">這個課程存在，但是近年來并沒有開設過，因此沒有評價。<br>Found this course but it hasn\'t been offered in recent years.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
+
+    for (var i in data.prof_info) {
+      addInstructor(course_code, data.prof_info[i], '#panel_instructors');
+      temp_desc += data.prof_info[i].name + ' ' + (data.prof_info[i].result * 2).toFixed(1);
     }
 
     $("meta[name='description']").attr('content', data.course_info.courseTitleChi + ' ' + course_code + ' 的講師評分及評價 ' + temp_desc);
