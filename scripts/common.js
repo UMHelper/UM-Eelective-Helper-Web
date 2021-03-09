@@ -66,13 +66,16 @@ function generateColor(value) {
 
 function addInstructor(course, prof, framework) {
     var url = "/reviews/" + course + "/" + prof.name.replace('/', '$O');
-    $(framework).append('<div class="col"><div class="shadow card "><h2 class="h6 card-header border-light ' + generateColor(prof.result) + '">'
-      + prof.name
-      + '</h2><a href="' + url + '"><div class="card-body"><h3 class="h6 card-text">'
-      +'<div class="progress" style="height:0.1cm"><div class="progress-bar ' + generateColor(prof.result) + '" role="progressbar" style="width: '+ prof.result *20+'%"></div></div>'+'</h3></div></a><div class="card-footer border-light"><div class="meta"><div class="attr">Score</div><div class="cont">'
-      + (prof.result * 2).toFixed(1) + '</div></div><div class="meta"><div class="attr">Grade</div><div class="cont">'
-      + (prof.grade * 2).toFixed(1) + '</div></div><div class="meta"><div class="attr">Hard</div><div class="cont">'
-      + (prof.hard * 2).toFixed(1) + '</div></div><div class="meta"><div class="attr">Comments</div><div class="cont">'
-      + prof.num+ '</div></div></div></div></div>');
-  }
-  
+    $(framework).append('<div class="col"><div class="shadow card "><h3 class="h6 card-header border-light text-end small '
+        + generateColor(prof.result) + '">'
+        + (prof.result * 2).toFixed(1) + '<span style="font-size: x-small">/10</span>'
+        + '</h3><a href="' + url + '"><div class="card-body"><h2 class="h6 card-text mb-3">' + prof.name + '</h2>'
+        + '<div class="progress" style="height:0.1cm"><div class="progress-bar ' + generateColor(prof.result) + '" role="progressbar" style="width: '
+        + prof.result * 20 + '%"></div></div></div></a><div class="card-footer border-light">'
+        + '<div class="meta"><div class="attr">Overall</div><div class="cont">' + (prof.result * 2).toFixed(1) +
+        '</div></div><div class="meta"><div class="attr">Grade</div><div class="cont">' + (prof.grade * 2).toFixed(1) +
+        '</div></div><div class="meta"><div class="attr">Hard</div><div class="cont">' + (prof.hard * 2).toFixed(1) +
+        '</div></div><div class="meta"><div class="attr">Outcome</div><div class="cont">' + (prof.reward * 2).toFixed(1) +
+        '</div></div><div class="meta"><div class="attr">Comments</div><div class="cont">' + prof.num +
+        '</div></div></div></div></div>');
+}
