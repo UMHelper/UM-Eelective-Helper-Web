@@ -11,7 +11,6 @@
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="/css/common.css">
-    <link rel="stylesheet" href="/css/style4.css">
 
     <link rel="icon" href="/src/badge.png">
     <link rel="manifest" href="/manifest.webmanifest">
@@ -82,46 +81,44 @@
 
 
 <body class="d-flex">
+    <header>
+        <nav class="shadow navbar navbar-expand-md navbar-dark fixed-top"
+            style="padding: 13px; background-color: #30548b;">
+            <div class="container-fluid container-lg">
+                <a class="navbar-brand" href="/">選咩課 What2Reg</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav me-auto mb-0 mt-2">
+                        <!--
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">首頁 Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Disabled</a>
+                    </li>
+                    -->
+                    </ul>
+                    <div class="d-flex">
+                        <input class="form-control me-2" id="input_search_nav" placeholder="Find course"
+                            aria-label="Course or instructor">
+                        <button class="btn btn-outline-warning" id="button_search_nav">Search</button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
 
     <div class="column bg-light border-right d-none d-md-block" id="panel_instructors">
-        
     </div>
 
     <main class="column" style="width: 100%;">
-        <header>
-            <nav class="shadow navbar navbar-expand-md navbar-dark fixed-top"
-                style="padding: 13px; background-color: #30548b;">
-                <div class="container-fluid container-lg">
-                    <a class="navbar-brand" href="/">選咩課 What2Reg</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
-                        aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                        <ul class="navbar-nav me-auto mb-0 mt-2">
-                            <!--
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/">首頁 Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Disabled</a>
-                        </li>
-                        -->
-                        </ul>
-                        <div class="d-flex">
-                            <input class="form-control me-2" id="input_search_nav" placeholder="Find course"
-                                aria-label="Course or instructor">
-                            <button class="btn btn-outline-warning" id="button_search_nav">Search</button>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-        </header>
-
         <!-- Course info panel -->
         <section style="padding-top: 2cm; background: linear-gradient(37deg, #002a4c, #0396e6);">
             <div class="container" style="padding:3% 5%; min-height: 7cm;">
@@ -135,31 +132,13 @@
                                 <li class="breadcrumb-item"><a href="/">Home</a></li>
                             </ol>
                         </nav>
-                        <h1 class="my-4 text-white h1" id="title_course" style="margin-top: 5%;"></h1>
+                        <h1 class="my-4 text-white h1" id="title_instructor" style="margin-top: 5%;"></h1>
+                        <h2 class="text-white h4" id="title_course"></h2>
                         <h2 class="text-white h4" id="title_eng">-</h2>
-                        <h2 class="text-white h4" id="title_chi">-</h2>
                         <br>
                     </div>
 
                     <div class="col-md-5">
-                        <div class="my-4">
-                            <div class="meta">
-                                <div class="attr">Credits</div>
-                                <div class="cont" id="meta_credits">-</div>
-                            </div>
-                            <div class="meta">
-                                <div class="attr">Dept</div>
-                                <div class="cont" id="meta_dept">-</div>
-                            </div>
-                            <div class="meta">
-                                <div class="attr">Faculty</div>
-                                <div class="cont" id="meta_faculty">-</div>
-                            </div>
-                            <div class="meta">
-                                <div class="attr">Language</div>
-                                <div class="cont" id="meta_lang">-</div>
-                            </div>
-                        </div>
                         <div class="my-3">
                             <a onclick="showModal(true)">
                                 Course Description <i class="bi bi-box-arrow-in-up-right"></i>
@@ -167,17 +146,6 @@
                             <a onclick="showModal(false)">
                                 Intended Learning Outcomes <i class="bi bi-box-arrow-in-up-right"></i>
                             </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal fade" role="dialog" aria-labelledby="bannerformmodal" id="bannerformmodal">
-                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                    <div class="modal-content">
-                        <div class="modal-body m-2">
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>

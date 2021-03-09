@@ -25,7 +25,7 @@ $.ajax({
   url: API_server + "/course_info/?New_code=" + course_code,
   dataType: "json",
   success: function (data) {
-    $('.breadcrumb').append('<li class="breadcrumb-item"><a href="/search.html&keyword=' + course_code.substring(0, 4) + '">' + course_code.substring(0, 4) + '</a></li>');
+    $('.breadcrumb').append('<li class="breadcrumb-item"><a href="/search.html?keyword=' + course_code.substring(0, 4) + '">' + course_code.substring(0, 4) + '</a></li>');
 
     $(document).prop('title', course_code + ' ' + data.course_info.courseTitleEng + " | 澳大選咩課 What2Reg @UM"); 
     
