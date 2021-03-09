@@ -68,3 +68,7 @@ $.ajax({
   }
 });
 
+$("#button_submit").click(function () {
+  document.location.href = "/submit.html?course=" + course_code + "&instructor=" + instructor;
+});
+

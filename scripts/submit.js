@@ -1,33 +1,41 @@
+var course_code = $.urlParam('course').toUpperCase();
+var instructor = $.urlParam('instructor').toUpperCase();
 
-function goBack() {
-    document.location.href = '/reviews/' + encodeURIComponent(course_code) + "/" + encodeURIComponent(prof_name);
-}
+$(document).prop('title', "Submit Review | " + instructor + ' | ' + course_code + " | 澳大選咩課 What2Reg @UM");
 
-// init
-var url_params = new URLSearchParams(window.location.search);
-var course_code = decodeURI(window.location.pathname.split('/')[2]).toUpperCase();
-var prof_name = decodeURI(window.location.pathname.split('/')[3]).replace('%2F', '/').toUpperCase();
-if (course_code == "UNDEFINED") {
-    course_code = url_params.get("New_code");
-    prof_name = url_params.get("prof_name");
-}
+$('link[rel="canonical"]').attr('href', 'https://www.umeh.top/submit.html?course=' + course_code + '?instructor=' + instructor);
 
-//add cononical label
-var meta = document.createElement('link');
-meta.setAttribute('rel', 'canonical');
-meta.setAttribute('href', 'https://www.umeh.top/submit/'+ course_code + '/' + prof_name);
-document.getElementsByTagName('head')[0].appendChild(meta);
+$('#title_comment').append(instructor + ' for ' + course_code);
+$('#New_code').val(course_code);
+$('#prof_name').val(instructor);
 
-document.getElementById("reminder").innerHTML = `Commenting on course ${course_code} for instructor ${prof_name}.`;
-document.getElementById("course_number").setAttribute("value", course_code);
-document.getElementById("prof_name").setAttribute("value", prof_name);
-document.getElementById("submit_btn").onclick = function () {
-    document.getElementById("progress").style.visibility = "visible";
-    document.getElementById("sub_form").submit();
-    document.getElementById("sub_form").style.display = "none";
-    document.getElementById("reminder").innerHTML = "Thanks for your comment! 感謝您的評價！<br>Redirecting back...<br><br><br>"
-    setTimeout(() => { goBack(); }, 4000);
+$('.breadcrumb').append('<li class="breadcrumb-item"><a href="/search.html?keyword=' + course_code.substring(0, 4) + '">' + course_code.substring(0, 4) + '</a></li>');
 
-}
-document.getElementById("back").onclick = goBack;
-document.getElementById("progress").style.visibility = "hidden";
+$('.breadcrumb').append('<li class="breadcrumb-item"><a href="/course/' + course_code + '">' + course_code + '</a></li>');
+
+$('.breadcrumb').append('<li class="breadcrumb-item"><a href="/reviews/' + course_code + '/' + instructor + '">' + instructor + '</a></li>');
+
+$('#sub_form').attr('action',);
+$('#sub_form').attr('method', 'POST');
+
+$("#submit_btn").click(function () {
+    var form = $("#sub_form");
+    if (!form[0].checkValidity())
+        alert("請檢查下内容是否完整！\nSeems the form is incomplete! More details will help your classmates much!");
+    else if ($("#content").val().trim().length < 10)
+        alert("爲了幫助同學少，請再詳細少少呀！\nMore details will help your classmates much!");
+    else {
+        $.ajax({
+            url: API_server + '/submit_comment/',
+            type: 'post',
+            data: $('#sub_form').serialize(),
+            success: function () {
+                $('#title_comment').html('感謝您的評價！<br>Thanks for your comment! ');
+                $('#sub_form').css('display', 'none');
+            },
+            error: function () {
+                alert("遇到錯誤，請向我們反饋，謝謝！\nServer issue detected. Please send feedback to us. Thank you!");
+            }
+        });
+    }
+});

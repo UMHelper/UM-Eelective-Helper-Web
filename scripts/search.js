@@ -4,7 +4,7 @@ $("#searchByInstructor").prop("checked", instructorSearch)
 
 $(document).prop('title', "Results of " + keyword + " | 澳大選咩課 What2Reg @UM");
 $('#input_search_nav').val(keyword);
-$('link[rel="canonical"]').attr('href', 'https://www.umeh.top/search.html?course=' + keyword + '?instructor=' + instructorSearch);
+$('link[rel="canonical"]').attr('href', 'https://www.umeh.top/search.html?keyword=' + keyword + '?instructor=' + instructorSearch);
 //$("meta[name='description']").attr('content', 'new_description');
 
 $('#title_search').append(keyword);

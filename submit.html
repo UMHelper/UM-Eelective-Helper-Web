@@ -1,23 +1,22 @@
-<!--
-    https://fluentdesignforweb.github.io/documentation/#/progress_bar
--->
-
 <!doctype html>
 
-<html lang="zh-TW">
+<html lang="zh-Hant-HK">
 
 <head>
     <meta charset="utf-8">
     <title>Submit | 澳大選咩課 What2Reg @UM</title>
-    <meta name="description"
-        content="澳大人，唔知add邊個課目同professor？同我入黎【澳大選咩課】，靚grade、workload、同學既review全都知！">
+    <meta name="description">
 
-    <link rel="stylesheet" href="/css/fluent.min.css" media="print" onload="this.media='all'">
-    <link href="/css/fluent-icons.css" rel="stylesheet" type="text/css" media="print" onload="this.media='all'" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/css/common.css">
+
     <link rel="icon" href="/src/badge.png">
     <link rel="manifest" href="/manifest.webmanifest">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#0078D7">
+    <meta name="theme-color" content="#30548b">
+    <link rel="canonical" />
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-176924130-2"></script>
@@ -25,168 +24,208 @@
         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
     <!-- Scripts -->
-    <script src="/scripts/common.js"></script>
-    <script src="/scripts/submit.js" async></script>
-    <script src="/scripts/fluent.js" async></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
 
     <!-- Custom Styles -->
     <style>
-        body {
-            background-image: url('/src/bg.jpg');
-
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-size: cover;
-        }
-
-        #logo {
-            margin-bottom: 0.2cm;
-            height: 1.7cm;
-            width: 1.7cm;
-        }
-
-        .select {
-            display: inline-block;
-            width: auto;
-        }
-
-        .bar {
-            height: 0.15cm;
-            width: 100%;
-            background-color: lightgrey;
-        }
-
-        .barcontent {
-            height: 0.15cm;
-            width: 100%;
-            background-color: #06A7DD;
-        }
-
-        .ins_info {
-            padding: 0.5cm;
-            vertical-align: text-top;
-            margin: 0.5cm;
-        }
-
-        .flex_text {
-            display: inline-block;
-            padding-right: 20px;
-            vertical-align: text-top;
-        }
     </style>
 </head>
 
 
 <body>
-    <br><br>
-    <!-- Search panel -->
-    <main id="entry" class="column large7 medium10 small12 page_container center" style="padding:0; max-width:15cm;">
-
-        <br><br>
-
-        <div class="page_container primary_white zi2" style="padding: 1cm; padding-bottom: 0; vertical-align: middle;">
-
-            <button id="back" class="primary_white"
-                style="padding:0; margin-right: 10px; display: inline-block;vertical-align: middle;"><i
-                    class="ms-Icon ms-Icon--Back icon-medium"></i></button>
-            <br><br>
-            <img id="logo" src="/src/badge.png" alt="icon" style="display: block;">
-            <br>
-            <div id="view">
-                <h1 id="reminder" style="font-size:0.5cm;"></h1>
-                <form action="https://mpserver.umeh.top/submit_comment/" method="POST" target="nm_iframe" id="sub_form">
-                    <legend style="margin:0.5cm auto 0 auto;">Course Code 課程編號 </legend>
-                    <input class="btm_brdr transparent" type="text" name="New_code" value="" id="course_number"
-                        readonly>
-                    <legend style="margin:0.5cm auto 0 auto;">Name of Instructor 講師名稱</legend>
-                    <input class="btm_brdr transparent" type="text" name="prof_name" value="" id="prof_name" readonly>
-                    <legend style="margin:0.5cm auto 0 auto;">Attendance Checking 出席計算</legend>
-                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="attend_all">
-                        <input type="radio" id="attend_all" class="mdl-radio__button" name="attendance" value="1"
-                            style="display: inline-block;" checked>
-                        <span class="mdl-radio__label">Always 總是需要</span>
-                    </label>
-                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="attend_occasion"
-                        style="display: inline-block;">
-                        <input type="radio" id="attend_occasion" class="mdl-radio__button" name="attendance"
-                            value="2.5">
-                        <span class="mdl-radio__label">Sometimes 有時需要</span>
-                    </label>
-                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="attend_none"
-                        style="display: inline-block;">
-                        <input type="radio" id="attend_none" class="mdl-radio__button" name="attendance" value="5">
-                        <span class="mdl-radio__label">Never 不需要</span>
-                    </label>
-                    <legend style="margin:0.5cm auto 0 auto;">Presentations</legend>
-                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="pre_all"
-                        style="display: inline-block;">
-                        <input type="radio" id="pre_all" class="mdl-radio__button" name="pre" value="1" checked>
-                        <span class="mdl-radio__label">Multiple 多次</span>
-                    </label>
-                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="pre_occasion"
-                        style="display: inline-block;">
-                        <input type="radio" id="pre_occasion" class="mdl-radio__button" name="pre" value="2.5">
-                        <span class="mdl-radio__label">Once 一次</span>
-                    </label>
-                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="pre_none"
-                        style="display: inline-block;">
-                        <input type="radio" id="pre_none" class="mdl-radio__button" name="pre" value="0">
-                        <span class="mdl-radio__label">Never 不需要</span>
-                    </label>
-                    <legend style="margin:0.5cm auto 0 auto;">Good Marks 給分情況</legend>
-                    <input class="mdl-slider mdl-js-slider" type="range" min="0" max="5" value="2" tabindex="0"
-                        name="grade">
-                    <div style="text-align-last: justify;">
-                        <span style="display: inline-block;">Low 慘</span>
-                        <span style="display: inline-block;">Nice 靚</span>
+    <header>
+        <nav class="shadow navbar navbar-expand-md navbar-dark fixed-top"
+            style="padding: 13px; background-color: #30548b;">
+            <div class="container-fluid container-lg">
+                <a class="navbar-brand" href="/">選咩課 What2Reg</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav me-auto mb-0 mt-2">
+                        <!--
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/">首頁 Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Link</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Disabled</a>
+                        </li>
+                        -->
+                    </ul>
+                    <div class="d-flex">
+                        <input class="form-control me-2" id="input_search_nav" placeholder="Find course"
+                            aria-label="Course or instructor">
+                        <button class="btn btn-outline-warning" id="button_search_nav">Search</button>
                     </div>
-                    <legend style="margin:0.5cm auto 0 auto;">Light Workload 輕鬆程度</legend>
-                    <input class="mdl-slider mdl-js-slider" type="range" min="0" max="5" value="2" tabindex="0"
-                        name="hard">
-                    <div style="text-align-last: justify;">
-                        <span style="display: inline-block;">Heavy 繁重</span>
-                        <span style="display: inline-block;">Light 輕鬆</span>
-                    </div>
-                    <legend style="margin:0.5cm auto 0 auto;">Learning Outcome 收穫程度</legend>
-                    <input class="mdl-slider mdl-js-slider" type="range" min="0" max="5" value="2" tabindex="0"
-                        name="reward">
-                    <div style="text-align-last: justify;">
-                        <span style="display: inline-block;">Nonsense 無</span>
-                        <span style="display: inline-block;">Rich 豐富</span>
-                    </div>
-                    <legend style="margin:0.5cm auto 0 auto;">Easy Asgmt 輕鬆功課</legend>
-                    <input class="mdl-slider mdl-js-slider" type="range" min="0" max="5" value="2" tabindex="0"
-                        name="assignment">
-                    <div style="text-align-last: justify;">
-                        <span style="display: inline-block;">Hard 困難</span>
-                        <span style="display: inline-block;">Easy 簡單</span>
-                    </div>
-                    <legend style="margin:0.5cm auto 0 auto;">Overall Recom. 總體推薦</legend>
-                    <input class="mdl-slider mdl-js-slider" type="range" min="0" max="5" value="2" tabindex="0"
-                        name="recommend">
-                    <div style="text-align-last: justify;">
-                        <span style="display: inline-block;">No 不</span>
-                        <span style="display: inline-block;">Yes 推薦</span>
-                    </div>
-                    <legend style="margin:0.5cm auto 0 auto;">Comment 閣下還有想説的嗎？</legend>
-                    <textarea class="mdl-textfield__input" type="text" rows="3" name="content" id="sdfghb"
-                        placeholder="Leave your Comment here 請在此暢所欲言..." class="transparent"
-                        style="border:none; border-bottom:1px solid black; width:100%"></textarea>
-                    <p></p>
-                    <button class="primary_blue dlevel2 small"
-                        style="margin:1cm auto 1cm auto; position:relative; left:65%" id="submit_btn">Submit
-                        提交
-                    </button>
-                    <iframe id="id_iframe" name="nm_iframe" style="display:none;"></iframe>
-                </form>
-                <div class="indeterminate_progress_bar" id="progress" style="width: 100%; "></div>
+                </div>
             </div>
-            <br>
+        </nav>
+    </header>
+
+    <!-- Submit panel  action="https://mpserver.umeh.top" method="POST" target="nm_iframe" id="sub_form"-->
+    <main style="padding-top: 2cm">
+        <div class="container" style="padding:3% 10%; min-height: 80vh">
+
+            <nav class="my-3"
+                style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='dark'/%3E%3C/svg%3E&#34;);"
+                aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                </ol>
+            </nav>
+
+            <h1 class="display-6 my-5" id="title_comment">Commenting on </h1>
+
+            <form id="sub_form" class="row g-4 was-validated needs-validation" novalidate>
+
+                <div class="col-md-6">
+                    <label for="New_code" class="form-label">課程編號 Course Code</label>
+                    <input type="text" class="form-control" id="New_code" name="New_code" required readonly>
+                </div>
+                <div class="col-md-6 ">
+                    <label for="validationCustom02" class="form-label">講師 Instructor</label>
+                    <input type="text" class="form-control" id="prof_name" name="prof_name" required readonly>
+                </div>
+
+                <div class="col-md-6 mt-5">
+                    <h5>出席計算 Attendance Checking </h5>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="attend_all" class="mdl-radio__button"
+                            name="attendance" value="1" required>
+                        <label class="form-check-label" for="attend_all">每次 Always</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="attend_occasion" name="attendance" value="2.5"
+                            required>
+                        <label class="form-check-label" for="attend_occasion">有時 Sometimes </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="attend_none" name="attendance" value="5"
+                            required>
+                        <label class="form-check-label" for="attend_none">不需要 Never</label>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 mt-5">
+                    <h5>小組演示 Presentations</h5>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="pre_all" class="mdl-radio__button" name="pre"
+                            value="1" required>
+                        <label class="form-check-label" for="pre_all">Multiple 多次</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="pre_occasion" name="pre" value="2.5" required>
+                        <label class="form-check-label" for="pre_occasion">Once 一次</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="pre_none" name="pre" value="5" required>
+                        <label class="form-check-label" for="pre_none">Never 不需要</label>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 mt-5">
+                    <h5>成績 Grades </h5>
+                    <input type="range" class="form-range" min="1" max="5" value="3" name="grade">
+                    <div class="row">
+                        <div class="col-6">慘 Low </div>
+                        <div class="col-6 text-end">靚 Nice</div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 mt-5">
+                    <h5>容易程度 Easy </h5>
+                    <input type="range" class="form-range" min="1" max="5" value="3" name="hard">
+                    <div class="row">
+                        <div class="col-6">困難 Hard</div>
+                        <div class="col-6 text-end">簡單 Easy</div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 mt-5">
+                    <h5>學習收穫 Study Outcome</h5>
+                    <input type="range" class="form-range" min="1" max="5" value="3" name="reward">
+                    <div class="row">
+                        <div class="col-6">毫無 None</div>
+                        <div class="col-6 text-end">豐富 Rich</div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 mt-5">
+                    <h5>作業頻次 Assignments</h5>
+                    <input type="range" class="form-range" min="1" max="5" value="3" name="assignment">
+                    <div class="row">
+                        <div class="col-6">每個月 Monthly</div>
+                        <div class="col-6 text-end">每天 Daily</div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 mt-5">
+                    <h5>總體推薦 Recommended</h5>
+                    <input type="range" class="form-range" min="1" max="5" value="3" name="recommend">
+                    <div class="row">
+                        <div class="col-6">不推薦 No</div>
+                        <div class="col-6 text-end">推薦 Yes</div>
+                    </div>
+                </div>
+
+                <div class="col-md-12 mt-5">
+                    <h5>閣下的其他評論 Comment on the instructor</h5>
+                    <div class="mb-3">
+                        <textarea class="form-control is-invalid" id="content" placeholder="請描述下課程中的作業，考試難度，講師的講述等"
+                            name="content" style="min-height: 3cm;" required></textarea>
+                        <div class="invalid-feedback">
+                            Please enter a message in the textarea.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <button class="btn btn-primary" id="submit_btn" type="button"><i class="bi bi-cloud-arrow-up"></i> 提交評價
+                        Submit form</button>
+                </div>
+            </form>
         </div>
-        <br><br>
     </main>
 
-    <br><br>
+
+    <!-- Footer -->
+    <footer class="bd-footer p-3 p-md-5 mt-5 bg-light text-center text-sm-start ">
+        <div class="container">
+            <ul class="bd-footer-links ps-0 mb-3">
+                <li class="d-inline-block"><a href="https://github.com/UMHelper">GitHub</a></li>
+                <li class="d-inline-block ms-3"><a
+                        href="https://github.com/UMHelper/Feedback-and-Join-Us/blob/master/README.md">About</a></li>
+                <li class="d-inline-block ms-3"><a
+                        href="https://github.com/UMHelper/Feedback-and-Join-Us/blob/master/TOS.md">Terms of Service</a>
+                </li>
+                <li class="d-inline-block ms-3"><a
+                        href="https://github.com/UMHelper/Feedback-and-Join-Us/blob/master/Feedback.md">Feedback 反饋</a>
+                </li>
+                <li class="d-inline-block ms-3"><a class="footnote" href="/src/sitemap.html">Sitemap</a></li>
+            </ul>
+            <p class="mb-0">Designed and built by the <a href="/docs/5.0/about/team/">UMHelper</a> team with the
+                help of
+                <a href="https://github.com/UMHelper/UM-Eelective-Helper-Web/graphs/contributors">our
+                    contributors</a>.
+            </p>
+            <p class="mb-0">Last updated on <span id="version">loading...</span>, licensed under <a
+                    href="https://github.com/UMHelper/UM-Eelective-Helper-Web/blob/main/LICENSE" target="_blank"
+                    rel="license noopener">GNU General Public License v3.0
+                </a>.</p>
+        </div>
+    </footer>
+
+    <script src="/scripts/common.js"></script>
+    <script src="/scripts/submit.js" async></script>
 </body>
 
 </html>
