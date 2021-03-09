@@ -1,4 +1,4 @@
-var course_code = decodeURI(window.location.pathname.split('/')[2]).replace('$O', '/').toUpperCase();
+var course_code = decodeURI(window.location.pathname.split('/')[2]).toUpperCase();
 
 $(document).prop('title', course_code + " | 澳大選咩課 What2Reg @UM");
 $('#input_search_nav').val(course_code);

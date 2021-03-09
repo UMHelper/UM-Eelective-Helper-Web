@@ -64,8 +64,21 @@ function generateColor(value) {
     return color;
 }
 
+function generateAttitude(value) { 
+    if (value > 3.33) {
+        return ("👍");
+    }
+    else if (value > 1.67) {
+        return ("👌");
+    }
+    else {
+        return ("👎");
+    }
+}
+
+
 function addCourse(course, framework, prof_name, value) {
-    var url = "/" + (prof_name ? "reviews" : "course") + "/" + course.New_code + "/" + (prof_name ? prof_name.replace('/', '$O') : "");
+    var url = "/" + (prof_name ? "reviews" : "course") + "/" + course.New_code + "/" + (prof_name ? prof_name.replaceAll('/', '$') : "");
     $(framework).append('<div class="col"><div class="shadow card "><h2 class="h6 card-header border-light ' + generateColor(value) + '">'
         + course.New_code
         + '</h2><a href="' + url + '"><div class="card-body"><h3 class="h6 card-text">'
@@ -79,7 +92,7 @@ function addCourse(course, framework, prof_name, value) {
 
 // type: brief, full
 function addInstructor(course_code, prof, framework, brief) {
-    var url = "/reviews/" + course_code + "/" + prof.name.replace('/', '$O');
+    var url = "/reviews/" + course_code + "/" + prof.name.replaceAll('/', '$');
     var margin = brief ? 'style="margin: 0.4cm"' : "";
     var meta = brief ? "" : '<div class="card-footer border-light">'
         + '<div class="meta"><div class="attr">Overall</div><div class="cont">' + (prof.result * 2).toFixed(1) +
@@ -101,13 +114,13 @@ function addInstructor(course_code, prof, framework, brief) {
 function addReview(review, framework) {
     if (review.content) {
         var meta = '<div class="card-footer border-light">'
-            + '<div class="meta"><div class="attr">Overall</div><div class="cont">' + (review.recommend * 2).toFixed(1) +
-            '</div></div><div class="meta"><div class="attr">Grade</div><div class="cont">' + (review.grade * 2).toFixed(1) +
-            '</div></div><div class="meta"><div class="attr">Easy</div><div class="cont">' + (review.hard * 2).toFixed(1) +
-            '</div></div><div class="meta"><div class="attr">Outcome</div><div class="cont">' + (review.reward * 2).toFixed(1) +
+            + '<div class="meta"><div class="attr">Overall</div><div class="cont">' + generateAttitude(review.recommend) +
+            '</div></div><div class="meta"><div class="attr">Grade</div><div class="cont">' + generateAttitude(review.grade) +
+            '</div></div><div class="meta"><div class="attr">Easy</div><div class="cont">' + generateAttitude(review.hard) +
+            '</div></div><div class="meta"><div class="attr">Outcome</div><div class="cont">' + generateAttitude(review.reward) +
             '</div></div></div>';
         $(framework).append('<div class="col"><div class="shadow card"><div class="h6 card-header border-light small '
-            + generateColor(review.recommend) + '">' + '<div class="row"><div class="col-8">'+review.pub_time + '</div><div class="col-4 text-end">'+ (review.recommend * 2).toFixed(1) + '<span style="font-size: x-small">/10</span></div></div>'
+            + generateColor(review.recommend) + '">' + '<div class="row"><div class="col-7">' + review.pub_time + '</div><div class="col-5 text-end">' + (review.recommend * 2).toFixed(1) + '<span style="font-size: x-small">/10</span></div></div>'
             + '</div><div class="card-body"><h2 class="h6 card-text">' + review.content + '</h2></div>' + meta + '</div></div>');
     }
 }
