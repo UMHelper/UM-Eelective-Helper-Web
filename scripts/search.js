@@ -1,6 +1,13 @@
-var keyword = $.urlParam('keyword').toUpperCase();
-var instructorSearch = $.urlParam('instructor') == "true";
+if (window.location.pathname.split('/')[1] == 'professor') {
+  keyword = decodeURI(window.location.pathname.split('/')[2]);
+  instructorSearch = true;
+}
+else {
+  var keyword = $.urlParam('keyword').toUpperCase();
+  var instructorSearch = $.urlParam('instructor') == "true";
+}
 $("#searchByInstructor").prop("checked", instructorSearch)
+
 
 $(document).prop('title', "Results of " + keyword + " | 澳大選咩課 What2Reg @UM");
 $('#input_search_nav').val(keyword);
@@ -23,7 +30,7 @@ $.ajax({
     else if (instructorSearch) {
       for (var i in data.prof_info) {
         $('#title_search').after('<div class="accordion my-4" id="panel_courses"></div>');
-        $('#panel_courses').append('<div class="accordion-item"><h2 class="accordion-header" id="prof' + i + '"><button class="shadow accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse' + i + '" aria-expanded="false" aria-controls="collapse' + i + '">' + data.prof_info[i].name + '</button></h2><div id="collapse' + i + '" class="accordion-collapse collapse" aria-labelledby="heading' + i + '" data-bs-parent="#panel_courses"><div class="accordion-body py-4">  <div class="row row-cols-1 row-cols-md-2 g-4"  id="instructor' + i + '"></div> </div></div></div>');
+        $('#panel_courses').append('<div class="accordion-item"><h2 class="accordion-header" id="prof' + i + '"><button class="shadow accordion-button ' + (dataLength < 4 ? "" : "collapsed") + '" type="button" data-bs-toggle="collapse" data-bs-target="#collapse' + i + '" aria-expanded="' + (dataLength < 4) + '" aria-controls="collapse' + i + '">' + data.prof_info[i].name + '</button></h2><div id="collapse' + i + '" class="accordion-collapse collapse '+(dataLength < 4 ? "show" : "")+'" aria-labelledby="heading' + i + '" data-bs-parent="#panel_courses"><div class="accordion-body py-4">  <div class="row row-cols-1 row-cols-md-2 g-4"  id="instructor' + i + '"></div> </div></div></div>');
 
         for (var j in data.prof_info[i].courses)
           addCourse(data.prof_info[i].courses[j].course_info, '#instructor' + i,
