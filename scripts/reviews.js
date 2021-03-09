@@ -1,14 +1,4 @@
-function goBack() {
-  window.location.href = '/course/' + course_code;
-}
-
-function goFb() {
-  window.location.href = '/feedback.html';
-}
-
-function submitReviews() {
-  window.location.href = '/submit/' + course_code + '/' + prof_name.replace('/', '%2F');
-}
+addInstructor(course, prof, '#sidebar-wrapper');
 
 function getCourseInfo(resp_json) {
 
