@@ -5,7 +5,9 @@ $('#input_search_nav').val(course_code);
 $('link[rel="canonical"]').attr('href', 'https://www.umeh.top/course/' + course_code);
 $("meta[name='description']").attr('content', '課程 ' + course_code + ' 的講師評分及評價 ');
 
-$('#title_course').append(course_code)
+$('#title_course').append(course_code);
+$('.breadcrumb').append('<li class="breadcrumb-item"><a href="/search.html?keyword=' + course_code.substring(0, 4) + '">' + course_code.substring(0, 4) + '</a></li>');
+
 $('header > nav').css('background-color', 'rgba(0,0,0,0)');
 
 $(window).on('scroll', function () {
@@ -25,8 +27,6 @@ $.ajax({
   url: API_server + "/course_info/?New_code=" + course_code,
   dataType: "json",
   success: function (data) {
-    $('.breadcrumb').append('<li class="breadcrumb-item"><a href="/search.html?keyword=' + course_code.substring(0, 4) + '">' + course_code.substring(0, 4) + '</a></li>');
-
     $(document).prop('title', course_code + ' ' + data.course_info.courseTitleEng + " | 澳大選咩課 What2Reg @UM"); 
     
     $('#title_eng').text(data.course_info.courseTitleEng);
@@ -47,7 +47,7 @@ $.ajax({
       $("#panel_instructors").append('<div class="alert alert-warning alert-dismissible fade show" role="alert" style="width: 100%">這個課程存在，但是近年來并沒有開設過，因此沒有評價。<br>Found this course but it hasn\'t been offered in recent years.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
 
     for (var i in data.prof_info) {
-      addInstructor(course_code, data.prof_info[i], '#panel_instructors');
+      addInstructor(course_code, data.prof_info[i], '#panel_instructors', false);
       temp_desc += data.prof_info[i].name + ' ' + (data.prof_info[i].result * 2).toFixed(1);
     }
 

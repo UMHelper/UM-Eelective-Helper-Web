@@ -12,19 +12,6 @@ $('#searchByInstructor').on('change.bootstrapSwitch', function (e) {
   document.location.href = "/search.html?keyword=" + keyword + "&instructor=" + e.target.checked;
 });
 
-function addCourse(course, framework, prof, value) {
-  var url = "/" + (prof ? "reviews" : "course") + "/" + course.New_code + "/" + (prof ? prof.replace('/', '$O') : "");
-  $(framework).append('<div class="col"><div class="shadow card "><h2 class="h6 card-header border-light ' + generateColor(value) + '">'
-    + course.New_code
-    + '</h2><a href="' + url + '"><div class="card-body"><h3 class="h6 card-text">'
-    + course.courseTitleEng + '</h3><h3 class="h6 card-text">'
-    + course.courseTitleChi + '</h3></div></a><div class="card-footer border-light"><div class="meta"><div class="attr">Credits</div><div class="cont">'
-    + course.Credits + '</div></div><div class="meta"><div class="attr">Dept</div><div class="cont">'
-    + (course.Offering_Department ? course.Offering_Department : '-') + '</div></div><div class="meta"><div class="attr">Faculty</div><div class="cont">'
-    + course.Offering_Unit + '</div></div><div class="meta"><div class="attr">Language</div><div class="cont">'
-    + (course.Medium_of_Instruction ? course.Medium_of_Instruction : '-') + '</div></div></div></div></div>');
-}
-
 $.ajax({
   url: API_server + "/fuzzy_search/?text=" + keyword + '&type=' + (instructorSearch ? 'prof' : 'course'),
   dataType: "json",

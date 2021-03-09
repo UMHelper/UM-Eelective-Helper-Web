@@ -64,18 +64,53 @@ function generateColor(value) {
     return color;
 }
 
-function addInstructor(course, prof, framework) {
-    var url = "/reviews/" + course + "/" + prof.name.replace('/', '$O');
-    $(framework).append('<div class="col"><div class="shadow card "><h3 class="h6 card-header border-light text-end small '
-        + generateColor(prof.result) + '">'
-        + (prof.result * 2).toFixed(1) + '<span style="font-size: x-small">/10</span>'
-        + '</h3><a href="' + url + '"><div class="card-body"><h2 class="h6 card-text mb-3">' + prof.name + '</h2>'
-        + '<div class="progress" style="height:0.1cm"><div class="progress-bar ' + generateColor(prof.result) + '" role="progressbar" style="width: '
-        + prof.result * 20 + '%"></div></div></div></a><div class="card-footer border-light">'
+function addCourse(course, framework, prof_name, value) {
+    var url = "/" + (prof_name ? "reviews" : "course") + "/" + course.New_code + "/" + (prof_name ? prof_name.replace('/', '$O') : "");
+    $(framework).append('<div class="col"><div class="shadow card "><h2 class="h6 card-header border-light ' + generateColor(value) + '">'
+        + course.New_code
+        + '</h2><a href="' + url + '"><div class="card-body"><h3 class="h6 card-text">'
+        + course.courseTitleEng + '</h3><h3 class="h6 card-text">'
+        + course.courseTitleChi + '</h3></div></a><div class="card-footer border-light"><div class="meta"><div class="attr">Credits</div><div class="cont">'
+        + course.Credits + '</div></div><div class="meta"><div class="attr">Dept</div><div class="cont">'
+        + (course.Offering_Department ? course.Offering_Department : '-') + '</div></div><div class="meta"><div class="attr">Faculty</div><div class="cont">'
+        + course.Offering_Unit + '</div></div><div class="meta"><div class="attr">Language</div><div class="cont">'
+        + (course.Medium_of_Instruction ? course.Medium_of_Instruction : '-') + '</div></div></div></div></div>');
+}
+
+// type: brief, full
+function addInstructor(course_code, prof, framework, brief) {
+    var url = "/reviews/" + course_code + "/" + prof.name.replace('/', '$O');
+    var margin = brief ? 'style="margin: 0.4cm"' : "";
+    var meta = brief ? "" : '<div class="card-footer border-light">'
         + '<div class="meta"><div class="attr">Overall</div><div class="cont">' + (prof.result * 2).toFixed(1) +
         '</div></div><div class="meta"><div class="attr">Grade</div><div class="cont">' + (prof.grade * 2).toFixed(1) +
         '</div></div><div class="meta"><div class="attr">Hard</div><div class="cont">' + (prof.hard * 2).toFixed(1) +
         '</div></div><div class="meta"><div class="attr">Outcome</div><div class="cont">' + (prof.reward * 2).toFixed(1) +
         '</div></div><div class="meta"><div class="attr">Comments</div><div class="cont">' + prof.num +
-        '</div></div></div></div></div>');
+        '</div></div></div>';
+    var head = brief ? "" : '<h3 class="h6 card-header border-light text-end small '
+        + generateColor(prof.result) + '">'
+        + (prof.result * 2).toFixed(1) + '<span style="font-size: x-small">/10</span>'
+        + '</h3>';
+    $(framework).append('<div class="col"><div class="shadow card"' + margin + '>' + head + '<a href="' + url + '"><div class="card-body"><h2 class="h6 card-text mb-3">' + prof.name + '</h2>'
+        + '<div class="progress" style="height:0.1cm"><div class="progress-bar ' + generateColor(prof.result) + '" role="progressbar" style="width: '
+        + prof.result * 20 + '%"></div></div></div></a>' + meta + '</div></div>');
+}
+
+// type: brief, full
+function addReview(review, framework) {
+    if(review.content)
+    {
+    var meta = '<div class="card-footer border-light">'
+        + '<div class="meta"><div class="attr">Overall</div><div class="cont">' + (review.recommend * 2).toFixed(1) +
+        '</div></div><div class="meta"><div class="attr">Grade</div><div class="cont">' + (review.grade * 2).toFixed(1) +
+        '</div></div><div class="meta"><div class="attr">Hard</div><div class="cont">' + (review.hard * 2).toFixed(1) +
+        '</div></div><div class="meta"><div class="attr">Outcome</div><div class="cont">' + (review.reward * 2).toFixed(1) +
+        '</div></div><div class="meta"><div class="attr">Date</div><div class="cont">' + review.pub_time +
+        '</div></div></div>';
+    $(framework).append('<div class="col"><div class="shadow card"><h3 class="h6 card-header border-light text-end small '
+        + generateColor(review.recommend) + '">'
+        + (review.recommend * 2).toFixed(1) + '<span style="font-size: x-small">/10</span>'
+        + '</h3><div class="card-body"><h2 class="h6 card-text">' + review.content + '</h2></div>' + meta + '</div></div>');
+    }
 }
