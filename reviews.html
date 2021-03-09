@@ -31,7 +31,6 @@
 
     <!-- Custom Styles -->
     <style>
-
         section h2,
         section h3 {
             font-weight: 400 !important;
@@ -42,22 +41,22 @@
             color: rgba(250, 250, 250, 0.8) !important;
             text-decoration: none;
         }
-
-        #panel_bar .meta {
-            display: inline-block;
-            margin-right: 0.4cm;
-            color: rgba(250, 250, 250, 0.85);
+        .progress {
+            height: 0.1cm;
+        }
+        .progress-item {
+            padding: 0.25cm 5%;
+            line-height: 1.5;
+            font-size: 0.84rem;
         }
 
-        #panel_bar .attr {
-            font-size: 0.8rem;
-            color: rgba(250, 250, 250, 0.7);
+        .progress-item .progress {
+            margin-top: 0.1cm;
         }
 
         #panel_instructors {
             width: 9cm;
         }
-
     </style>
 </head>
 
@@ -96,7 +95,7 @@
             </div>
         </nav>
     </header>
-    
+
     <section style="padding-top: 2cm; background: linear-gradient(37deg, #002a4c, #0396e6);">
         <div class="container" style="padding:3% 5%; ">
 
@@ -112,24 +111,52 @@
                     <h2 class="text-white h6" id="title_eng">-</h2>
                     <h2 class="text-white h6" id="title_chi">-</h2>
                     <h1 class="mt-4 text-white h1" id="title_instructor"></h1>
-                    <br>
+                    <button type="button" class="shadow btn btn-success my-3"><i class="bi bi-pencil-square"></i> Submit Review</button>
+
                 </div>
 
-                <div class="col-md-5" id="panel_bar">
-                    <div>
-                        <div class="attr">Overall </div>
-                        <div class="progress" style="height:0.1cm; background-color: #FFFFFF30;">
-                            <div class="progress-bar bg-warning text-dark" role="progressbar"
-                                style="width: 56.254464285714285%"></div>
+                <div class="col-md-5 my-2" id="panel_bar">
+
+                    <div class="shadow-lg card" style="max-width: 24rem;">
+                        <div class="card-header progress-item">
+                            <div>總體 Overall</div>
+                            <div class="progress" id="progress_overall">
+                                
+                            </div>
                         </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item progress-item">
+                                <div>成績 Grade </div>
+                                <div class="progress" id="progress_grade">
+                                    
+                                </div>
+                            </li>
+                            <li class="list-group-item progress-item">
+                                <div>輕鬆 Easy </div>
+                                <div class="progress"  id="progress_hard">
+                                    
+                                </div>
+                            </li>
+                            <li class="list-group-item progress-item">
+                                <div>收穫 Outcome </div>
+                                <div class="progress"  id="progress_outcome">
+                                </div>
+                            </li>
+                        </ul>
+
                     </div>
+
+
                 </div>
             </div>
+
+        </div>
+        </div>
         </div>
     </section>
 
     <div class="d-flex">
-        <div class="column bg-white d-none d-md-block pt-4 ps-5" id="panel_instructors">
+        <div class="column bg-white d-none d-md-block pt-5 ps-5" id="panel_instructors">
         </div>
         <main class="column" style="width: 100%;">
             <!-- Course info panel -->

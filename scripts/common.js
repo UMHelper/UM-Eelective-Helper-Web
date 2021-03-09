@@ -84,7 +84,7 @@ function addInstructor(course_code, prof, framework, brief) {
     var meta = brief ? "" : '<div class="card-footer border-light">'
         + '<div class="meta"><div class="attr">Overall</div><div class="cont">' + (prof.result * 2).toFixed(1) +
         '</div></div><div class="meta"><div class="attr">Grade</div><div class="cont">' + (prof.grade * 2).toFixed(1) +
-        '</div></div><div class="meta"><div class="attr">Hard</div><div class="cont">' + (prof.hard * 2).toFixed(1) +
+        '</div></div><div class="meta"><div class="attr">Easy</div><div class="cont">' + (prof.hard * 2).toFixed(1) +
         '</div></div><div class="meta"><div class="attr">Outcome</div><div class="cont">' + (prof.reward * 2).toFixed(1) +
         '</div></div><div class="meta"><div class="attr">Comments</div><div class="cont">' + prof.num +
         '</div></div></div>';
@@ -104,7 +104,7 @@ function addReview(review, framework) {
     var meta = '<div class="card-footer border-light">'
         + '<div class="meta"><div class="attr">Overall</div><div class="cont">' + (review.recommend * 2).toFixed(1) +
         '</div></div><div class="meta"><div class="attr">Grade</div><div class="cont">' + (review.grade * 2).toFixed(1) +
-        '</div></div><div class="meta"><div class="attr">Hard</div><div class="cont">' + (review.hard * 2).toFixed(1) +
+        '</div></div><div class="meta"><div class="attr">Easy</div><div class="cont">' + (review.hard * 2).toFixed(1) +
         '</div></div><div class="meta"><div class="attr">Outcome</div><div class="cont">' + (review.reward * 2).toFixed(1) +
         '</div></div><div class="meta"><div class="attr">Date</div><div class="cont">' + review.pub_time +
         '</div></div></div>';
