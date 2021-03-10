@@ -1,4 +1,20 @@
+$('#navbarTogglerDemo02 > ul').append('<li class="nav-item"><a class="nav-link" aria-current="page" href="'
+    + '/' + '">' + 'Home' + '</a></li>');
+$('#navbarTogglerDemo02 > ul').append('<li class="nav-item"><a class="nav-link" aria-current="page" href="'
+    + '/' + '">' + 'Home' + '</a></li>');
+$('#navbarTogglerDemo02 > ul').append('<li class="nav-item"><a class="nav-link" aria-current="page" href="'
+    + '/' + '">' + 'Home' + '</a></li>');
+$('#navbarTogglerDemo02 > ul').append('<li class="nav-item dropdown">'
+    + '<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">'
+    + 'Drop' + '</a>'
+    + '<ul class="dropdown-menu" aria-labelledby="navbarDropdown" >'
+    + '<li><a class="dropdown-item" href="' + '/' + '">' + 'Home' + '</a></li>'
+    + '<li><a class="dropdown-item" href="' + '/' + '">' + 'Home' + '</a></li>'
+    + '<li><a class="dropdown-item" href="' + '/' + '">' + 'Home' + '</a></li>'
+    + '    </ul>    </li >');
 
+
+    
 // get current version
 $.ajax({
     url: "https://api.github.com/repos/UMHelper/UM-Eelective-Helper-Web/branches/bootstrap",
@@ -24,3 +40,4 @@ $('#input_search_nav').keypress(function (e) {
         $('#button_search_nav').focus().click();
     }
 });
+

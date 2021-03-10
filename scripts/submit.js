@@ -13,7 +13,7 @@ $('.breadcrumb').append('<li class="breadcrumb-item"><a href="/search.html?keywo
 
 $('.breadcrumb').append('<li class="breadcrumb-item"><a href="/course/' + course_code + '">' + course_code + '</a></li>');
 
-$('.breadcrumb').append('<li class="breadcrumb-item"><a href="/reviews/' + course_code + '/' + instructor + '">' + instructor + '</a></li>');
+$('.breadcrumb').append('<li class="breadcrumb-item"><a href="/reviews/' + course_code + '/' + instructor.replaceAll('/','$') + '">' + instructor + '</a></li>');
 
 $('#sub_form').attr('action',);
 $('#sub_form').attr('method', 'POST');
