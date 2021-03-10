@@ -1,19 +1,16 @@
 $('#navbarTogglerDemo02 > ul').append('<li class="nav-item"><a class="nav-link" aria-current="page" href="'
-    + '/' + '">' + 'Home' + '</a></li>');
-$('#navbarTogglerDemo02 > ul').append('<li class="nav-item"><a class="nav-link" aria-current="page" href="'
-    + '/' + '">' + 'Home' + '</a></li>');
-$('#navbarTogglerDemo02 > ul').append('<li class="nav-item"><a class="nav-link" aria-current="page" href="'
-    + '/' + '">' + 'Home' + '</a></li>');
+    + '/' + '">' + '首頁 Home' + '</a></li>');
 $('#navbarTogglerDemo02 > ul').append('<li class="nav-item dropdown">'
     + '<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">'
-    + 'Drop' + '</a>'
+    + '通識 GE Guide' + '</a>'
     + '<ul class="dropdown-menu" aria-labelledby="navbarDropdown" >'
-    + '<li><a class="dropdown-item" href="' + '/' + '">' + 'Home' + '</a></li>'
-    + '<li><a class="dropdown-item" href="' + '/' + '">' + 'Home' + '</a></li>'
-    + '<li><a class="dropdown-item" href="' + '/' + '">' + 'Home' + '</a></li>'
-    + '    </ul>    </li >');
-
-
+    + '<li><a class="dropdown-item" href="' + '/search.html?keyword=GEGA' + '">' + '環球 GEGA' + '</a></li>'
+    + '<li><a class="dropdown-item" href="' + '/search.html?keyword=GELH' + '">' + '人文 GELH' + '</a></li>'
+    + '<li><a class="dropdown-item" href="' + '/search.html?keyword=GEST' + '">' + '科技 GEST' + '</a></li>'
+    + '<li><a class="dropdown-item" href="' + '/search.html?keyword=GESB' + '">' + '社會 GESB' + '</a></li>'
+    + '</ul></li >');
+$('#navbarTogglerDemo02 > ul').append('<li class="nav-item"><a class="nav-link" aria-current="page" href="'
+    + '/' + '">' + '反饋 Feedback' + '</a></li>');
     
 // get current version
 $.ajax({
