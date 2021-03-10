@@ -9,7 +9,7 @@ $("meta[name='description']").attr('content', '講師 ' + instructor + ' 在課�
 $('.breadcrumb').append('<li class="breadcrumb-item"><a href="/search.html?keyword=' + course_code.substring(0, 4) + '">' + course_code.substring(0, 4) + '</a></li>');
 
 $('.breadcrumb').append('<li class="breadcrumb-item"><a href="/course/' + course_code + '">' + course_code + '</a></li>');
-$('#title_instructor').append(instructor + ' <a class="h6" href="/professor/' + instructor + '"><i class="bi bi-box-arrow-in-up-right"></i></a>');
+$('#title_instructor').append(instructor + ' <a class="h6" href="/professor/' + instructor.replace('/', '$') + '"><i class="bi bi-box-arrow-in-up-right"></i></a>');
 $('header > nav').css('background-color', 'rgba(0,0,0,0)');
 
 $(window).on('scroll', function () {

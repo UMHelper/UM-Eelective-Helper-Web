@@ -1,5 +1,5 @@
 if (window.location.pathname.split('/')[1] == 'professor') {
-  keyword = decodeURI(window.location.pathname.split('/')[2]);
+  keyword = decodeURI(window.location.pathname.split('/')[2]).replace('$','/');
   instructorSearch = true;
 }
 else {
