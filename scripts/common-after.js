@@ -4,13 +4,13 @@ $('#navbarTogglerDemo02 > ul').append('<li class="nav-item dropdown">'
     + '<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">'
     + '通識 GE Guide' + '</a>'
     + '<ul class="dropdown-menu" aria-labelledby="navbarDropdown" >'
-    + '<li><a class="dropdown-item" href="' + '/search.html?keyword=GEGA' + '">' + '環球 GEGA' + '</a></li>'
-    + '<li><a class="dropdown-item" href="' + '/search.html?keyword=GELH' + '">' + '人文 GELH' + '</a></li>'
-    + '<li><a class="dropdown-item" href="' + '/search.html?keyword=GEST' + '">' + '科技 GEST' + '</a></li>'
-    + '<li><a class="dropdown-item" href="' + '/search.html?keyword=GESB' + '">' + '社會 GESB' + '</a></li>'
+    + '<li><a class="dropdown-item" href="' + '/search.html?keyword=GEGA' + '"target="_blank">' + '環球 GEGA' + '</a></li>'
+    + '<li><a class="dropdown-item" href="' + '/search.html?keyword=GELH' + '"target="_blank">' + '人文 GELH' + '</a></li>'
+    + '<li><a class="dropdown-item" href="' + '/search.html?keyword=GEST' + '"target="_blank">' + '科技 GEST' + '</a></li>'
+    + '<li><a class="dropdown-item" href="' + '/search.html?keyword=GESB' + '"target="_blank">' + '社會 GESB' + '</a></li>'
     + '</ul></li >');
 $('#navbarTogglerDemo02 > ul').append('<li class="nav-item"><a class="nav-link" aria-current="page" href="'
-    + '/' + '">' + '反饋 Feedback' + '</a></li>');
+    + 'https://docs.google.com/forms/u/1/d/e/1FAIpQLSe-y585fa_eJXUeFYwp-WyXyBJ_PL31hAzZABFr-eCNcr_RwA/viewform' + '" target="_blank">' + '反饋 Feedback' + '</a></li>');
     
 // get current version
 $.ajax({
