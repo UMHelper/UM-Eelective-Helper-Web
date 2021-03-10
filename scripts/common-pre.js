@@ -87,7 +87,6 @@ function addInstructor(course_code, prof, framework, brief) {
 
 // type: brief, full
 function addReview(review, framework) {
-    if (review.content) {
         var meta = '<div class="card-footer border-light">'
             + '<div class="meta"><div class="attr">Overall</div><div class="cont">' + generateAttitude(review.recommend) +
             '</div></div><div class="meta"><div class="attr">Grade</div><div class="cont">' + generateAttitude(review.grade) +
@@ -96,6 +95,5 @@ function addReview(review, framework) {
             '</div></div></div>';
         $(framework).append('<div class="col"><div class="shadow card"><div class="h6 card-header border-light small '
             + generateColor(review.recommend) + '">' + '<div class="row"><div class="col-7">' + review.pub_time + '</div><div class="col-5 text-end">' + (review.recommend * 2).toFixed(1) + '<span style="font-size: x-small">/10</span></div></div>'
-            + '</div><div class="card-body"><h2 class="h6 card-text">' + review.content + '</h2></div>' + meta + '</div></div>');
-    }
+            + '</div>' + (review.content ? '<div class="card-body"><h2 class="h6 card-text">' + review.content + '</h2></div>' : '') + meta + '</div></div>');
 }
