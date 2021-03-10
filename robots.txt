@@ -1,2 +1,2 @@
 User-agent: *
-sitemap: https://www.umeh.top/src/sitemap.xml
+sitemap: https://www.umeh.top/sitemap.xml

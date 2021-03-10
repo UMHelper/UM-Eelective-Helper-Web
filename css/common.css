@@ -1,3 +1,7 @@
+        .navbar {
+            padding: 13px; 
+            background: linear-gradient(37deg, rgba(0, 42, 76, 0.314), rgba(3, 150, 230, 0.35)) rgb(48, 84, 139);
+        }
 
         #logo {
             margin-bottom: 0.4cm;
