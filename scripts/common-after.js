@@ -1,3 +1,6 @@
+$(function(){ $("footer").load("/src/footer.html") });
+
+
 $('#navbarTogglerDemo02 > ul').append('<li class="nav-item"><a class="nav-link" aria-current="page" href="'
     + '/' + '">' + '首頁 Home' + '</a></li>');
 $('#navbarTogglerDemo02 > ul').append('<li class="nav-item dropdown">'

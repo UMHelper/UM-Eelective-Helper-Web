@@ -1,21 +1,14 @@
 var API_server = "https://mpserver.umeh.top";
 var inline_ad = '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>\n<ins class="adsbygoogle"\nstyle="display:block"\ndata-ad-format="fluid"\ndata-ad-layout-key="-h2-o+o-38+av"\ndata-ad-client="ca-pub-6229219222351733"\ndata-ad-slot="9401190562"></ins>\n<script>\n(adsbygoogle = window.adsbygoogle || []).push({});\n</script>';
 
-window.dataLayer = window.dataLayer || [];
-function gtag() { dataLayer.push(arguments); }
-gtag('js', new Date());
 
-gtag('config', 'UA-176924130-2');
+(function(e,t,n,i,s,a,c){e[n]=e[n]||function(){(e[n].q=e[n].q||[]).push(arguments)}
+;a=t.createElement(i);c=t.getElementsByTagName(i)[0];a.async=true;a.src=s
+;c.parentNode.insertBefore(a,c)
+})(window,document,"galite","script","https://cdn.jsdelivr.net/npm/ga-lite@2/dist/ga-lite.min.js");
 
-try {
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/sw.js', { scope: '/' })
-            .then(reg => console.log('Service Worker registered', reg))
-            .catch(err => console.log('Not supported.', err));
-    }
-} catch (error) {
-
-}
+galite('create', 'UA-176924130-2', 'auto');
+galite('send', 'pageview');
 
 $.urlParam = function (name) {
     var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
@@ -96,4 +89,14 @@ function addReview(review, framework) {
         $(framework).append('<div class="col"><div class="shadow card"><div class="h6 card-header border-light small '
             + generateColor(review.recommend) + '">' + '<div class="row"><div class="col-7">' + review.pub_time + '</div><div class="col-5 text-end">' + (review.recommend * 2).toFixed(1) + '<span style="font-size: x-small">/10</span></div></div>'
             + '</div>' + (review.content ? '<div class="card-body"><h2 class="h6 card-text">' + review.content + '</h2></div>' : '') + meta + '</div></div>');
+}
+
+try {
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js', { scope: '/' })
+            .then(reg => console.log('Service Worker registered', reg))
+            .catch(err => console.log('Not supported.', err));
+    }
+} catch (error) {
+
 }
