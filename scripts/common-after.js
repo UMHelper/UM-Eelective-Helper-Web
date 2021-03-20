@@ -1,8 +1,9 @@
 $(function(){ $("footer").load("/src/footer.html") });
 
 
+//$('#navbarTogglerDemo02 > ul').append('<li class="nav-item"><a class="nav-link" aria-current="page" href="' + '/' + '">' + '首頁 Home' + '</a></li>');
 $('#navbarTogglerDemo02 > ul').append('<li class="nav-item"><a class="nav-link" aria-current="page" href="'
-    + '/' + '">' + '首頁 Home' + '</a></li>');
++ '/catalog.html' + '">' + '全部課程 Catalog' + '</a></li>');
 $('#navbarTogglerDemo02 > ul').append('<li class="nav-item dropdown">'
     + '<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">'
     + '通識 GE Guide' + '</a>'
@@ -14,7 +15,8 @@ $('#navbarTogglerDemo02 > ul').append('<li class="nav-item dropdown">'
     + '</ul></li >');
 $('#navbarTogglerDemo02 > ul').append('<li class="nav-item"><a class="nav-link" aria-current="page" href="'
     + 'https://docs.google.com/forms/u/1/d/e/1FAIpQLSe-y585fa_eJXUeFYwp-WyXyBJ_PL31hAzZABFr-eCNcr_RwA/viewform' + '" target="_blank">' + '反饋 Feedback' + '</a></li>');
-    
+
+
 // get current version
 $.ajax({
     url: "https://api.github.com/repos/UMHelper/UM-Eelective-Helper-Web/branches/bootstrap",

@@ -27,13 +27,19 @@ $.ajax({
   url: API_server + "/course_info/?New_code=" + course_code,
   dataType: "json",
   success: function (data) {
-    $(document).prop('title', course_code + ' ' + data.course_info.courseTitleEng + " | 澳大選咩課 What2Reg @UM"); 
-    
+    $(document).prop('title', course_code + ' ' + data.course_info.courseTitleEng + " | 澳大選咩課 What2Reg @UM");
+
     $('#title_eng').text(data.course_info.courseTitleEng);
     $('#title_chi').text(data.course_info.courseTitleChi);
     $('#meta_credits').text(data.course_info.Credits);
-    $('#meta_dept').text(data.course_info.Offering_Department ? data.course_info.Offering_Department : '-');
-    $('#meta_faculty').text(data.course_info.Offering_Unit);
+    if (data.course_info.Offering_Department) {
+      $('#meta_dept').html('<a href="/catalog.html?faculty=' + data.course_info.Offering_Unit + '&dept=' + data.course_info.Offering_Department + '">' + data.course_info.Offering_Department + '</a>');
+      $('#meta_faculty').text(data.course_info.Offering_Unit);
+    }
+    else {
+      $('#meta_dept').text('-');      
+      $('#meta_faculty').html('<a href="/catalog.html?faculty=' + data.course_info.Offering_Unit + '">' + data.course_info.Offering_Unit + '</a>');
+    }
     $('#meta_lang').text(data.course_info.Medium_of_Instruction ? data.course_info.Medium_of_Instruction : '-');
     if (data.course_info.courseDescription)
       description += data.course_info.courseDescription.replaceAll('\n', '</p><p>') + '</p>';
