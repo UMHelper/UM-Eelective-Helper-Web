@@ -19,7 +19,7 @@ function addDepts(faculty, items) {
 
 function addFaculties(items) {
     for (i in items)
-        $(".nav-pills").append('<li class="nav-item"><a class="nav-link" href="/catalog.html?faculty=' + items[i] + '&dept=">' + items[i] + '</a></li>');
+        $(".nav-pills").append('<li class="nav-item" id="li_' + items[i] + '"><a class="nav-link" href="/catalog.html?faculty=' + items[i] + '">' + items[i] + '</a></li>');
 }
 
 addDepts('FAH', ['CJS', 'DCH', 'DENG', 'DHIST', 'DPHIL', 'DPT', 'ELC']);
@@ -34,10 +34,14 @@ addFaculties(['FED', 'FHS', 'HC', 'IAPME', 'ICMS', 'RC']);
 var faculty = $.urlParam('faculty');
 var dept = $.urlParam('dept');
 
-$(document).prop('title', "Catalog of " + (dept ? dept + " | " : "") + faculty + " | 澳大選咩課 What2Reg @UM");
-$('link[rel="canonical"]').attr('href', 'https://www.umeh.top/catalog.html?faculty=' + faculty + '?dept=' + dept);
+if (faculty) {
+    $('#title_catalog').append(" of " + (dept ? dept + " | " : "") + faculty);
+    $(document).prop('title', "Catalog of " + (dept ? dept + " | " : "") + faculty + " | 澳大選咩課 What2Reg @UM");
+    $('link[rel="canonical"]').attr('href', 'https://www.umeh.top/catalog.html?faculty=' + faculty + (dept ? '&dept=' + dept : ""));
+}
 
 $("#ul_" + faculty).parent().children('a').addClass('active');
+$("#li_" + faculty).children('a').addClass('active');
 var reqUrl = "https://api.data.um.edu.mo/service/academic/course_catalog/v1.0.0/all?"
     + "offering_unit=" + faculty + "&offering_prog_level=UG" + (dept ? ("&offering_dept=" + dept) : "");
 if (faculty)
@@ -49,7 +53,7 @@ if (faculty)
         success: function (res) {
             $('.container').append('<div class="row row-cols-1 row-cols-md-2 g-4" id="panel_courses"></div>');
             for (var i in res._embedded) {
-                addCatalog(res._embedded[res._embedded.length-i-1], '#panel_courses');
+                addCatalog(res._embedded[res._embedded.length - i - 1], '#panel_courses');
             }
 
             if (res._embedded.length > 99)
