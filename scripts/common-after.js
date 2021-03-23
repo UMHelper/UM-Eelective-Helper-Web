@@ -17,18 +17,6 @@ $('#navbarTogglerDemo02 > ul').append('<li class="nav-item"><a class="nav-link" 
     + 'https://docs.google.com/forms/u/1/d/e/1FAIpQLSe-y585fa_eJXUeFYwp-WyXyBJ_PL31hAzZABFr-eCNcr_RwA/viewform' + '" target="_blank">' + '反饋 Feedback' + '</a></li>');
 
 
-// get current version
-$.ajax({
-    url: "https://api.github.com/repos/UMHelper/UM-Eelective-Helper-Web/branches/bootstrap",
-    dataType: "json",
-    success: function (data) {
-        $('#version').replaceWith('<a href="' + data.commit.html_url + '">' + data.commit.commit.author.date);
-    },
-    error: function (data) {
-        $('#version').replaceWith("ERROR");
-    }
-});
-
 $("#button_search_nav").click(function () {
     if ($("#input_search_nav").val().length < 4)
         alert("關鍵字太短了! \nThe keyword is too short!");
