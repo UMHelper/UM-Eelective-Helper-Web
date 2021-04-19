@@ -25,7 +25,7 @@ function addFaculties(items) {
 addDepts('FAH', ['CJS', 'DCH', 'DENG', 'DHIST', 'DPHIL', 'DPT', 'ELC']);
 addDepts('FBA', ['AIM', 'DRTM', 'FBE', 'IIRM', 'MMI']);
 addDepts('FLL', ['MLS']);
-addDepts('FSS', ['DCOM', 'DECO', 'DGPA', 'DPHY', 'DSOC']);
+addDepts('FSS', ['DCOM', 'DECO', 'DGPA', 'DPSY', 'DSOC']);
 addDepts('FST', ['CEE', 'CIS', 'CSG', 'DPC', 'ECE', 'EME', 'MAT']);
 addDepts('ICI', ['CIE']);
 addFaculties(['FED', 'FHS', 'HC', 'IAPME', 'ICMS', 'RC']);
