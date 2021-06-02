@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Timetable Simulator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/css/common.css">
+
+    <link rel="icon" href="/src/badge.png">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#215991">
+    <link rel="canonical" />
+
+    <!-- Google Analytics -->
+    <script data-ad-client="ca-pub-6229219222351733" async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+            crossorigin="anonymous"></script>
+    <script src="/scripts/common-pre.js"></script>
+
+    <style>
+        .container> .date{
+            margin-bottom: 1vh;
+        }
+        .container> .date> .col{
+            text-align: center;
+        }
+        .container> .course{
+            /*height: 20vh;*/
+        }
+        .container> .course> .time{
+            text-align: center;
+            /*line-height: 20vh;*/
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="shadow navbar navbar-expand-md navbar-dark fixed-top">
+            <div class="container-fluid container-lg">
+                <a class="navbar-brand" href="/">選咩課 課程模擬助手</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav me-auto mb-0">
+                    </ul>
+                    <div class="d-flex">
+                        <input class="form-control me-2" id="input_search_nav" placeholder="Find course"
+                               aria-label="Course or instructor">
+                        <button class="btn btn-outline-warning" id="button_search_nav">Search</button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+<!--
+8:30-9:45
+10:00-11:15
+11:30-12:45
+13:00-14:15
+14:30-15:45
+16:00-17:15
+17:30-18:45
+19:00-20:15
+20:30-21:45
+-->
+
+    <main style="padding-top: 2cm">
+        <div id="calendar" class="container" style="padding-top: 7%; min-height: 80vh;">
+            <div class="row date" >
+                <div class="col">
+
+                </div>
+                <div class="col">
+                    Sunday
+                </div>
+                <div class="col">
+                    Monday
+                </div>
+                <div class="col">
+                    Tuesday
+                </div>
+                <div class="col">
+                    Wednesday
+                </div>
+                <div class="col">
+                    Thursday
+                </div>
+                <div class="col">
+                    Friday
+                </div>
+                <div class="col">
+                    Saturday
+                </div>
+            </div>
+            <div class="row course">
+                <div class="col time">
+                8:30-9:45
+                </div>
+                <div class="col sunday">
+
+                </div>
+                <div class="col  monday">
+                    <div class="card ">
+                        <!--                        <h2 class="h6 card-header border-light ">ACCT1000</h2>-->
+                        <a href="/">
+                            <div class="card-body">
+                                <h3 class="h6 card-text">ACCT1000</h3>
+                                <h3 class="h6 card-text">E22-1015</h3>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col  tuesday">
+
+                </div>
+                <div class="col  wednesday">
+
+                </div>
+                <div class="col  thursday">
+                    <div class="card ">
+                        <!--                        <h2 class="h6 card-header border-light ">ACCT1000</h2>-->
+                        <a href="/">
+                            <div class="card-body">
+                                <h3 class="h6 card-text">ACCT1000</h3>
+                                <h3 class="h6 card-text">E22-1015</h3>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col  friday">
+
+                </div>
+                <div class="col  saturday">
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bd-footer p-3 p-md-5 mt-5 bg-light text-center text-sm-start ">
+    </footer>
+    <script src="/scripts/common-after.js" async></script>
+</body>
+</html>
