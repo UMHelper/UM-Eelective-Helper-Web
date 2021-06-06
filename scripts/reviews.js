@@ -54,7 +54,6 @@ $.ajax({
       + data.prof_info.hard * 20 + '%"></div>');
     $('#progress_outcome').append('<div class="progress-bar ' + generateColor(data.prof_info.reward) + '" role="progressbar" style="width: '
       + data.prof_info.reward * 20 + '%"></div>');
-
     var temp_desc = '';
     for (var i in data.comments) {
       addReview(data.comments[i], '#panel_reviews');
@@ -62,6 +61,19 @@ $.ajax({
         temp_desc += data.comments[i].content + '. ';
     }
     $("meta[name='description']").attr('content', '講師 ' + instructor + ' 在課程 ' + course_code + ' 的中評分及評價. ' + temp_desc);
+    if (data.prof_info.offer_info.is_offer){
+      for (var i in data.prof_info.offer_info.schedules){
+        var info="<div class=\"row\">";
+        for (var j in data.prof_info.offer_info.schedules[i].schedules) {
+          info+="<div class=\"col\"><h2 class=\"text-white h6\" >"+data.prof_info.offer_info.schedules[i].schedules[j].location+"</h2>" +
+              "<h2 class=\"text-white h6\">"+data.prof_info.offer_info.schedules[i].schedules[j].date+", "+ data.prof_info.offer_info.schedules[i].schedules[j].time+"</h2></div>";
+
+        }
+        info+="</div>";
+        $('#schedules').append('<h2 class=\"text-white h6\">Section-'+data.prof_info.offer_info.schedules[i].section+'</h2>');
+        $('#schedules').append(info);
+      }
+    }
   },
   error: function (data) {
     $("#panel_reviews").append('<div class="alert alert-info alert-dismissible fade show" role="alert" style="width: 100%">還沒有人評價過，做第一個評價者吧！<br>No reviews yet. Be the first to comment!<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
