@@ -29,11 +29,13 @@ $.ajax({
     if (data.course_info == 'Error Code')
       $("#panel_instructors").append('<div class="alert alert-danger show" role="alert" style="width: 100%">課程不存在<br>Course not found</div>');
 
-    if (data.prof_info.length == 1) {
-      $('#panel_instructors').remove();
-    }
-    for (var i in data.prof_info) {
-      addInstructor(course_code, data.prof_info[i], '#panel_instructors', true);
+    // if (data.prof_info.length == 1) {
+    //   $('#panel_instructors').remove();
+    // }
+    if (data.prof_info.length > 1){
+      for (var i in data.prof_info) {
+        addInstructor(course_code, data.prof_info[i], '#panel_instructors', true);
+      }
     }
   },
   error: function (data) {
@@ -63,16 +65,28 @@ $.ajax({
     $("meta[name='description']").attr('content', '講師 ' + instructor + ' 在課程 ' + course_code + ' 的中評分及評價. ' + temp_desc);
     if (data.prof_info.offer_info.is_offer){
       for (var i in data.prof_info.offer_info.schedules){
-        var info="<div class=\"row\">";
+        info='<div class="card" style="margin: 0.4cm"><div class="h6 card-header border-light small "><h2 class="h6 card-text" >Section-'+data.prof_info.offer_info.schedules[i].section+'</h2></div>';
+        // data.prof_info.offer_info.schedules[i].schedules[j].location
+        // data.prof_info.offer_info.schedules[i].schedules[j].date
+        // data.prof_info.offer_info.schedules[i].schedules[j].time
+        // data.prof_info.offer_info.schedules[i].section
         for (var j in data.prof_info.offer_info.schedules[i].schedules) {
-          info+="<div class=\"col\"><h2 class=\"text-white h6\" >"+data.prof_info.offer_info.schedules[i].schedules[j].location+"</h2>" +
-              "<h2 class=\"text-white h6\">"+data.prof_info.offer_info.schedules[i].schedules[j].date+", "+ data.prof_info.offer_info.schedules[i].schedules[j].time+"</h2></div>";
-
+          info+='<div class="card-body"> <h2 class="h6 card-text ">'
+              +data.prof_info.offer_info.schedules[i].schedules[j].location
+              +'</h2> <h2 class="h6 card-text ">'
+              +data.prof_info.offer_info.schedules[i].schedules[j].date
+              +', '
+              + data.prof_info.offer_info.schedules[i].schedules[j].time
+              +'</h2> </div>';
+          // alert(data.prof_info.offer_info.schedules[i].schedules[j].location);
         }
-        info+="</div>";
-        $('#schedules').append('<h2 class=\"text-white h6\">Section-'+data.prof_info.offer_info.schedules[i].section+'</h2>');
-        $('#schedules').append(info);
+        info+='<div class="card-body"> <button type="button" class="shadow btn btn-success" id="button_addcourse" style="width: 100%"> <i class="bi bi-cart-plus"></i> Add to Timetable</button></div>';
+        info+='</div>';
+        $("#schedules").append(info);
       }
+    }
+    else {
+      $("#schedules").append('<div class="alert alert-info alert-dismissible fade show" role="alert" style="width: 100%">本學期(2nd Sem, 20/21) 未提供本課程<br>This course is not offered this semester(2nd Sem, 20/21)<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
     }
   },
   error: function (data) {
