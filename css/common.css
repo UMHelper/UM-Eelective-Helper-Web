@@ -1,57 +1,61 @@
-        .navbar {
-            padding: 13px; 
-            background: linear-gradient(37deg, rgba(0, 42, 76, 0.314), rgba(3, 150, 230, 0.35)) rgb(48, 84, 139);
-        }
+        
+.navbar {
+    padding: 13px; 
+    background: linear-gradient(37deg, rgba(0, 42, 76, 0.314), rgba(3, 150, 230, 0.35)) rgb(48, 84, 139);
+}
 
-        #logo {
-            margin-bottom: 0.4cm;
-            height: 1.9cm;
-            width: 1.9cm;
-        }
+#logo {
+    margin-bottom: 0.4cm;
+    height: 1.9cm;
+    width: 1.9cm;
+}
 
-        .numsItem {
-            display: inline-block;
-            text-align: center;
-            margin: 0.2cm 0.2cm;
-            padding: 0.3cm;
-            min-width: 3cm;
-            background-color: white;
-        }
+.numsItem {
+    display: inline-block;
+    text-align: center;
+    margin: 0.2cm 0.2cm;
+    padding: 0.3cm;
+    min-width: 3cm;
+    background-color: white;
+}
 
-        .numsItem:hover {
-            background-color: #f9f9f9;
-        }
+.numsItem:hover {
+    background-color: #f9f9f9;
+}
+body {
+    font-family: Helvetica, Tahoma, Arial, STXihei, "华文细黑", "Microsoft YaHei", "微软雅黑", SimSun, "宋体", Heiti, "黑体", sans-serif;
+}
 
-        .bd-footer {
-            font-size: .875rem;
-            color: #63707c;
-        }
+.bd-footer {
+    font-size: .875rem;
+    color: #63707c;
+}
 
-        .bd-footer a {
-            font-weight: 600;
-            color: #495057;
-        }
+.bd-footer a {
+    font-weight: 600;
+    color: #495057;
+}
 
-        .meta {
-            display: inline-block;
-            margin: auto 0.3cm auto auto;
-        }
+.meta {
+    display: inline-block;
+    margin: auto 0.3cm auto auto;
+}
 
-        .attr {
-            font-size: 0.7em;
-        }
+.attr {
+    font-size: 0.7em;
+}
 
-        .cont {
-            font-size: 0.9em;
-        }
+.cont {
+    font-size: 0.9em;
+}
 
-        .card a {
-            text-decoration: none;
-            background-color: #ffffff;
-            color: black;
-        }
+.card a {
+    text-decoration: none;
+    background-color: #ffffff;
+    color: black;
+}
 
-        .card a:hover {
-            text-decoration: none;
-            background-color: #eeeeee;
-        }
+.card a:hover {
+    text-decoration: none;
+    background-color: #eeeeee;
+}

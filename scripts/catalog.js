@@ -39,11 +39,14 @@ if (faculty) {
     $(document).prop('title', "Catalog of " + (dept ? dept + " | " : "") + faculty + " | 澳大選咩課 What2Reg @UM");
     $('link[rel="canonical"]').attr('href', 'https://www.umeh.top/catalog.html?faculty=' + faculty + (dept ? '&dept=' + dept : ""));
 }
+else {
+    $(".nav-pills").after('<div class="alert alert-info alert-dismissible fade show" role="alert" style="width: 100%">請選擇要查詢的科系<br>Select the faculty and/or department<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
 
+}
 $("#ul_" + faculty).parent().children('a').addClass('active');
 $("#li_" + faculty).children('a').addClass('active');
 var reqUrl = "https://api.data.um.edu.mo/service/academic/course_catalog/v1.0.0/all?"
-    + "offering_unit=" + faculty + "&offering_prog_level=UG" + (dept ? ("&offering_dept=" + dept) : "");
+    + "offering_unit=" + faculty + (dept ? ("&offering_dept=" + dept) : "");
 if (faculty)
     $.ajax({
         url: reqUrl,
