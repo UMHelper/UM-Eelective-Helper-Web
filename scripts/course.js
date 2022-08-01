@@ -8,6 +8,7 @@ $("meta[name='description']").attr('content', '課程 ' + course_code + ' 的講
 $('#title_course').append(course_code);
 $('.breadcrumb').append('<li class="breadcrumb-item"><a href="/search.html?keyword=' + course_code.substring(0, 4) + '">' + course_code.substring(0, 4) + '</a></li>');
 
+/*
 $('header > nav').css('background-color', 'rgba(0,0,0,0)');
 
 $(window).on('scroll', function () {
@@ -15,6 +16,7 @@ $(window).on('scroll', function () {
     elementOffset = $('#title_course').offset().top;
   $('header > nav').css("background-color", (elementOffset - scrollTop < 70 ? "#30548b" : "#30548b00"));
 });
+*/
 
 function showModal(showDesc) {
   $('.modal-body').html((showDesc ? description : ilo));

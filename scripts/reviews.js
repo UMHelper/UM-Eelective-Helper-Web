@@ -10,14 +10,16 @@ $('.breadcrumb').append('<li class="breadcrumb-item"><a href="/search.html?keywo
 
 $('.breadcrumb').append('<li class="breadcrumb-item"><a href="/course/' + course_code + '">' + course_code + '</a></li>');
 $('#title_instructor').append(instructor + ' <a class="h6" href="/professor/' + instructor.replaceAll('/', '$') + '"><i class="bi bi-box-arrow-in-up-right"></i></a>');
+
+/*
 $('header > nav').css('background-color', 'rgba(0,0,0,0)');
 
 $(window).on('scroll', function () {
   var scrollTop = $(window).scrollTop(),
-    elementOffset = $('#title_eng').offset().top;
+    elementOffset = $('#title_course').offset().top;
   $('header > nav').css("background-color", (elementOffset - scrollTop < 70 ? "#30548b" : "#30548b00"));
 });
-
+*/
 
 $.ajax({
   url: API_server + "/course_info/?New_code=" + course_code,
