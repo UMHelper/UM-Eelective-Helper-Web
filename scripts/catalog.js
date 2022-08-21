@@ -6,7 +6,7 @@ function addCatalog(course, framework) {
         + course.courseTitle + '</h3><h4 class="card-text cont fw-normal">'
         + (course.preRequisite ? "Requires " + course.preRequisite : "") + '</h4></div></a><div class="card-footer border-light"><div class="meta"><div class="attr">Credits</div><div class="cont">'
         + course.credits + '</div></div><div class="meta"><div class="attr">Year</div><div class="cont">'
-        + (course.suggestedYearOfStudy ? course.suggestedYearOfStudy : '-') + '</div></div><div class="meta"><div class="attr">Grading</div><div class="cont">'
+        + (course.suggestedYearOfStudy ? course.offeringProgLevel+'-' +course.suggestedYearOfStudy : '-') + '</div></div><div class="meta"><div class="attr">Grading</div><div class="cont">'
         + (course.gradingSystem ? course.gradingSystem : '-') + '</div></div><div class="meta"><div class="attr">Language</div><div class="cont">'
         + (course.mediumOfInstruction ? course.mediumOfInstruction : '-') + '</div></div></div></div></div>');
 }
