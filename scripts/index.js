@@ -58,7 +58,7 @@ $.ajax({
             var viewCount = post.viewCount;
             var date = post.createdAt.substring(0, 10);
 
-            $("#updates").append('<a href="'+url+'" class="list-group-item list-group-item-action active" aria-current="true"><h6 class="mb-1">'+title +'</h6><div class="d-flex justify-content-between"><small>'+date+'</small><span><span class="badge bg-primary rounded-pill"><i class="bi bi-eye-fill"></i>'+ viewCount+'</span> <span class="badge bg-primary rounded-pill"><i class="bi chat-dots-fill"></i>'+ commentCount+'</span></span></div></a>');
+            $("#updates").append('<a href="'+url+'" class="list-group-item list-group-item-action" aria-current="true"><div class="d-flex justify-content-between"><small>'+date+'</small><span><span class="badge bg-primary rounded-pill"><i class="bi bi-eye-fill"></i>'+ viewCount+'</span> <span class="badge bg-primary rounded-pill"><i class="bi chat-dots-fill"></i>'+ commentCount+'</span></span></div><h6 class="mb-1">'+title +'</h6></a>');
 
             
         }
