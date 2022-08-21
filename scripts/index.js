@@ -51,6 +51,7 @@ $.ajax({
     dataType: "json",
     success: function (data) {
         for (var i in data.data) {
+            if(i > 3) break;
             var post = data.data[i].attributes;
             var url = post.shareUrl;
             var title = post.title;
