@@ -57,13 +57,13 @@ function scrollNav() {
 
 $('#navbarTogglerDemo02').on('shown.bs.collapse', function () {
     navbarCollapseShown = true;
-    $('#avatarNav').attr('style','display:none !important');
+    $('#avatarNav').attr('style','display:none !important; margin-top: -5px; margin-bottom: -5px; --size: 36px;');
     scrollNav();
 })
 
 $('#navbarTogglerDemo02').on('hidden.bs.collapse', function () {
     navbarCollapseShown = false;
-    $('#avatarNav').attr('style','display:flex');
+    $('#avatarNav').attr('style','display:flex; margin-top: -5px; margin-bottom: -5px; --size: 36px;');
     scrollNav();
 })
 
