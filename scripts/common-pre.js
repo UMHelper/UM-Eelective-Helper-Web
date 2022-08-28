@@ -1,7 +1,6 @@
 var API_server = "https://mpserver.umeh.top";
 var inline_ad = '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>\n<ins class="adsbygoogle"\nstyle="display:block"\ndata-ad-format="fluid"\ndata-ad-layout-key="-h2-o+o-38+av"\ndata-ad-client="ca-pub-6229219222351733"\ndata-ad-slot="9401190562"></ins>\n<script>\n(adsbygoogle = window.adsbygoogle || []).push({});\n</script>';
 const BBS_API_URL = "https://umbbs.xyz"
-$(function () { $("nav").load("/src/header.html") });
 
 
 function getAvatar(displayName, AvatarUrl) {
