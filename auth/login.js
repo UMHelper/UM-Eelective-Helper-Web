@@ -18,7 +18,7 @@ $("#fetch").click(function () {
                 $("#testAlert").append('<br><br>[Login FAILED] Wrong token')
             $("#testAlert").append("<br><br>[Fetch Success]<br>Username: " + response.data.attributes.username
                 + "<br>Nickname: " + response.data.attributes.displayName + "<br>Email: " + response.data.attributes.email
-                + "<br>Email confirmed: " + response.data.attributes.isEmailConfirmed + '<br>' + getAvatar(response.data.attributes.displayName, response.data.attributes.avatarUrl))
+                + "<br>Email confirmed: " + response.data.attributes.isEmailConfirmed )
 
 
             $('#avatarNav').empty().append(getAvatar(response.data.attributes.displayName, response.data.attributes.avatarUrl));
