@@ -31,22 +31,36 @@
 <body>
 
     <header>
-        <nav class="shadow navbar navbar-expand-md navbar-dark fixed-top">
+        <nav class="shadow navbar navbar-expand-md navbar-dark fixed-top px-0 ">
             <div class="container-fluid container-lg">
-                <a class="navbar-brand" href="/">選咩課</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <div>
+                    <button class="btn navbar-toggler me-1 px-0" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+                        aria-label="Toggle navigation" style="width: 40px;">
+                        <span class="navbar-toggler-icon" style="width: 30px"></span>
+                    </button>
+
+                    <a class="navbar-brand" href="/" style="display: inline-block;vertical-align: middle;">選咩課</a>
+                </div>
+
+                <div class="collapse navbar-collapse px-2" id="navbarTogglerDemo02">
+
                     <ul class="navbar-nav me-auto mb-0">
                     </ul>
-                    <div class="d-flex">
-                        <input class="form-control me-2" id="input_search_nav" placeholder="Find course"
-                            aria-label="Course or instructor">
-                        <button class="btn btn-outline-warning" id="button_search_nav">Search</button>
+
+
+                    <div class="input-group px-2" style="max-width: 250px;">
+                        <input type="text" class="form-control" id="input_search_nav" placeholder="Find course"
+                            aria-label="Course or instructor" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" id="button_search_nav" type="button"><i class="bi bi-search"
+                                    style="-webkit-text-stroke: 1px;"></i></button>
+                        </div>
                     </div>
+                </div>
+                <div class="d-flex" id="avatarNav" style="margin-top: -5px;
+                margin-bottom: -5px; --size: 36px;" >
+                    <span class="Avatar" style="--avatar-bg:#cccccc;"data-bs-toggle="tooltip" title="Not Logged In">?</span>
                 </div>
             </div>
         </nav>
