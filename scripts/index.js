@@ -17,18 +17,9 @@ $("#button_search_main").click(function () {
         document.location.href = "/search.html?keyword=" + $("#input_search_main").val().trim() + "&instructor=" + $("#searchByInstructor").is(":checked");
 });
 
-function scrollNav() {
-    var scrollTop = $(window).scrollTop(),
-        elementOffset = $('#logo').offset().top;
-    $('header > nav').css("background-color", (elementOffset - scrollTop < 0 ? "#30548b" : "#30548bD0"));
-    $('#navbarTogglerDemo02 > .d-flex').attr('style', 'display: ' + (elementOffset - scrollTop < 0 ? "flex" : "none !important"));
-}
-
+mustFillNavbar = false;
+alwaysShowSearch = false;
 scrollNav();
-
-$(window).on('scroll', function () {
-    scrollNav();
-});
 
 // get total num
 $.ajax({

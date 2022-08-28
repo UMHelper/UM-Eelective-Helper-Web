@@ -23,6 +23,8 @@ function showModal(showDesc) {
   $('#bannerformmodal').removeClass("hide").modal('show');
 }
 
+mustFillNavbar = false;
+scrollNav();
 var description = '<h6>Course Description</h6><p>', ilo = '<h6>Intended Learning Outcomes</h6><p>';
 
 $.ajax({

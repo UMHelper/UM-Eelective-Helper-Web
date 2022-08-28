@@ -1,6 +1,9 @@
 var course_code = decodeURI(window.location.pathname.split('/')[2]).toUpperCase();
 var instructor = decodeURI(window.location.pathname.split('/')[3]).replaceAll('$', '/').toUpperCase();
 
+mustFillNavbar = false;
+scrollNav();
+
 $(document).prop('title', instructor + ' | ' + course_code + " | 澳大選咩課 What2Reg @UM");
 $('#input_search_nav').val(course_code);
 $('link[rel="canonical"]').attr('href', 'https://www.umeh.top/reviews/' + course_code + '/' + instructor);

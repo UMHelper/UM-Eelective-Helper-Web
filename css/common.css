@@ -77,3 +77,18 @@
             color: white !important;
             border: white;
         }
+
+        .Avatar {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: content-box;
+            color: #fff;
+            vertical-align: top;
+            background-color: var(--avatar-bg);
+            font-weight: 400;
+            width: var(--size);
+            height: var(--size);
+            border-radius: 100%;
+            font-size: calc(var(--size)/2);
+        }

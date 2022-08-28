@@ -55,29 +55,43 @@
 
 <body>
     <header>
-        <nav class="shadow navbar navbar-expand-md navbar-dark fixed-top">
+        <nav class="shadow navbar navbar-expand-md navbar-dark fixed-top px-0 ">
             <div class="container-fluid container-lg">
-                <a class="navbar-brand" href="/">選咩課</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <div>
+                    <button class="btn navbar-toggler me-1 px-0" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+                        aria-label="Toggle navigation" style="width: 40px;">
+                        <span class="navbar-toggler-icon" style="width: 30px"></span>
+                    </button>
+
+                    <a class="navbar-brand" href="/" style="display: inline-block;vertical-align: middle;">選咩課</a>
+                </div>
+
+                <div class="collapse navbar-collapse px-2" id="navbarTogglerDemo02">
+
                     <ul class="navbar-nav me-auto mb-0">
                     </ul>
-                    <div class="d-flex">
-                        <input class="form-control me-2" id="input_search_nav" placeholder="Find course"
-                            aria-label="Course or instructor">
-                        <button class="btn btn-outline-warning" id="button_search_nav">Search</button>
+
+
+                    <div class="input-group px-2" style="max-width: 250px;">
+                        <input type="text" class="form-control" id="input_search_nav" placeholder="Find course"
+                            aria-label="Course or instructor" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" id="button_search_nav" type="button"><i class="bi bi-search"
+                                    style="-webkit-text-stroke: 1px;"></i></button>
+                        </div>
                     </div>
+                </div>
+                <div class="d-flex" id="avatarNav" style="margin-top: -5px;
+                margin-bottom: -5px; --size: 36px;" >
+                    <span class="Avatar" style="--avatar-bg:#cccccc;"data-bs-toggle="tooltip" title="Not Logged In">?</span>
                 </div>
             </div>
         </nav>
     </header>
 
     <!-- Main section -->
-    <main style="background-image:url(/src/banner.jpg); background-size: cover; padding: 3cm 3% 1cm 3%;">
+    <main style="background-image:url(/src/banner.jpg); background-size: cover; padding: 2.5cm 3% 2.5cm 3%;">
         <div class="container">
             <div class="row justify-content-md-between align-items-md-center mx-lg-5">
                 <div class="col-md-5 col-lg-6 mb-lg-1">
@@ -130,10 +144,12 @@
             <div class="row justify-content-md-between align-items-md-center mx-lg-5">
                 <div class="col-md-4 col-lg-5 mb-lg-1">
 
-                    <a href="https://umbbs.xyz" style="color: #004f90;text-decoration: none;"><img id="whole-logo" src="/src/whole-icon.png" alt="whole-icon">
+                    <a href="https://umbbs.xyz" style="color: #004f90;text-decoration: none;"><img id="whole-logo"
+                            src="/src/whole-icon.png" alt="whole-icon">
                         <!-- Title -->
                         <h3 class="h4 mb-0">澳大討論區 <i class="bi bi-box-arrow-in-up-right"></i></h3>
-                        <h4 class="h5 mb-0">Student Community</h4></a>
+                        <h4 class="h5 mb-0">Student Community</h4>
+                    </a>
                     <span class="d-block mb-2" style="margin-top: 0.5cm">識朋友，揾同好，傾學業✅ <br>快來加入我哋嘅<a
                             href="https://umbbs.xyz">Whole 社群 <i class="bi bi-box-arrow-in-up-right"></i></a>😍</span>
 
@@ -209,7 +225,7 @@
             <h2 class="h3 my-5">支持我們 <br>Suport Us</h2>
             <p>Please don't block ads on the website. Revernues are only to balance the cost of server and maintenance.
             </p>
-            <ins class="adsbygoogle" style="display:inline-block;" ></ins>
+            <ins class="adsbygoogle" style="display:inline-block;"></ins>
         </div>
     </section>
 

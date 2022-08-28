@@ -1,6 +1,7 @@
 var course_code = $.urlParam('course').toUpperCase();
 var instructor = $.urlParam('instructor').toUpperCase();
 
+
 $(document).prop('title', "Submit Review | " + instructor + ' | ' + course_code + " | 澳大選咩課 What2Reg @UM");
 
 $('link[rel="canonical"]').attr('href', 'https://www.umeh.top/submit.html?course=' + course_code + '?instructor=' + instructor);

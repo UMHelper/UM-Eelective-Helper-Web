@@ -14,13 +14,17 @@ function addCatalog(course, framework) {
 function addDepts(faculty, items) {
     $(".nav-pills").append('<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">' + faculty + '</a><ul class="dropdown-menu" id="ul_' + faculty + '"></ul></li>');
     for (i in items)
-        $("#ul_" + faculty).append('<li><a class="dropdown-item" href="/catalog.html?faculty=' + faculty + '&dept=' + items[i] + '">' + items[i] + '</a></li>');
+        $("#ul_" + faculty).append('<li><a class="dropdown-item" href="/catalog.html?faculty=' + faculty + '&dept=' + items[i] + '&PGlevel=' + PGlevel + '">' + items[i] + '</a></li>');
 }
 
 function addFaculties(items) {
     for (i in items)
-        $(".nav-pills").append('<li class="nav-item" id="li_' + items[i] + '"><a class="nav-link" href="/catalog.html?faculty=' + items[i] + '">' + items[i] + '</a></li>');
+        $(".nav-pills").append('<li class="nav-item" id="li_' + items[i] + '"><a class="nav-link" href="/catalog.html?faculty=' + items[i] + '&PGlevel=' + PGlevel + '">' + items[i] + '</a></li>');
 }
+
+var faculty = $.urlParam('faculty');
+var dept = $.urlParam('dept');
+var PGlevel = $.urlParam('PGlevel') == "true";
 
 addDepts('FAH', ['CJS', 'DCH', 'DENG', 'DHIST', 'DPHIL', 'DPT', 'ELC']);
 addDepts('FBA', ['AIM', 'DRTM', 'FBE', 'IIRM', 'MMI']);
@@ -31,13 +35,16 @@ addDepts('ICI', ['CIE']);
 addFaculties(['FED', 'FHS', 'HC', 'IAPME', 'ICMS', 'RC']);
 
 
-var faculty = $.urlParam('faculty');
-var dept = $.urlParam('dept');
+$("#searchPG").prop("checked", PGlevel)
+
+$('#searchPG').on('change.bootstrapSwitch', function (e) {
+    document.location.href = '/catalog.html?faculty=' + faculty + (dept ? '&dept=' + dept : "") + '&PGlevel=' + e.target.checked;
+  });
 
 if (faculty) {
     $('#title_catalog').append(" of " + (dept ? dept + " | " : "") + faculty);
     $(document).prop('title', "Catalog of " + (dept ? dept + " | " : "") + faculty + " | 澳大選咩課 What2Reg @UM");
-    $('link[rel="canonical"]').attr('href', 'https://www.umeh.top/catalog.html?faculty=' + faculty + (dept ? '&dept=' + dept : ""));
+    $('link[rel="canonical"]').attr('href', 'https://www.umeh.top/catalog.html?faculty=' + faculty + (dept ? '&dept=' + dept : "") + '&PGlevel=' + PGlevel );
 }
 else {
     $(".nav-pills").after('<div class="alert alert-info alert-dismissible fade show" role="alert" style="width: 100%">請選擇要查詢的科系<br>Select the faculty and/or department<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
@@ -46,7 +53,7 @@ else {
 $("#ul_" + faculty).parent().children('a').addClass('active');
 $("#li_" + faculty).children('a').addClass('active');
 var reqUrl = "https://api.data.um.edu.mo/service/academic/course_catalog/v1.0.0/all?"
-    + "offering_unit=" + faculty + (dept ? ("&offering_dept=" + dept) : "");
+    + "offering_unit=" + faculty + (dept ? ("&offering_dept=" + dept) : "") + "&offering_prog_level=" + (PGlevel ? "PG" : "UG");
 if (faculty)
     $.ajax({
         url: reqUrl,
@@ -62,10 +69,10 @@ if (faculty)
             if (res._embedded.length > 99)
                 $(".nav-pills").after('<div class="alert alert-info alert-dismissible fade show" role="alert" style="width: 100%">已經顯示最大數量 （100）的課程<br>Showing the maximum amount (100) of courses. <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
             else if (res._embedded.length < 1)
-                $(".nav-pills").after('<div class="alert alert-danger alert-dismissible fade show" role="alert" style="width: 100%">數據加載錯誤，請重試或向我們反饋！<br>Error loading data. Please try again or send feedback to us! <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
+                $(".nav-pills").after('<div class="alert alert-warning alert-dismissible fade show" role="alert" style="width: 100%">選擇的學系/學院似乎並未開設此級別的課程，如有疑問請向我們反饋<br>The department/faculty does not offer courses on this level. Please let us know if that\'s not the case. <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
 
         },
         error: function (data) {
-            $(".nav-pills").after('<div class="alert alert-danger alert-dismissible fade show" role="alert" style="width: 100%">數據加載錯誤，請重試或向我們反饋！<br>Error loading data. Please try again or send feedback to us! <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
+            $(".nav-pills").after('<div class="alert alert-danger alert-dismissible fade show" role="alert" style="width: 100%">數據加載錯誤，請重試或向我們反饋！<br>Error loading data. Please try again or feedback to us! <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
         }
     });
