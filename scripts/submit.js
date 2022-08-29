@@ -24,7 +24,7 @@ $("#submit_btn").click(function () {
     if (!form[0].checkValidity())
         alert("請檢查下内容是否完整！\nSeems the form is incomplete! More details will help your classmates much!");
     else if ($("#content").val().trim().length < 10)
-        alert("爲了幫助同學少，請再詳細少少呀！\nMore details will help your classmates much!");
+        alert("爲了幫助同學，請再詳細少少呀！\nMore details will help your classmates much!");
     else {
         $.ajax({
             url: API_server + '/submit_comment/',
