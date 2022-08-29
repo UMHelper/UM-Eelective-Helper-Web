@@ -27,6 +27,9 @@ $(window).on('scroll', function () {
 $.ajax({
   url: API_server + "/course_info/?New_code=" + course_code,
   dataType: "json",
+  xhrFields: {
+      withCredentials: true
+  },
   success: function (data) {
     $(document).prop('title', instructor + ' | ' + course_code + ' ' + data.course_info.courseTitleEng + " | 澳大選咩課 What2Reg @UM");
     $('#title_eng').text(data.course_info.courseTitleEng);
@@ -50,6 +53,9 @@ $.ajax({
 $.ajax({
   url: API_server + "/all_comment_info/?New_code=" + course_code + '&prof_name=' + instructor,
   dataType: "json",
+  xhrFields: {
+      withCredentials: true
+  },
   success: function (data) {
     $('#progress_overall').append('<div class="progress-bar ' + generateColor(data.prof_info.result) + '" role="progressbar" style="width: '
       + data.prof_info.result * 20 + '%"></div>');

@@ -22,6 +22,9 @@ $('#searchByInstructor').on('change.bootstrapSwitch', function (e) {
 $.ajax({
   url: API_server + "/fuzzy_search/?text=" + keyword + '&type=' + (instructorSearch ? 'prof' : 'course'),
   dataType: "json",
+  xhrFields: {
+      withCredentials: true
+  },
   success: function (data) {
     $('#panel_courses').remove();
     var dataLength = (instructorSearch ? data.prof_info : data.course_info).length;

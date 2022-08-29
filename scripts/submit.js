@@ -29,6 +29,10 @@ $("#submit_btn").click(function () {
         $.ajax({
             url: API_server + '/submit_comment/',
             type: 'post',
+
+            xhrFields: {
+                withCredentials: true
+            },
             data: $('#sub_form').serialize(),
             success: function () {
                 $('#title_comment').html('感謝您的評價！<br>Thanks for your comment! ');

@@ -30,6 +30,9 @@ var description = '<h6>Course Description</h6><p>', ilo = '<h6>Intended Learning
 $.ajax({
   url: API_server + "/course_info/?New_code=" + course_code,
   dataType: "json",
+  xhrFields: {
+      withCredentials: true
+  },
   success: function (data) {
     $(document).prop('title', course_code + ' ' + data.course_info.courseTitleEng + " | 澳大選咩課 What2Reg @UM");
 

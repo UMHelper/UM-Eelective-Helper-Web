@@ -58,6 +58,9 @@ if (faculty)
     $.ajax({
         url: reqUrl,
         data: {},
+        xhrFields: {
+            withCredentials: true
+        },
         type: "GET",
         beforeSend: function (req) { req.setRequestHeader('Authorization', 'Authorization: Bearer bfa9b6c0-3f4f-3b1f-92c4-1bdd885a1ca2'); },
         success: function (res) {

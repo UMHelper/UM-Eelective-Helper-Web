@@ -24,6 +24,9 @@ scrollNav();
 // get total num
 $.ajax({
     url: API_server + "/get_stat/",
+    xhrFields: {
+        withCredentials: true
+    },
     dataType: "json",
     success: function (data) {
         for (var i in data.faculty_detail) {
