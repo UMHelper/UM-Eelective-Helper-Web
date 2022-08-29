@@ -73,6 +73,4 @@ $(window).on('scroll', function () {
     scrollNav();
 });
 
-refreshTooltips();
-
 sessionLogin();

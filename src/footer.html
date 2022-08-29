@@ -27,6 +27,10 @@
     $("#loginForm").submit(function () {
         event.preventDefault();
 
+        if ($('#loginModal').hasClass('show'))
+                    $('#loginAlert').attr('style', 'display:block;');
+                $("#loginAlert").empty().append('登入中<br> Logging in...');
+                
         $.ajax({
             type: "POST",
             dataType: "json",
@@ -38,6 +42,8 @@
                 sessionLogin();
             },
             error: function (response) {
+                if ($('#loginModal').hasClass('show'))
+                    $('#loginAlert').attr('style', 'display:block;');
                 $("#loginAlert").empty().append('電郵地址或密碼錯誤<br> Wrong credential (email or password)');
             },
         });
@@ -80,8 +86,10 @@
                     </div>
 
                     <ul class="list-unstyled form-text py-3" style="text-decoration: none;">
-                        <li>密碼忘記？ <a style="text-decoration: none;color:#004f90;" href="https://umbbs.xyz/forgot">找回密碼 Recover</a></li>
-                        <li>沒有帳戶？ <a style="text-decoration: none;color:#004f90;" href="https://umbbs.xyz/signup">立即註冊 Sign Up </a> </li>
+                        <li>密碼忘記？ <a style="text-decoration: none;color:#004f90;" href="https://umbbs.xyz/forgot">找回密碼
+                                Recover</a></li>
+                        <li>沒有帳戶？ <a style="text-decoration: none;color:#004f90;" href="https://umbbs.xyz/signup">立即註冊
+                                Sign Up </a> </li>
                     </ul>
 
                 </form>
@@ -93,7 +101,6 @@
 </div>
 
 <script>
-    refreshTooltips();
     // get current version
     $.ajax({
         url: "https://api.github.com/repos/UMHelper/UM-Eelective-Helper-Web/branches/bootstrap",

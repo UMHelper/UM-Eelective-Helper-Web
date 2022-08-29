@@ -172,18 +172,24 @@ function sessionLogin() {
                     Cookies.remove('bbs_token');
                     Cookies.remove('bbs_userid');
                     $("#loginAlert").empty().append('登出成功<br> Logged Out');
-                    sessionLogin();
+                    $('#avatarNav').empty().append('<span class="Avatar" style="--avatar-bg:#cccccc;" data-bs-toggle="tooltip" title="Not Logged In">?</span>');
+                    refreshTooltips();
                 })
             }
             else {
-                $('#loginAlert').attr('style', 'display:block;');
+                if($('#loginModal').hasClass('show'))
+                    $('#loginAlert').attr('style', 'display:block;');
                 $("#loginAlert").empty().append('用戶信息錯誤或澳大電郵地址未驗證<br> Your UM Email is not verified');
             }
             refreshTooltips();
         },
         error: function (response) {
+            if($('#loginModal').hasClass('show'))
+                $('#loginAlert').attr('style', 'display:block;');
             $("#loginAlert").empty().append('電郵地址或密碼錯誤<br> Wrong credential (email or password)');
+
             refreshTooltips();
         },
     });
+
 }
