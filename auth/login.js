@@ -51,8 +51,8 @@ $("form").submit(function () {
         url: BBS_API_URL + '/api/token',
         data: $('form').serialize(),
         success: function (response) {
-            Cookies.set('bbs_token', response.token, { sameSite: 'strict' });
-            Cookies.set('bbs_userid', response.userId, { sameSite: 'strict' });
+            Cookies.set('bbs_token', response.token, { expires: 365 });
+            Cookies.set('bbs_userid', response.userId, { expires: 365 });
             sessionLogin();
         },
         error: function (response) {
