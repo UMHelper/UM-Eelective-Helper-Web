@@ -1,13 +1,10 @@
 <div class="container">
     <ul class="bd-footer-links ps-0 mb-3">
         <li class="d-inline-block"><a href="https://github.com/UMHelper">GitHub</a></li>
-        <li class="d-inline-block ms-3"><a
-                href="https://umbbs.xyz/d/72/14">Community Guidelines</a></li>
-        <li class="d-inline-block ms-3"><a
-                href="https://umbbs.xyz/p/2-term-of-services">Terms of Service</a>
+        <li class="d-inline-block ms-3"><a href="https://umbbs.xyz/d/72/14">Community Guidelines</a></li>
+        <li class="d-inline-block ms-3"><a href="https://umbbs.xyz/p/2-term-of-services">Terms of Service</a>
         </li>
-        <li class="d-inline-block ms-3"><a
-                href="https://umbbs.xyz/t/umeh">Feedback
+        <li class="d-inline-block ms-3"><a href="https://umbbs.xyz/t/umeh">Feedback
                 反饋</a>
         </li>
         <li class="d-inline-block ms-3"><a class="footnote" href="/src/sitemap.html">Sitemap</a></li>
@@ -20,8 +17,92 @@
     <p class="mb-0">Latest update <span id="version"></span> licensed under <a
             href="https://github.com/UMHelper/UM-Eelective-Helper-Web/blob/main/LICENSE" target="_blank"
             rel="license noopener">GNU General Public License v3.0
-        </a>.</p>
+        </a>.
+    </p>
 </div>
+
+<!-- Modal -->
+
 <script>
-        
+    $("#loginForm").submit(function () {
+        event.preventDefault();
+
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: BBS_API_URL + '/api/token',
+            data: $('form').serialize(),
+            success: function (response) {
+                Cookies.set('bbs_token', response.token, { sameSite: 'strict' });
+                Cookies.set('bbs_userid', response.userId, { sameSite: 'strict' });
+                sessionLogin();
+            },
+            error: function (response) {
+                $("#loginAlert").empty().append('電郵地址或密碼錯誤<br> Wrong credential (email or password)');
+            },
+        });
+    });
+
+</script>
+
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Log In</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="loginInfo">
+
+                <div class="alert alert-warning alert-dismissible fade show text-center px-3" id="loginAlert"
+                    role="alert" style="display:none">
+
+
+                </div>
+                <form class="px-2" id="loginForm">
+                    <img class="my-3" id="whole-logo" src="/src/whole-icon.png" alt="whole-icon">
+                    <div class="mb-3">
+                        <label for="identification" class="form-label">電郵地址 Email</label>
+                        <input class="form-control" name="identification" aria-describedby="emailHelp" />
+                        <div id="emailHelp" class="form-text">使用註冊 Whole @UM (umbbs.xyz) 時的澳大電郵或用戶名
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">密碼 Password</label>
+                        <input type="password" class="form-control" name="password">
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary my-3">登入 Log In</button>
+
+                    <div>
+                        <input style="display: none; " type="radio" name="remember" value="1" checked="checked">
+                    </div>
+
+                    <ul class="list-unstyled form-text py-3" style="text-decoration: none;">
+                        <li>密碼忘記？ <a style="text-decoration: none;color:#004f90;" href="https://umbbs.xyz/forgot">找回密碼 Recover</a></li>
+                        <li>沒有帳戶？ <a style="text-decoration: none;color:#004f90;" href="https://umbbs.xyz/signup">立即註冊 Sign Up </a> </li>
+                    </ul>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    refreshTooltips();
+    // get current version
+    $.ajax({
+        url: "https://api.github.com/repos/UMHelper/UM-Eelective-Helper-Web/branches/bootstrap",
+        dataType: "json",
+        success: function (data) {
+            $('#version').html('<a href="' + data.commit.html_url + '">' + data.commit.commit.author.date);
+        },
+        error: function (data) {
+            $('#version').html("ERROR");
+        }
+    });
 </script>

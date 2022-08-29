@@ -1,5 +1,5 @@
-$(function () { $("footer").load("/src/footer.html") });
 
+$(function () { $("#loginPlaceholder").load("/src/login.html") });
 
 //$('#navbarTogglerDemo02 > ul').append('<li class="nav-item"><a class="nav-link" aria-current="page" href="' + '/' + '">' + '首頁 Home' + '</a></li>');
 $('#navbarTogglerDemo02 > ul').append('<li class="nav-item"><a class="nav-link" aria-current="page" href="'
@@ -73,19 +73,6 @@ $(window).on('scroll', function () {
     scrollNav();
 });
 
-sessionLogin();
-$('#avatarNav').click(function(){ 
-    document.location.href = '/auth/login.html';
-})
+refreshTooltips();
 
-// get current version
-$.ajax({
-    url: "https://api.github.com/repos/UMHelper/UM-Eelective-Helper-Web/branches/bootstrap",
-    dataType: "json",
-    success: function (data) {
-        $('#version').html('<a href="' + data.commit.html_url + '">' + data.commit.commit.author.date);
-    },
-    error: function (data) {
-        $('#version').html("ERROR");
-    }
-});
+sessionLogin();

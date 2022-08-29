@@ -2,6 +2,7 @@ var API_server = "https://mpserver.umeh.top";
 var inline_ad = '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>\n<ins class="adsbygoogle"\nstyle="display:block"\ndata-ad-format="fluid"\ndata-ad-layout-key="-h2-o+o-38+av"\ndata-ad-client="ca-pub-6229219222351733"\ndata-ad-slot="9401190562"></ins>\n<script>\n(adsbygoogle = window.adsbygoogle || []).push({});\n</script>';
 const BBS_API_URL = "https://umbbs.xyz"
 
+$(function () { $("footer").load("/src/footer.html") });
 
 function getAvatar(displayName, AvatarUrl) {
     var tooltip = 'data-bs-toggle="tooltip" title="User: \n' + displayName  + '"';
@@ -144,6 +145,49 @@ function refreshTooltips() {
     })
 }
 
+function sessionLogin() {
+    $.ajax({
+        type: "GET",
+        url: BBS_API_URL + '/api/users/' + Cookies.get('bbs_userid'),
+
+        headers: {
+            "Authorization": 'Token ' + Cookies.get('bbs_token'),
+            "Access-Control-Allow-Origin": "*"
+        },
+        success: function (response) {
+            if (response.data.attributes.isEmailConfirmed) {
+                $('#loginAlert').attr('style', 'display:block;');
+                $('#loginForm').attr('style', 'display:none;');
+
+                // navbar avatar
+                $('#avatarNav').empty().append(getAvatar(response.data.attributes.displayName, response.data.attributes.avatarUrl));
+
+                // login info
+                $('#loginAlert').empty().append('<br><b>歡迎回來</b><br>Welcome back');
+                $('#loginAlert').append('<div class="m-4" id="avatarNav" style="--size:100px;" >' + getAvatar(response.data.attributes.displayName, response.data.attributes.avatarUrl) + '</div>');
+                $('#loginAlert').append("<h4><b>" + response.data.attributes.displayName + "</b></h4>" + response.data.attributes.email + '<br>');
+                $('#loginAlert').append('<button id="logout" class="my-3 btn btn-warning">登出 Log Out</button><br>');
+
+                $("#logout").click(function () {
+                    Cookies.remove('bbs_token');
+                    Cookies.remove('bbs_userid');
+                    $("#loginAlert").empty().append('登出成功<br> Logged Out');
+                })
+            }
+            else {
+                $('#loginAlert').attr('style', 'display:block;');
+                $("#loginAlert").empty().append('用戶信息錯誤或澳大電郵地址未驗證<br> Your UM Email is not verified');
+            }
+            refreshTooltips();
+        },
+        error: function (response) {
+            $("#loginAlert").empty().append('電郵地址或密碼錯誤<br> Wrong credential (email or password)');
+            refreshTooltips();
+        },
+    });
+}
+
+/*
 function sessionLogout() {
     Cookies.remove('bbs_token');
     Cookies.remove('bbs_userid');
@@ -179,3 +223,4 @@ function sessionLogin() {
     });
 }
 
+*/

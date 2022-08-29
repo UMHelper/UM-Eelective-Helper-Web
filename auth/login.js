@@ -1,10 +1,5 @@
 
-$("#load").click(function () {
-    $("#testAlert").append("<br><br>[Load]<br>Token: " + Cookies.get('bbs_token'))
-    $("#testAlert").append("<br>UserId: " + Cookies.get('bbs_userid'))
-})
-
-$("#fetch").click(function () {
+function sessionLogin () {
     $.ajax({
         type: "GET",
         url: BBS_API_URL + '/api/users/' + Cookies.get('bbs_userid'),
@@ -14,28 +9,38 @@ $("#fetch").click(function () {
             "Access-Control-Allow-Origin": "*"
         },
         success: function (response) {
-            if (!response.data.attributes.isEmailConfirmed)
-                $("#testAlert").append('<br><br>[Login FAILED] Wrong token')
-            $("#testAlert").append("<br><br>[Fetch Success]<br>Username: " + response.data.attributes.username
-                + "<br>Nickname: " + response.data.attributes.displayName + "<br>Email: " + response.data.attributes.email
-                + "<br>Email confirmed: " + response.data.attributes.isEmailConfirmed )
+            if (response.data.attributes.isEmailConfirmed) {
+                $('#loginAlert').attr('style', 'display:block;');
+                $('#loginForm').attr('style', 'display:none;');
 
+                // navbar avatar
+                $('#avatarNav').empty().append(getAvatar(response.data.attributes.displayName, response.data.attributes.avatarUrl));
 
-            $('#avatarNav').empty().append(getAvatar(response.data.attributes.displayName, response.data.attributes.avatarUrl));
+                // login info
+                $('#loginAlert').empty().append('<br><b>歡迎回來</b><br>Welcome back');
+                $('#loginAlert').append('<div class="m-4" id="avatarNav" style="--size:100px;" >' + getAvatar(response.data.attributes.displayName, response.data.attributes.avatarUrl) + '</div>');
+                $('#loginAlert').append("<h4><b>" + response.data.attributes.displayName + "</b></h4>" + response.data.attributes.email + '<br>');
+                $('#loginAlert').append('<button id="logout" class="my-3 btn btn-warning">登出 Log Out</button><br>');
 
+                $("#logout").click(function () {
+                    Cookies.remove('bbs_token');
+                    Cookies.remove('bbs_userid');
+                    $("#loginAlert").empty().append('登出成功<br> Logged Out');
+                    sessionLogin();
+                })
+            }
+            else {
+                $('#loginAlert').attr('style', 'display:block;');
+                $("#loginAlert").empty().append('用戶信息錯誤或澳大電郵地址未驗證<br> Your UM Email is not verified');
+            }
             refreshTooltips();
         },
         error: function (response) {
-            $("#testAlert").append("<br>[Fetch FAILED] " + JSON.stringify(response))
+            $("#loginAlert").empty().append('電郵地址或密碼錯誤<br> Wrong credential (email or password)');
+            refreshTooltips();
         },
     });
-})
-
-$("#clear").click(function () {
-    Cookies.remove('bbs_token');
-    Cookies.remove('bbs_userid');
-    $("#load").click();
-})
+}
 
 $("form").submit(function () {
     event.preventDefault();
@@ -46,14 +51,13 @@ $("form").submit(function () {
         url: BBS_API_URL + '/api/token',
         data: $('form').serialize(),
         success: function (response) {
-
             Cookies.set('bbs_token', response.token, { sameSite: 'strict' });
             Cookies.set('bbs_userid', response.userId, { sameSite: 'strict' });
-            $("#testAlert").append("<br>Login Success ")
-            $("#fetch").click();
+            sessionLogin();
         },
         error: function (response) {
-            $("#testAlert").append("<br>FAIL " + JSON.stringify(response))
+            $("#loginAlert").empty().append('電郵地址或密碼錯誤<br> Wrong credential (email or password)');
+            sessionLogin();
         },
     });
 });
