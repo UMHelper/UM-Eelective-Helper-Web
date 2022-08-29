@@ -172,6 +172,7 @@ function sessionLogin() {
                     Cookies.remove('bbs_token');
                     Cookies.remove('bbs_userid');
                     $("#loginAlert").empty().append('登出成功<br> Logged Out');
+                    sessionLogin();
                 })
             }
             else {
@@ -186,41 +187,3 @@ function sessionLogin() {
         },
     });
 }
-
-/*
-function sessionLogout() {
-    Cookies.remove('bbs_token');
-    Cookies.remove('bbs_userid');
-    $('#avatarNav').empty().append('<span class="Avatar" style="--avatar-bg:#cccccc;"data-bs-toggle="tooltip" title="Not Logged In">?</span>');
-    console.log("[Fetch] Logout")
-    refreshTooltips();
-}
-
-function sessionLogin() {
-    $.ajax({
-        type: "GET",
-        url: BBS_API_URL + '/api/users/' + Cookies.get('bbs_userid'),
-
-        headers: {
-            "Authorization": 'Token ' + Cookies.get('bbs_token'),
-            "Access-Control-Allow-Origin": "*"
-        },
-        success: function (response) {
-            if (response.data.attributes.isEmailConfirmed) {
-                $('#avatarNav').empty().append(getAvatar(response.data.attributes.displayName, response.data.attributes.avatarUrl));
-                console.log("[Fetch] Success " + JSON.stringify(response));
-            }
-            else {
-                console.log("[Fetch] Wrong token " + JSON.stringify(response));
-                sessionLogout();
-            }
-            refreshTooltips();
-        },
-        error: function (response) {
-            console.log("[Fetch] User info failed " + JSON.stringify(response));
-            sessionLogout();
-        },
-    });
-}
-
-*/
