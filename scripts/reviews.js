@@ -46,6 +46,37 @@ $("#reportForm").submit(function () {
   });
 });
 
+function report(comment_id) {
+  newToastMessage('請稍後片刻 One second please...');
+
+  $.ajax({
+    type: "GET",
+    url: BBS_API_URL + '/api/users/' + Cookies.get('bbs_userid'),
+
+    headers: {
+        "Authorization": 'Token ' + Cookies.get('bbs_token'),
+        "Access-Control-Allow-Origin": "*"
+    },
+    success: function (response) {
+      if (response.data.attributes.isEmailConfirmed) {
+        $('#report-comment-id').val("[" + comment_id + "] \n\n> \n "+ $("#review-" + comment_id + " .card-body h2").text());
+        $('#report-comment-url').val(document.URL);
+        $('#report-reasons').val("");
+        $('#reportModal').modal('show');
+      }
+      else {
+        $('#loginModal').modal('show');
+        newToastMessage('請先登入賬戶 Please login first');
+      }
+    },
+    error: function (response) {
+    $('#loginModal').modal('show');
+      newToastMessage('請先登入賬戶 Please login first');
+    },
+});
+  
+}
+
 function updateVoteColor(comment_id, offset) {
     if (offset > 0) {
       $("#review-" + comment_id + " .bi-hand-thumbs-up-fill").addClass("vote-up-pressed");
@@ -93,37 +124,6 @@ function voteOn(comment_id, offset) {
         }
       }
     });
-  }
-
-function report(comment_id) {
-    newToastMessage('請稍後片刻 One second please...');
-
-    $.ajax({
-      type: "GET",
-      url: BBS_API_URL + '/api/users/' + Cookies.get('bbs_userid'),
-
-      headers: {
-          "Authorization": 'Token ' + Cookies.get('bbs_token'),
-          "Access-Control-Allow-Origin": "*"
-      },
-      success: function (response) {
-        if (response.data.attributes.isEmailConfirmed) {
-          $('#report-comment-id').val("[" + comment_id + "] \n\n> \n "+ $("#review-" + comment_id + " .card-body h2").text());
-          $('#report-comment-url').val(document.URL);
-          $('#report-reasons').val("");
-          $('#reportModal').modal('show');
-        }
-        else {
-          $('#loginModal').modal('show');
-          newToastMessage('請先登入賬戶 Please login first');
-        }
-      },
-      error: function (response) {
-      $('#loginModal').modal('show');
-        newToastMessage('請先登入賬戶 Please login first');
-      },
-  });
-    
   }
 
 
