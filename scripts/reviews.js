@@ -105,10 +105,16 @@ function report(comment_id) {
           "Access-Control-Allow-Origin": "*"
       },
       success: function (response) {
-        $('#report-comment-id').val(comment_id);
-        $('#report-comment-url').val(document.URL);
-        $('#report-reasons').val("");
-        $('#reportModal').modal('show');
+        if (response.data.attributes.isEmailConfirmed) {
+          $('#report-comment-id').val(comment_id);
+          $('#report-comment-url').val(document.URL);
+          $('#report-reasons').val("");
+          $('#reportModal').modal('show');
+        }
+        else {
+          $('#loginModal').modal('show');
+          newToastMessage('請先登入賬戶 Please login first');
+        }
       },
       error: function (response) {
       $('#loginModal').modal('show');
