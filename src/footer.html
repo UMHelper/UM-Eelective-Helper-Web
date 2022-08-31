@@ -28,18 +28,20 @@
         event.preventDefault();
 
         if ($('#loginModal').hasClass('show'))
-                    $('#loginAlert').attr('style', 'display:block;');
-                $("#loginAlert").empty().append('登入中<br> Logging in...');
-                
+            $('#loginAlert').attr('style', 'display:block;');
+        $("#loginAlert").empty().append('登入中<br> Logging in...');
+
         $.ajax({
             type: "POST",
             dataType: "json",
             url: BBS_API_URL + '/api/token',
             data: $('form').serialize(),
             success: function (response) {
-                Cookies.set('bbs_token', response.token, { expires: 365 });
-                Cookies.set('bbs_userid', response.userId, { expires: 365 });
+                Cookies.set('bbs_token', response.token, { expires: 365, domain: "umeh.top" });
+                Cookies.set('bbs_userid', response.userId, { expires: 365, domain: "umeh.top" });
                 sessionLogin();
+
+                newToastMessage("登入成功 Login successful");
             },
             error: function (response) {
                 if ($('#loginModal').hasClass('show'))
@@ -51,19 +53,32 @@
 
 </script>
 
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="toast" class="toast text-bg-primary border-0 " role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body" id="toast-message">
+                Hello, world! This is a toast message.
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                aria-label="Close"></button>
+        </div>
+    </div>
+</div>
+
 <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Log In</h5>
+                <h5 class="modal-title" id="exampleModalLabel">User Info</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body" id="loginInfo">
 
                 <div class="alert alert-warning alert-dismissible fade show text-center px-3" id="loginAlert"
-                    role="alert" style="display:none">
-
-
+                    role="alert">
+                    登入後即可為評價投票，發表的評價亦會被優先展示！<br>
+                    Log in to vote and publish your comment!
                 </div>
                 <form class="px-2" id="loginForm">
                     <img class="my-3" id="whole-logo" src="/src/whole-icon.png" alt="whole-icon">

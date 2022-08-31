@@ -41,7 +41,7 @@ $.ajax({
 
 // get updates
 $.ajax({
-    url: BBS_API_URL + "/api/discussions?include=user%2ClastPostedUser%2Ctags%2Ctags.parent%2CfirstPost&filter%5Btag%5D=umeh&sort=",
+    url: BBS_API_URL + "/api/discussions?include=user%2ClastPostedUser%2Ctags%2Ctags.parent%2CfirstPost&filter%5Btag%5D=umeh-notes&sort&page%5Boffset%5D=0",
     dataType: "json",
     success: function (data) {
         for (var i in data.data) {
