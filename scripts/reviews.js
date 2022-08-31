@@ -31,7 +31,9 @@ $("#reportForm").submit(function () {
       "data": {
         "type": "posts", "attributes": {
           "content": "Reporting comment \nURL: " + $('#report-comment-url').val() + "\nComment ID: " 
-          + $('#report-comment-id').val() + "\nReasons: " + $('#report-reasons').val(),
+          + $('#report-comment-id').val() 
+          +"\nContent: " + $("#review-" + comment_id + " .card-body").text()
+          + "\nReasons: " + $('#report-reasons').val(),
         }, "relationships": { "discussion": { "data": { "type": "discussions", "id": "422" } } }
       }
     },
