@@ -59,7 +59,7 @@ function report(comment_id) {
     },
     success: function (response) {
       if (response.data.attributes.isEmailConfirmed) {
-        $('#report-comment-id').val("[" + comment_id + "] \n\n> \n "+ $("#review-" + comment_id + " .card-body h2").text());
+        $('#report-comment-id').val("[" + comment_id + "] \n\n> Original content: \n "+ $("#review-" + comment_id + " .card-body h2").text());
         $('#report-comment-url').val(document.URL);
         $('#report-reasons').val("");
         $('#reportModal').modal('show');

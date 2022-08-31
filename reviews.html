@@ -238,11 +238,6 @@
                         Please let us know the reasons you report this comment.
                     </div>
                     <form id="reportForm" class="was-validated">
-                        <div class="mb-3" style="display: none">
-                            <label for="comment_id" class="form-label">Comment ID</label>
-                            <textarea class="form-control" name="comment_id" id="report-comment-id" />
-                            <input class="form-control" name="comment_url" id="report-comment-url" />
-                        </div>
                         
                         <div class="mb-3">
                             <label for="reasons" class="form-label">原因 Reasons</label>
@@ -251,7 +246,13 @@
                                 請如實填寫舉報的原因 Please enter a reason
                             </div>
                         </div>
+                        
                         <button type="submit" class="btn btn-primary my-3">提交 Submit</button>
+
+                        <div class="mb-3" style="display: none">
+                            <textarea class="form-control" name="comment_id" id="report-comment-id" ></textarea>
+                            <input class="form-control" name="comment_url" id="report-comment-url" />
+                        </div>
                     </div>
 
                 </div>
