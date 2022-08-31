@@ -30,9 +30,9 @@ $("#reportForm").submit(function () {
     data: {
       "data": {
         "type": "posts", "attributes": {
-          "content": "Reporting comment \nURL: " + $('#report-comment-url').val() + "\nComment: " 
-          + $('#report-comment-id').val() 
-          + "\nReasons: " + $('#report-reasons').val(),
+          "content": "Reporting comment \nURL: " + $('#report-comment-url').val() 
+          + "\nReasons: " + $('#report-reasons').val()+ "\nComment: " 
+          + $('#report-comment-id').val() ,
         }, "relationships": { "discussion": { "data": { "type": "discussions", "id": "422" } } }
       }
     },
@@ -107,7 +107,7 @@ function report(comment_id) {
       },
       success: function (response) {
         if (response.data.attributes.isEmailConfirmed) {
-          $('#report-comment-id').val("[" + comment_id + "] "+ $("#review-" + comment_id + " .card-body").text());
+          $('#report-comment-id').val("[" + comment_id + "] \n\n> \n "+ $("#review-" + comment_id + " .card-body h2").text());
           $('#report-comment-url').val(document.URL);
           $('#report-reasons').val("");
           $('#reportModal').modal('show');
