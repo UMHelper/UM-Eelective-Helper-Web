@@ -38,6 +38,7 @@ $("#reportForm").submit(function () {
     },
     success: function (response) {
       newToastMessage('舉報成功 Reported successfully');
+      $('#reportModal').modal('hide');
     },
     error: function (response) {
       newToastMessage("服務器錯誤 Internal Server Error");
