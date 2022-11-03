@@ -4,6 +4,22 @@ const BBS_API_URL = "https://www.umbbs.xyz"
 
 var inline_ad = '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>\n<ins class="adsbygoogle"\nstyle="display:block"\ndata-ad-format="fluid"\ndata-ad-layout-key="-h2-o+o-38+av"\ndata-ad-client="ca-pub-6229219222351733"\ndata-ad-slot="9401190562"></ins>\n<script>\n(adsbygoogle = window.adsbygoogle || []).push({});\n</script>';
 
+
+Sentry.init({
+    dsn: "https://7fe207ba73ea46479b375784bd521f62@o4504094876368896.ingest.sentry.io/4504094884036608",
+
+    // Alternatively, use `process.env.npm_package_version` for a dynamic release version
+    // if your build tool supports it.
+    release: "my-project-name@2.3.12",
+    integrations: [new Sentry.BrowserTracing()],
+
+    // Set tracesSampleRate to 1.0 to capture 100%
+    // of transactions for performance monitoring.
+    // We recommend adjusting this value in production
+    tracesSampleRate: 1.0,
+
+    });
+
 $(function () { $("footer").load("/src/footer.html") });
 
 function getAvatar(displayName, AvatarUrl) {
@@ -157,7 +173,7 @@ try {
             .catch(err => console.log('Not supported.', err));
     }
 } catch (error) {
-
+    Sentry.captureException(error);
 }
 
 function refreshTooltips(selector) {

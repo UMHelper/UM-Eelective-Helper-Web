@@ -39,6 +39,7 @@ $("#submit_btn").click(function () {
                 $('#sub_form').css('display', 'none');
             },
             error: function () {
+                Sentry.captureException(data);
                 alert("遇到錯誤，請向我們反饋，謝謝！\nServer issue detected. Please send feedback to us. Thank you!");
             }
         });

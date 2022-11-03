@@ -115,7 +115,7 @@
     </div>
 </div>
 
-<script>
+<script>        
     // get current version
     $.ajax({
         url: "https://api.github.com/repos/UMHelper/UM-Eelective-Helper-Web/branches/bootstrap",
@@ -123,8 +123,11 @@
         success: function (data) {
             $('#version').html('<a href="' + data.commit.html_url + '">' + data.commit.commit.author.date);
         },
-        error: function (data) {
+        error: function(data) {
+            Sentry.captureException(data);
             $('#version').html("ERROR");
         }
     });
+
+
 </script>

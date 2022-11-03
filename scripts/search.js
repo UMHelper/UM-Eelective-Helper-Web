@@ -54,6 +54,7 @@ $.ajax({
 
   },
   error: function (data) {
+    Sentry.captureException(data);
     $("#title_search").after('<div class="alert alert-danger alert-dismissible fade show" role="alert" style="width: 100%">數據加載錯誤，請重試或向我們反饋！<br>Error loading data. Please try again or send feedback to us! <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
   }
 });

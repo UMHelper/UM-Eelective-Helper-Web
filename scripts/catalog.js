@@ -69,10 +69,12 @@ if (faculty)
             if (res._embedded.length > 99)
                 $(".nav-pills").after('<div class="alert alert-info alert-dismissible fade show" role="alert" style="width: 100%">已經顯示最大數量 （100）的課程<br>Showing the maximum amount (100) of courses. <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
             else if (res._embedded.length < 1)
+                Sentry.captureException(res);
                 $(".nav-pills").after('<div class="alert alert-warning alert-dismissible fade show" role="alert" style="width: 100%">選擇的學系/學院似乎並未開設此級別的課程，如有疑問請向我們反饋<br>The department/faculty does not offer courses on this level. Please let us know if that\'s not the case. <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
 
         },
         error: function (data) {
-            $(".nav-pills").after('<div class="alert alert-danger alert-dismissible fade show" role="alert" style="width: 100%">數據加載錯誤，請重試或向我們反饋！<br>Error loading data. Please try again or feedback to us! <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
+            Sentry.captureException(data);
+            $(".nav-pills").after('<div class="alert alert-danger alert-dismissible fade show" role="alert" style="width: 100%">數據加載錯誤，我們已經收到此問題！<br>Error loading data. Please try again or feedback to us! <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
         }
     });

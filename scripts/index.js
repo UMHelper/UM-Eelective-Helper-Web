@@ -34,7 +34,8 @@ $.ajax({
         }
     },
     error: function (data) {
-        $("#numsPanel").append('<div class="alert alert-danger" role="alert" style="padding: 0.3cm">連接伺服器失敗，請重試或向我們反饋！<br>Error connecting to the server. Please try again or send feedback to us!</div>');
+        Sentry.captureException(data);
+        $("#numsPanel").append('<div class="alert alert-danger" role="alert" style="padding: 0.3cm">連接伺服器失敗，我們已經收到此問題！<br>Error connecting to the server. Please try again or send feedback to us!</div>');
     }
 });
 
@@ -59,7 +60,8 @@ $.ajax({
         }
     },
     error: function (data) {
-        $("#updates").append('<a href="#" class="list-group-item list-group-item-action active" aria-current="true"><h6 class="mb-1">遇到未知錯誤，請向我們反饋。</h6><div class="d-flex justify-content-between"><small>Error encountered. Please contact us.</small><span class="badge bg-primary rounded-pill">error</span></div></a>');
+        Sentry.captureException(data);
+        $("#updates").append('<a href="#" class="list-group-item list-group-item-action active" aria-current="true"><h6 class="mb-1">遇到未知錯誤，我們已經收到此問題。</h6><div class="d-flex justify-content-between"><small>Error encountered. Please contact us.</small><span class="badge bg-primary rounded-pill">error</span></div></a>');
     }
 });
 
