@@ -16,8 +16,21 @@ $('#navbarTogglerDemo02 > ul').append('<li class="nav-item dropdown">'
 $('#navbarTogglerDemo02 > ul').append('<li class="nav-item"><a class="nav-link" aria-current="page" href="'
     + 'https://umbbs.xyz/t/umeh' + '" target="_blank">' + 'Feedback' + '</a></li>');
 
-$('#navbarTogglerDemo02 > ul').append('<li class="nav-item"><a class="nav-link" aria-current="page" href="'
-    + 'https://umbbs.xyz/' + '" target="_blank">' + 'Whole 討論區' + '</a></li>');
+$('#navbarTogglerDemo02 > ul').append(
+    `<li class="nav-item justify-content-md-center align-items-md-center">
+        <a class="nav-link" aria-current="page" href="https://umbbs.xyz" target="_blank">
+            <span>Whole 討論區</span>
+        </a>
+    </li>`
+);
+
+$('#navbarTogglerDemo02 > ul').append(
+    `<li class="nav-item justify-content-md-center align-items-md-center">
+        <a class="nav-link" aria-current="page" href="https://umall.one" target="_blank">
+            <span>ARK ALL APP</span>
+        </a>
+    </li>`
+);
 
 $("#button_search_nav").click(function () {
     if ($("#input_search_nav").val().length < 4)
