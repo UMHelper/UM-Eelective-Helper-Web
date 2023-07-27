@@ -4,6 +4,22 @@ const BBS_API_URL = "https://www.umbbs.xyz"
 
 var inline_ad = '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>\n<ins class="adsbygoogle"\nstyle="display:block"\ndata-ad-format="fluid"\ndata-ad-layout-key="-h2-o+o-38+av"\ndata-ad-client="ca-pub-6229219222351733"\ndata-ad-slot="9401190562"></ins>\n<script>\n(adsbygoogle = window.adsbygoogle || []).push({});\n</script>';
 
+
+Sentry.init({
+    dsn: "https://7fe207ba73ea46479b375784bd521f62@o4504094876368896.ingest.sentry.io/4504094884036608",
+
+    // Alternatively, use `process.env.npm_package_version` for a dynamic release version
+    // if your build tool supports it.
+    release: "my-project-name@2.3.12",
+    integrations: [new Sentry.BrowserTracing()],
+
+    // Set tracesSampleRate to 1.0 to capture 100%
+    // of transactions for performance monitoring.
+    // We recommend adjusting this value in production
+    tracesSampleRate: 1.0,
+
+    });
+
 $(function () { $("footer").load("/src/footer.html") });
 
 function getAvatar(displayName, AvatarUrl) {
@@ -106,7 +122,7 @@ function addCourse(course, framework, prof_name, value) {
 }
 
 // type: brief, full
-function addInstructor(course_code, prof, framework, brief, is_offer=false) {
+function addInstructor(course_code, prof, framework, brief) {
     var url = "/reviews/" + course_code + "/" + prof.name.replaceAll('/', '$');
     var margin = brief ? 'style="margin: 0.4cm"' : "";
     var meta = brief ? "" : '<div class="card-footer border-light">'
@@ -118,15 +134,7 @@ function addInstructor(course_code, prof, framework, brief, is_offer=false) {
         '</div></div></div>';
     var head = brief ? "" : '<h3 class="h6 card-header border-light text-end small '
         + generateColor(prof.result) + '">'
-        + '<div class="row">'
-        + '<div class="col-7">'
-        + is_offer ? "<span class=\"badge rounded-pill bg-success\" style=\"font-size: 0.8rem\">Offered</span>"
-        + '</div>'
-        + '<div class="col-5 text-end">'
-        + (prof.result * 2).toFixed(1)
-        + '<span style="font-size: x-small">/10</span>'
-        + '</div>'
-        + '</div>'
+        + (prof.result * 2).toFixed(1) + '<span style="font-size: x-small">/10</span>'
         + '</h3>';
     $(framework).append('<div class="col"><div class="shadow card"' + margin + '>' + head + '<a href="' + url + '"><div class="card-body"><h2 class="h6 card-text mb-3">' + prof.name + '</h2>'
         + '<div class="progress" style="height:0.1cm"><div class="progress-bar ' + generateColor(prof.result) + '" role="progressbar" style="width: '
@@ -165,7 +173,7 @@ try {
             .catch(err => console.log('Not supported.', err));
     }
 } catch (error) {
-
+    Sentry.captureException(error);
 }
 
 function refreshTooltips(selector) {

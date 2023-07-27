@@ -41,6 +41,7 @@ $("#reportForm").submit(function () {
       $('#reportModal').modal('hide');
     },
     error: function (response) {
+      Sentry.captureException(response);
       newToastMessage("服務器錯誤 Internal Server Error");
     },
   });
@@ -119,7 +120,8 @@ function voteOn(comment_id, offset) {
         405: function () {
           newToastMessage("已經為此評價投過票了 Already voted!");
         },
-        500: function () {
+        500: function (data) {
+          Sentry.captureException(data);
           newToastMessage("服務器錯誤 Internal Server Error");
         }
       }
@@ -148,6 +150,7 @@ $.ajax({
       }
     },
     error: function (data) {
+      Sentry.captureException(data);
       newToastMessage("服務器錯誤 Internal Server Error");
     }
   });
@@ -187,6 +190,7 @@ $.ajax({
     refreshTooltips(".vote-button");
   },
   error: function (data) {
+    Sentry.captureException(data);
     $("#panel_reviews").append('<div class="alert alert-info alert-dismissible fade show" role="alert" style="width: 100%">還沒有人評價過，做第一個評價者吧！<br>No reviews yet. Be the first to comment!<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
   }
 });
