@@ -30,12 +30,27 @@ var description = '<h6>Course Description</h6><p>', ilo = '<h6>Intended Learning
 $.ajax({
   url: API_server + "/course_info/?New_code=" + course_code,
   dataType: "json",
+  xhrFields: {
+      withCredentials: true
+  },
   success: function (data) {
     $(document).prop('title', course_code + ' ' + data.course_info.courseTitleEng + " | 澳大選咩課 What2Reg @UM");
 
     $('#title_eng').text(data.course_info.courseTitleEng);
     $('#title_chi').text(data.course_info.courseTitleChi);
     $('#meta_credits').text(data.course_info.Credits);
+    var is_offer=false
+    for (const prof in data.prof_info) {
+      console.log(data.prof_info[prof])
+      if (data.prof_info[prof].offer_info.is_offer){
+        is_offer=true
+        break
+      }
+    }
+    console.log(is_offer)
+    if (is_offer){
+      $('#title_course').html(course_code+' <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success" style="font-size: 0.8rem">Offered</span>')
+    }
     if (data.course_info.Offering_Department) {
       $('#meta_dept').html('<a href="/catalog.html?faculty=' + data.course_info.Offering_Unit + '&dept=' + data.course_info.Offering_Department + '">' + data.course_info.Offering_Department + '</a>');
       $('#meta_faculty').text(data.course_info.Offering_Unit);

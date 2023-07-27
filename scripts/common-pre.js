@@ -1,4 +1,5 @@
 var API_server = "https://mpserver.umeh.top";
+//var API_server = "http://localhost:8000";
 const BBS_API_URL = "https://www.umbbs.xyz"
 
 var inline_ad = '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>\n<ins class="adsbygoogle"\nstyle="display:block"\ndata-ad-format="fluid"\ndata-ad-layout-key="-h2-o+o-38+av"\ndata-ad-client="ca-pub-6229219222351733"\ndata-ad-slot="9401190562"></ins>\n<script>\n(adsbygoogle = window.adsbygoogle || []).push({});\n</script>';
@@ -82,6 +83,14 @@ function generateAttitude(value) {
     }
 }
 
+function generateVerifiedBadge(value, comment_id) {
+    if (value) {
+        return '<i class="bi bi-patch-check-fill vote-button" style="color:green" data-bs-toggle="tooltip" title="Verified UM User (logged in)"> Verified</i>';
+    } else {
+        return '<i class="bi bi-patch-question  vote-button" style="color:burlywood" data-bs-toggle="tooltip" title="Not Verified (not logged in)"></i>';
+    }
+    
+}
 
 function addCourse(course, framework, prof_name, value) {
     var url = "/" + (prof_name ? "reviews" : "course") + "/" + course.New_code + "/" + (prof_name ? prof_name.replaceAll('/', '$') : "");
@@ -97,7 +106,7 @@ function addCourse(course, framework, prof_name, value) {
 }
 
 // type: brief, full
-function addInstructor(course_code, prof, framework, brief) {
+function addInstructor(course_code, prof, framework, brief, is_offer=false) {
     var url = "/reviews/" + course_code + "/" + prof.name.replaceAll('/', '$');
     var margin = brief ? 'style="margin: 0.4cm"' : "";
     var meta = brief ? "" : '<div class="card-footer border-light">'
@@ -109,7 +118,15 @@ function addInstructor(course_code, prof, framework, brief) {
         '</div></div></div>';
     var head = brief ? "" : '<h3 class="h6 card-header border-light text-end small '
         + generateColor(prof.result) + '">'
-        + (prof.result * 2).toFixed(1) + '<span style="font-size: x-small">/10</span>'
+        + '<div class="row">'
+        + '<div class="col-7">'
+        + is_offer ? "<span class=\"badge rounded-pill bg-success\" style=\"font-size: 0.8rem\">Offered</span>"
+        + '</div>'
+        + '<div class="col-5 text-end">'
+        + (prof.result * 2).toFixed(1)
+        + '<span style="font-size: x-small">/10</span>'
+        + '</div>'
+        + '</div>'
         + '</h3>';
     $(framework).append('<div class="col"><div class="shadow card"' + margin + '>' + head + '<a href="' + url + '"><div class="card-body"><h2 class="h6 card-text mb-3">' + prof.name + '</h2>'
         + '<div class="progress" style="height:0.1cm"><div class="progress-bar ' + generateColor(prof.result) + '" role="progressbar" style="width: '
@@ -118,15 +135,27 @@ function addInstructor(course_code, prof, framework, brief) {
 
 // type: brief, full
 function addReview(review, framework) {
-    var meta = '<div class="card-footer border-light">'
-        + '<div class="meta"><div class="attr">Overall</div><div class="cont">' + generateAttitude(review.recommend) +
-        '</div></div><div class="meta"><div class="attr">Grade</div><div class="cont">' + generateAttitude(review.grade) +
-        '</div></div><div class="meta"><div class="attr">Easy</div><div class="cont">' + generateAttitude(review.hard) +
+    var meta = '<div style="margin-top:-7px; margin-bottom: -7px;">'+
+        //'<div class="meta"><div class="attr">Overall</div><div class="cont">' + generateAttitude(review.recommend) +
+        '<div class="meta"><div class="attr">Grade</div><div class="cont">' + generateAttitude(review.grade) +
+        '</div></div><div class="meta"><div class="attr">Workload</div><div class="cont">' + generateAttitude(review.hard) +
         '</div></div><div class="meta"><div class="attr">Outcome</div><div class="cont">' + generateAttitude(review.reward) +
         '</div></div></div>';
-    $(framework).append('<div class="col"><div class="shadow card"><div class="h6 card-header border-light small '
-        + generateColor(review.recommend) + '">' + '<div class="row"><div class="col-7">' + review.pub_time + '</div><div class="col-5 text-end">' + (review.recommend * 2).toFixed(1) + '<span style="font-size: x-small">/10</span></div></div>'
-        + '</div>' + (review.content ? '<div class="card-body"><h2 class="h6 card-text">' + review.content.replace(/</g, "&lt;").replace(/>/g, "&gt;") + '</h2></div>' : '') + meta + '</div></div>');
+    $(framework).append('<div class="col" id="review-' + review.id+ '"><div class="shadow card"><div class="h6 card-header border-light small '
+        + generateColor(review.recommend) + '">' 
+        + '<div class="row"><div class="col-7">' + review.pub_time + '</div><div class="col-5 text-end">' + (review.recommend * 2).toFixed(1) 
+        + '<span style="font-size: x-small">/10</span></div></div>'
+        + '</div><div class="card-body">' + (review.content ? '<h2 class="h6 mb-3 card-text">' 
+        + review.content.replace(/</g, "&lt;").replace(/>/g, "&gt;") + '</h2>' : '') + meta + '</div>' + 
+        '<div class="card-footer border-light"><div class="row small text-muted"><div class="col-5">'
+        + generateVerifiedBadge(review.verified) + '</div><div class="col-7 text-end px-1">'
+        + '<button class="bi bi-hand-thumbs-up-fill me-2 vote-button" onclick="voteOn('+review.id +',1)" data-bs-toggle="tooltip" title="Upvote"> </button><span class="vote-num">'
+        + (review.upvote - review.downvote) + '</span>'
+        + '<button class="bi bi-hand-thumbs-down-fill ms-2 vote-button" onclick="voteOn('+review.id +',-1)" data-bs-toggle="tooltip" title="Downvote"> </button>' 
+
+        + '<button class="bi bi-flag-fill ms-2 vote-button" onclick="report('+review.id+ ')" data-bs-toggle="tooltip" title="Report Abuse"> </button>'
+        + '</div></div></div>' +'</div></div>');
+    updateVoteColor(review.id, review.offset);
 }
 
 try {
@@ -139,8 +168,8 @@ try {
 
 }
 
-function refreshTooltips() {
-    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+function refreshTooltips(selector) {
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll(selector))
     var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
         return new bootstrap.Tooltip(tooltipTriggerEl)
     })
@@ -170,27 +199,32 @@ function sessionLogin() {
                 $('#loginAlert').append('<button id="logout" class="my-3 btn btn-warning">登出 Log Out</button><br>');
 
                 $("#logout").click(function () {
-                    Cookies.remove('bbs_token');
-                    Cookies.remove('bbs_userid');
+                    Cookies.remove('bbs_token',{domain: "umeh.top"});
+                    Cookies.remove('bbs_userid',{domain: "umeh.top"});
                     $("#loginAlert").empty().append('登出成功<br> Logged Out');
                     $('#avatarNav').empty().append('<span class="Avatar" style="--avatar-bg:#cccccc;" data-bs-toggle="tooltip" title="Not Logged In">?</span>');
-                    refreshTooltips();
+                    refreshTooltips(".Avatar");
                 })
             }
             else {
                 if($('#loginModal').hasClass('show'))
-                    $('#loginAlert').attr('style', 'display:block;');
-                $("#loginAlert").empty().append('用戶信息錯誤或澳大電郵地址未驗證<br> Your UM Email is not verified');
+                    $("#loginAlert").empty().append('用戶信息錯誤或澳大電郵地址未驗證<br> Your UM Email is not verified');
             }
-            refreshTooltips();
+            refreshTooltips(".Avatar");
+            return true;
         },
         error: function (response) {
             if($('#loginModal').hasClass('show'))
-                $('#loginAlert').attr('style', 'display:block;');
-            $("#loginAlert").empty().append('電郵地址或密碼錯誤<br> Wrong credential (email or password)');
+                $("#loginAlert").empty().append('電郵地址或密碼錯誤<br> Wrong credential (email or password)');
 
-            refreshTooltips();
+            refreshTooltips(".Avatar");
+            return false;
         },
     });
 
+}
+
+function newToastMessage(message) {
+    $('#toast-message').empty().append(message);
+    $('#toast').toast('show');
 }
