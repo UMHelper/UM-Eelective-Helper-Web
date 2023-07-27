@@ -134,7 +134,14 @@ function addInstructor(course_code, prof, framework, brief) {
         '</div></div></div>';
     var head = brief ? "" : '<h3 class="h6 card-header border-light text-end small '
         + generateColor(prof.result) + '">'
+        + '<div class="row">'
+        + '<div class="col-2">'
+        + '<span class="badge text-bg-primary">Available</span>'
+        + '</div>'
+        + '<div class="col-10 text-end">'
         + (prof.result * 2).toFixed(1) + '<span style="font-size: x-small">/10</span>'
+        +'</div>'
+        + '</div>'
         + '</h3>';
     $(framework).append('<div class="col"><div class="shadow card"' + margin + '>' + head + '<a href="' + url + '"><div class="card-body"><h2 class="h6 card-text mb-3">' + prof.name + '</h2>'
         + '<div class="progress" style="height:0.1cm"><div class="progress-bar ' + generateColor(prof.result) + '" role="progressbar" style="width: '

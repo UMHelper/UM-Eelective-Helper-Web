@@ -49,7 +49,7 @@ $.ajax({
     }
     console.log(is_offer)
     if (is_offer){
-      $('#title_course').html(course_code+' <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success" style="font-size: 0.8rem">Offered</span>')
+      $('#title_course').html(course_code+' <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success" style="font-size: 0.8rem">Available</span>')
     }
     if (data.course_info.Offering_Department) {
       $('#meta_dept').html('<a href="/catalog.html?faculty=' + data.course_info.Offering_Unit + '&dept=' + data.course_info.Offering_Department + '">' + data.course_info.Offering_Department + '</a>');
