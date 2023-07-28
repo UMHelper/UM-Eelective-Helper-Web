@@ -61,7 +61,7 @@ $.ajax({
       $("#panel_instructors").append('<div class="alert alert-warning alert-dismissible fade show" role="alert" style="width: 100%">這個課程存在，但是近年來并沒有開設過，因此沒有評價。<br>Found this course but it hasn\'t been offered in recent years.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
 
     data.prof_info.sort(function (a, b) {
-      if (a.offer_info.is_offer != b.offer_info.is_offer) return b.is_offer - a.is_offer;
+      if (a.offer_info.is_offer != b.offer_info.is_offer) return b.offer_info.is_offer - a.offer_info.is_offer;
       else return b.result - a.result;
     });
 
