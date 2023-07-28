@@ -261,3 +261,42 @@ function newToastMessage(message) {
     $('#toast-message').empty().append(message);
     $('#toast').toast('show');
 }
+
+const sortByWeekday= (a,b)=>{
+    const d2n={
+        'MON':0,
+        'TUE':1,
+        'WED':2,
+        'THU':3,
+        'THURS':3,
+        'FRI':4,
+        'SAT':5,
+        'SUM':6
+
+    }
+    return d2n[a.date.toUpperCase()]-d2n[b.date.toUpperCase()]
+}
+
+function addCourseSection(section){
+    var res='<table class="table table-borderless">' +
+            '<thead class="table-light"><tr>'+
+            '<td colspan="3">Section '+
+            section.section +
+            '</td></tr></thead><tbody>'
+    section.schedules.sort(sortByWeekday)
+    console.log(section.schedules.sort(sortByWeekday))
+    for (const n in section.schedules) {
+        res+='<tr>'+
+            '<td>'+
+            section.schedules[n].date +
+            '</td>'+
+            '<td>'+
+            section.schedules[n].time+
+            '</td>'+
+            '<td>'+
+            section.schedules[n].location+
+            '</td></tr> '
+    }
+    res+='</tbody>'
+    return res
+}

@@ -188,6 +188,16 @@ $.ajax({
     $("meta[name='description']").attr('content', '講師 ' + instructor + ' 在課程 ' + course_code + ' 的中評分及評價. ' + temp_desc);
 
     refreshTooltips(".vote-button");
+
+    if(data.prof_info.offer_info.is_offer){
+      $('#show_timetable').css('display','inline-block')
+      var meta="<small class=\"text-muted\"><em>Data Sources: reg.um.edu.mo</em></small>"
+      for (const n in data.prof_info.offer_info.schedules) {
+        meta+=addCourseSection(data.prof_info.offer_info.schedules[n])
+      }
+
+      $('#timetable_body').html(meta)
+    }
   },
   error: function (data) {
     Sentry.captureException(data);
