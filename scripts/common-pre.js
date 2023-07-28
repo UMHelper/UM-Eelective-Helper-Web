@@ -87,6 +87,23 @@ function generateColor(value) {
     return color;
 }
 
+function generateColorInverted(value) {
+    var color = "";
+    if (value > 3.33) {
+        color = "bg-light text-success";
+    }
+    else if (value > 1.67) {
+        color = "bg-light text-warning";
+    }
+    else if (value > 0) {
+        color = "bg-light text-danger";
+    }
+    else {
+        color = "bg-light text-dark";
+    }
+    return color;
+}
+
 function generateAttitude(value) {
     if (value > 3.33) {
         return ("👍");
@@ -122,7 +139,7 @@ function addCourse(course, framework, prof_name, value) {
 }
 
 // type: brief, full
-function addInstructor(course_code, prof, framework, brief) {
+function addInstructor(course_code, prof, framework, brief, is_offer=false) {
     var url = "/reviews/" + course_code + "/" + prof.name.replaceAll('/', '$');
     var margin = brief ? 'style="margin: 0.4cm"' : "";
     var meta = brief ? "" : '<div class="card-footer border-light">'
@@ -132,9 +149,17 @@ function addInstructor(course_code, prof, framework, brief) {
         '</div></div><div class="meta"><div class="attr">Outcome</div><div class="cont">' + (prof.reward * 2).toFixed(1) +
         '</div></div><div class="meta"><div class="attr">Comments</div><div class="cont">' + prof.num +
         '</div></div></div>';
+    var badge = '<span class="badge ' + generateColorInverted(prof.result) + '">Offered</span>'
     var head = brief ? "" : '<h3 class="h6 card-header border-light text-end small '
         + generateColor(prof.result) + '">'
+        + '<div class="row">'
+        + '<div class="col-2">'
+        + (is_offer ? badge : '') 
+        + '</div>'
+        + '<div class="col-10 text-end">'
         + (prof.result * 2).toFixed(1) + '<span style="font-size: x-small">/10</span>'
+        +'</div>'
+        + '</div>'
         + '</h3>';
     $(framework).append('<div class="col"><div class="shadow card"' + margin + '>' + head + '<a href="' + url + '"><div class="card-body"><h2 class="h6 card-text mb-3">' + prof.name + '</h2>'
         + '<div class="progress" style="height:0.1cm"><div class="progress-bar ' + generateColor(prof.result) + '" role="progressbar" style="width: '

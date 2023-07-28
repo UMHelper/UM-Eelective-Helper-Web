@@ -39,6 +39,7 @@ $.ajax({
     $('#title_eng').text(data.course_info.courseTitleEng);
     $('#title_chi').text(data.course_info.courseTitleChi);
     $('#meta_credits').text(data.course_info.Credits);
+
     if (data.course_info.Offering_Department) {
       $('#meta_dept').html('<a href="/catalog.html?faculty=' + data.course_info.Offering_Unit + '&dept=' + data.course_info.Offering_Department + '">' + data.course_info.Offering_Department + '</a>');
       $('#meta_faculty').text(data.course_info.Offering_Unit);
@@ -59,12 +60,30 @@ $.ajax({
     else if (data.prof_info.length == 0)
       $("#panel_instructors").append('<div class="alert alert-warning alert-dismissible fade show" role="alert" style="width: 100%">這個課程存在，但是近年來并沒有開設過，因此沒有評價。<br>Found this course but it hasn\'t been offered in recent years.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
 
+    data.prof_info.sort(function (a, b) {
+      if (a.offer_info.is_offer != b.offer_info.is_offer) return b.offer_info.is_offer - a.offer_info.is_offer;
+      else return b.result - a.result;
+    });
+
+    var is_offer=false
     for (var i in data.prof_info) {
-      addInstructor(course_code, data.prof_info[i], '#panel_instructors', false);
+      addInstructor(course_code, data.prof_info[i], '#panel_instructors', false, data.prof_info[i].offer_info.is_offer);
       temp_desc += data.prof_info[i].name + ' ' + (data.prof_info[i].result * 2).toFixed(1);
+      if (data.prof_info[i].offer_info.is_offer){
+        is_offer=true
+      }
     }
 
+    console.log(is_offer)
+
+    $('#title_course').html(course_code+' <span class="align-middle badge rounded-pill '
+      + (is_offer ? "bg-primary" : "bg-danger")
+      + '" style="font-size: 0.8rem; margin-left:2px">'
+      + (is_offer ? "Offered" : "Not Offered")
+      + '</span>')
+
     $("meta[name='description']").attr('content', data.course_info.courseTitleChi + ' ' + course_code + ' 的講師評分及評價 ' + temp_desc);
+
   },
   error: function (data) {
     Sentry.captureException(data);
