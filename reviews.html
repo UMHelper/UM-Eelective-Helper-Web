@@ -166,6 +166,24 @@
                     <button type="button" class="shadow btn btn-success my-3" id="button_submit"><i
                             class="bi bi-pencil-square"></i> Submit
                         Review</button>
+                    <button type="button" class="shadow btn btn-success my-3" id="show_timetable" data-bs-toggle="modal" data-bs-target="#timetable" style="display: none"><i
+                            class="bi bi-calendar2-day"></i> Schedules <i class="bi bi-box-arrow-in-down-right"></i> </button>
+
+                    <div class="modal fade" id="timetable" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                            <div class="modal-content">
+
+                                <div class="modal-body" id="timetable_body">
+
+                                </div>
+<!--                                <div class="modal-footer">-->
+<!--                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
+<!--                                    <button type="button" class="btn btn-primary">Save changes</button>-->
+<!--                                </div>-->
+                            </div>
+                        </div>
+                    </div>
+
 
                 </div>
 
