@@ -99,7 +99,7 @@ function generateColorInverted(value) {
         color = "bg-light text-danger";
     }
     else {
-        color = "bg-light text-dark";
+        color = "bg-white text-dark";
     }
     return color;
 }
