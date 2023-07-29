@@ -2,8 +2,8 @@
 $(function () { $("#loginPlaceholder").load("/src/login.html") });
 
 //$('#navbarTogglerDemo02 > ul').append('<li class="nav-item"><a class="nav-link" aria-current="page" href="' + '/' + '">' + '首頁 Home' + '</a></li>');
-$('#navbarTogglerDemo02 > ul').append('<li class="nav-item"><a class="nav-link" aria-current="page" href="'
-    + '/catalog.html' + '">' + 'Catalog' + '</a></li>');
+//$('#navbarTogglerDemo02 > ul').append('<li class="nav-item"><a class="nav-link" aria-current="page" href="'
+//    + '/catalog.html' + '">' + 'Catalog' + '</a></li>');
 $('#navbarTogglerDemo02 > ul').append('<li class="nav-item dropdown">'
     + '<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">'
     + 'GE' + '</a>'
