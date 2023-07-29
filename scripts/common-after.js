@@ -74,3 +74,4 @@ $(window).on('scroll', function () {
 });
 
 sessionLogin();
+updateTimetableCartList()
