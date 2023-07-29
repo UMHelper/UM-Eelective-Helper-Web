@@ -14,7 +14,7 @@ $('#navbarTogglerDemo02 > ul').append('<li class="nav-item dropdown">'
     + '<li><a class="dropdown-item" href="' + '/search.html?keyword=GESB' + '"target="_blank">' + '社會行爲 GESB' + '</a></li>'
     + '</ul></li >');
 $('#navbarTogglerDemo02 > ul').append('<li class="nav-item"><a class="nav-link" aria-current="page" href="'
-    + 'https://umbbs.xyz/t/umeh' + '" target="_blank">' + 'Feedback' + '</a></li>');
+    + 'https://docs.google.com/forms/d/1_HrH0jJ9Fyxu_dmW1xGsn9Hq1ZtN9nFG-Jangj_BNVk/' + '" target="_blank">' + 'Feedback' + '</a></li>');
 
 $('#navbarTogglerDemo02 > ul').append('<li class="nav-item"><a class="nav-link" aria-current="page" href="'
     + 'https://umbbs.xyz/' + '" target="_blank">' + 'Whole 討論區' + '</a></li>');
