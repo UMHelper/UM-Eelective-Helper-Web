@@ -4,7 +4,7 @@ export default class Calendar {
   constructor(events) {
     this._validateEvents(events);
     this.events = this._parseEvents(events);
-    this.currentDate = new Date();
+    this.currentDate = new Date('2018-01-01T11:00:00.000');
     this._scrollListener();
     this._addHeaderButtonEventListeners();
     this.renderAllDayRow();
@@ -389,11 +389,31 @@ export default class Calendar {
   }
 
   _parseEvents(events) {
+    const bgColors = [
+      '#f44336',
+      '#e91e63',
+      '#9c27b0',
+      '#673ab7',
+      '#3f51b5',
+      '#2196f3',
+      '#03a9f4',
+      '#00bcd4',
+      '#009688',
+      '#4caf50',
+      '#8bc34a',
+      '#cddc39',
+      '#ffeb3b',
+      '#ffc107',
+      '#ff9800',
+      '#ff5722',
+      '#795548',
+      '#607d8b'
+    ];
     const parsedEvents = [];
     for (let i = 0; i < events.length; i++) {
       const event = {
         ...events[i],
-        bgColor: this._getRandomBgColorAndTextColor().bgColor,
+        bgColor: bgColors[events[i].section], //this._getRandomBgColorAndTextColor().bgColor,
         textColor: this._getRandomBgColorAndTextColor().textColor,
         dateFrom: new Date(events[i].dateFrom),
         dateTo: new Date(events[i].dateTo)
