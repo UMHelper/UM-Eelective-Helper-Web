@@ -53,7 +53,7 @@
 
 </script>
 
-
+<!-- Toast Msg -->
 <div class="toast-container position-fixed bottom-0 end-0 p-3">
     <div id="toast" class="toast text-bg-primary border-0 " role="alert" aria-live="assertive" aria-atomic="true">
         <div class="d-flex">
@@ -66,6 +66,7 @@
     </div>
 </div>
 
+<!-- Login Modal -->
 <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -115,7 +116,21 @@
     </div>
 </div>
 
-<script>        
+<!-- Timetable Cart Offcanvas -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasTimetable" aria-labelledby="offcanvasTimetableLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasRightLabel">Timetable Cart</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div class="container-fluid container-lg" id="timetable_cart_list">
+
+        </div>
+    </div>
+</div>
+
+<script>
+    updateTimetableCartList();
     // get current version
     $.ajax({
         url: "https://api.github.com/repos/UMHelper/UM-Eelective-Helper-Web/branches/bootstrap",

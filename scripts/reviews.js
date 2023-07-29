@@ -155,7 +155,7 @@ $.ajax({
     }
   });
 
-
+// fetch scores
 $.ajax({
   url: API_server + "/all_comment_info/?New_code=" + course_code + '&prof_name=' + instructor,
   dataType: "json",
@@ -197,6 +197,7 @@ $.ajax({
       }
 
       $('#timetable_body').html(meta)
+
     }
   },
   error: function (data) {
@@ -205,6 +206,7 @@ $.ajax({
   }
 });
 
+// submit review
 $("#button_submit").click(function () {
   document.location.href = "/submit.html?course=" + course_code + "&instructor=" + instructor;
 });

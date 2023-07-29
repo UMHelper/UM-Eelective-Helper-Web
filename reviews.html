@@ -138,13 +138,24 @@
                         </div>
                     </div>
                 </div>
-                <div class="d-flex" id="avatarNav" style="margin-top: -5px; margin-bottom: -5px; --size: 36px;"
-                    data-bs-toggle="modal" data-bs-target="#loginModal">
+                <div class="d-flex">
+                    <button class="d-flex" id="timetable_cart" style="margin-top: -5px; margin-bottom: -5px; --size: 36px; margin-right: 5px; background-color:transparent; border: none;"
+                            data-bs-toggle="offcanvas" data-bs-target="#offcanvasTimetable" aria-controls="offcanvasTimetable">
+                    <span class="Avatar" data-bs-toggle="tooltip"
+                          title="Timetable Cart"><i class="bi bi-cart-check"></i></span>
+                    </button>
+
+                    <div class="d-flex" id="avatarNav" style="margin-top: -5px; margin-bottom: -5px; --size: 36px;"
+                         data-bs-toggle="modal" data-bs-target="#loginModal">
                     <span class="Avatar" style="--avatar-bg:#cccccc;" data-bs-toggle="tooltip"
-                        title="Not Logged In">?</span>
+                          title="Not Logged In">?</span>
+                    </div>
                 </div>
+
             </div>
+
         </nav>
+        
     </header>
 
     <section style="padding-top: 2cm; background: linear-gradient(37deg, #002a4c, #0396e6);">
@@ -169,17 +180,19 @@
                     <button type="button" class="shadow btn btn-primary my-2 me-2" id="show_timetable" data-bs-toggle="modal" data-bs-target="#timetable" style="display: none"><i
                             class="bi bi-calendar-week"></i> Schedule</button>
 
-                    <div class="modal fade" id="timetable" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="timetable" tabindex="-1" aria-labelledby="timetableModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                             <div class="modal-content">
 
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="timetableModalLabel">Schedule</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
                                 <div class="modal-body" id="timetable_body">
 
                                 </div>
-<!--                                <div class="modal-footer">-->
-<!--                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
-<!--                                    <button type="button" class="btn btn-primary">Save changes</button>-->
-<!--                                </div>-->
+                                
+
                             </div>
                         </div>
                     </div>
@@ -284,6 +297,7 @@
 
             </div>
         </div>
+
     </div>
 
     <!-- Footer -->
