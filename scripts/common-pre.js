@@ -18,14 +18,14 @@ Sentry.init({
     // We recommend adjusting this value in production
     tracesSampleRate: 1.0,
 
-    });
+});
 
 $(function () { $("footer").load("/src/footer.html") });
 
 function getAvatar(displayName, AvatarUrl) {
-    var tooltip = 'data-bs-toggle="tooltip" title="User: \n' + displayName  + '"';
+    var tooltip = 'data-bs-toggle="tooltip" title="User: \n' + displayName + '"';
     if (AvatarUrl) {
-        return ('<img class="Avatar" src="' + AvatarUrl + '"' +tooltip +'>');
+        return ('<img class="Avatar" src="' + AvatarUrl + '"' + tooltip + '>');
     }
 
     const colors = [
@@ -50,7 +50,7 @@ function getAvatar(displayName, AvatarUrl) {
     n = i.charAt(0).toUpperCase();
 
     return ('<span class="Avatar" style="--avatar-bg:' +
-        colors[sum % colors.length] + '" '+ tooltip +'>' + n + ' </span>');
+        colors[sum % colors.length] + '" ' + tooltip + '>' + n + ' </span>');
 }
 
 /*! js-cookie v3.0.1 | MIT */
@@ -58,7 +58,7 @@ function getAvatar(displayName, AvatarUrl) {
 
 (function (e, t, n, i, s, a, c) {
     e[n] = e[n] || function () { (e[n].q = e[n].q || []).push(arguments) }
-    ; a = t.createElement(i); c = t.getElementsByTagName(i)[0]; a.async = true; a.src = s
+        ; a = t.createElement(i); c = t.getElementsByTagName(i)[0]; a.async = true; a.src = s
         ; c.parentNode.insertBefore(a, c)
 })(window, document, "galite", "script", "https://cdn.jsdelivr.net/npm/ga-lite@2/dist/ga-lite.min.js");
 
@@ -122,7 +122,7 @@ function generateVerifiedBadge(value, comment_id) {
     } else {
         return '<i class="bi bi-patch-question  vote-button" style="color:burlywood" data-bs-toggle="tooltip" title="Not Verified (not logged in)"></i>';
     }
-    
+
 }
 
 function addCourse(course, framework, prof_name, value) {
@@ -139,7 +139,7 @@ function addCourse(course, framework, prof_name, value) {
 }
 
 // type: brief, full
-function addInstructor(course_code, prof, framework, brief, is_offer=false) {
+function addInstructor(course_code, prof, framework, brief, is_offer = false) {
     var url = "/reviews/" + course_code + "/" + prof.name.replaceAll('/', '$');
     var margin = brief ? 'style="margin: 0.4cm"' : "";
     var meta = brief ? "" : '<div class="card-footer border-light">'
@@ -154,11 +154,11 @@ function addInstructor(course_code, prof, framework, brief, is_offer=false) {
         + generateColor(prof.result) + '">'
         + '<div class="row">'
         + '<div class="col-2">'
-        + (is_offer ? badge : '') 
+        + (is_offer ? badge : '')
         + '</div>'
         + '<div class="col-10 text-end">'
         + (prof.result * 2).toFixed(1) + '<span style="font-size: x-small">/10</span>'
-        +'</div>'
+        + '</div>'
         + '</div>'
         + '</h3>';
     $(framework).append('<div class="col"><div class="shadow card"' + margin + '>' + head + '<a href="' + url + '"><div class="card-body"><h2 class="h6 card-text mb-3">' + prof.name + '</h2>'
@@ -168,26 +168,26 @@ function addInstructor(course_code, prof, framework, brief, is_offer=false) {
 
 // type: brief, full
 function addReview(review, framework) {
-    var meta = '<div style="margin-top:-7px; margin-bottom: -7px;">'+
+    var meta = '<div style="margin-top:-7px; margin-bottom: -7px;">' +
         //'<div class="meta"><div class="attr">Overall</div><div class="cont">' + generateAttitude(review.recommend) +
         '<div class="meta"><div class="attr">Grade</div><div class="cont">' + generateAttitude(review.grade) +
         '</div></div><div class="meta"><div class="attr">Workload</div><div class="cont">' + generateAttitude(review.hard) +
         '</div></div><div class="meta"><div class="attr">Outcome</div><div class="cont">' + generateAttitude(review.reward) +
         '</div></div></div>';
-    $(framework).append('<div class="col" id="review-' + review.id+ '"><div class="shadow card"><div class="h6 card-header border-light small '
-        + generateColor(review.recommend) + '">' 
-        + '<div class="row"><div class="col-7">' + review.pub_time + '</div><div class="col-5 text-end">' + (review.recommend * 2).toFixed(1) 
+    $(framework).append('<div class="col" id="review-' + review.id + '"><div class="shadow card"><div class="h6 card-header border-light small '
+        + generateColor(review.recommend) + '">'
+        + '<div class="row"><div class="col-7">' + review.pub_time + '</div><div class="col-5 text-end">' + (review.recommend * 2).toFixed(1)
         + '<span style="font-size: x-small">/10</span></div></div>'
-        + '</div><div class="card-body">' + (review.content ? '<h2 class="h6 mb-3 card-text">' 
-        + review.content.replace(/</g, "&lt;").replace(/>/g, "&gt;") + '</h2>' : '') + meta + '</div>' + 
+        + '</div><div class="card-body">' + (review.content ? '<h2 class="h6 mb-3 card-text">'
+            + review.content.replace(/</g, "&lt;").replace(/>/g, "&gt;") + '</h2>' : '') + meta + '</div>' +
         '<div class="card-footer border-light"><div class="row small text-muted"><div class="col-5">'
         + generateVerifiedBadge(review.verified) + '</div><div class="col-7 text-end px-1">'
-        + '<button class="bi bi-hand-thumbs-up-fill me-2 vote-button" onclick="voteOn('+review.id +',1)" data-bs-toggle="tooltip" title="Upvote"> </button><span class="vote-num">'
+        + '<button class="bi bi-hand-thumbs-up-fill me-2 vote-button" onclick="voteOn(' + review.id + ',1)" data-bs-toggle="tooltip" title="Upvote"> </button><span class="vote-num">'
         + (review.upvote - review.downvote) + '</span>'
-        + '<button class="bi bi-hand-thumbs-down-fill ms-2 vote-button" onclick="voteOn('+review.id +',-1)" data-bs-toggle="tooltip" title="Downvote"> </button>' 
+        + '<button class="bi bi-hand-thumbs-down-fill ms-2 vote-button" onclick="voteOn(' + review.id + ',-1)" data-bs-toggle="tooltip" title="Downvote"> </button>'
 
-        + '<button class="bi bi-flag-fill ms-2 vote-button" onclick="report('+review.id+ ')" data-bs-toggle="tooltip" title="Report Abuse"> </button>'
-        + '</div></div></div>' +'</div></div>');
+        + '<button class="bi bi-flag-fill ms-2 vote-button" onclick="report(' + review.id + ')" data-bs-toggle="tooltip" title="Report Abuse"> </button>'
+        + '</div></div></div>' + '</div></div>');
     updateVoteColor(review.id, review.offset);
 }
 
@@ -232,22 +232,22 @@ function sessionLogin() {
                 $('#loginAlert').append('<button id="logout" class="my-3 btn btn-warning">登出 Log Out</button><br>');
 
                 $("#logout").click(function () {
-                    Cookies.remove('bbs_token',{domain: "umeh.top"});
-                    Cookies.remove('bbs_userid',{domain: "umeh.top"});
+                    Cookies.remove('bbs_token', { domain: "umeh.top" });
+                    Cookies.remove('bbs_userid', { domain: "umeh.top" });
                     $("#loginAlert").empty().append('登出成功<br> Logged Out');
                     $('#avatarNav').empty().append('<span class="Avatar" style="--avatar-bg:#cccccc;" data-bs-toggle="tooltip" title="Not Logged In">?</span>');
                     refreshTooltips(".Avatar");
                 })
             }
             else {
-                if($('#loginModal').hasClass('show'))
+                if ($('#loginModal').hasClass('show'))
                     $("#loginAlert").empty().append('用戶信息錯誤或澳大電郵地址未驗證<br> Your UM Email is not verified');
             }
             refreshTooltips(".Avatar");
             return true;
         },
         error: function (response) {
-            if($('#loginModal').hasClass('show'))
+            if ($('#loginModal').hasClass('show'))
                 $("#loginAlert").empty().append('電郵地址或密碼錯誤<br> Wrong credential (email or password)');
 
             refreshTooltips(".Avatar");
@@ -262,102 +262,110 @@ function newToastMessage(message) {
     $('#toast').toast('show');
 }
 
-const sortByWeekday= (a,b)=>{
-    const d2n={
-        'MON':0,
-        'TUE':1,
-        'WED':2,
-        'THU':3,
-        'THURS':3,
-        'FRI':4,
-        'SAT':5,
-        'SUM':6
+const sortByWeekday = (a, b) => {
+    const d2n = {
+        'MON': 0,
+        'TUE': 1,
+        'WED': 2,
+        'THU': 3,
+        'THURS': 3,
+        'FRI': 4,
+        'SAT': 5,
+        'SUM': 6
 
     }
-    return d2n[a.date.toUpperCase()]-d2n[b.date.toUpperCase()]
+    return d2n[a.date.toUpperCase()] - d2n[b.date.toUpperCase()]
 }
-function duplicatesectionCheck(timetable_cart,section){
-    console.log(timetable_cart[0],section)
+function duplicatesectionCheck(timetable_cart, section) {
+    console.log(timetable_cart[0], section)
     for (const n in timetable_cart) {
-        if (section.code==timetable_cart[n].code &&
-            section.prof==timetable_cart[n].prof &&
-            section.section==timetable_cart[n].section){
+        if (section.code == timetable_cart[n].code &&
+            section.prof == timetable_cart[n].prof &&
+            section.section == timetable_cart[n].section) {
             return false
         }
     }
     return true
 }
 
-function updateTimetableCartList(){
+// add to schedule cart or timetable list, if specified
+function updateTimetableCartList(element = ".timetable_cart_list", show_button = true) {
     console.log("Update")
-    var timetable_cart=localStorage.getItem('timetable_cart')
-    console.log(timetable_cart,$('#timetable_cart_list'))
-    if (timetable_cart=="" || timetable_cart==null || timetable_cart=='[]'){
-        $('#timetable_cart_list').html(
-            'Oh no! Your cart is empty. Try to add some course.</h5>'
+    var timetable_cart = localStorage.getItem('timetable_cart')
+    console.log(timetable_cart, $(element))
+    if (timetable_cart == "" || timetable_cart == null || timetable_cart == '[]') {
+        $(element).html(
+            'Your cart is empty. Try to add some courses first.</h5>'
         )
         return
     }
-    timetable_cart=JSON.parse(timetable_cart)
+    timetable_cart = JSON.parse(timetable_cart)
 
-    var meta=""
+    var meta = ""
 
     for (const n in timetable_cart) {
-        let schedules=""
+        let schedules = ""
         for (const s in timetable_cart[n].schedules) {
-            schedules+="<tr>\n" +
-                "                                        <td>"+timetable_cart[n].schedules[s].date+"</td>\n" +
-                "                                        <td>"+timetable_cart[n].schedules[s].time+"</td>\n" +
-                "                                        <td>"+timetable_cart[n].schedules[s].location+"</td>\n" +
+            schedules += "<tr>\n" +
+                "                                        <td>" + timetable_cart[n].schedules[s].date + "</td>\n" +
+                "                                        <td>" + timetable_cart[n].schedules[s].time + "</td>\n" +
+                "                                        <td>" + timetable_cart[n].schedules[s].location + "</td>\n" +
                 "                                    </tr>"
         }
-        meta+="<div class=\"card my-2\"'>\n" +
-            "                        <div class=\"card-header\" style='display: flex;justify-content: space-between;'><div class='text-body'>"+
-            timetable_cart[n].code+
-            " - Section "+
-            timetable_cart[n].section+
-            " <a href=\"/course/"+
-            timetable_cart[n].code+
+        meta += "<div class=\"card my-2\"'>\n" +
+            "                        <div class=\"card-header\" style='display: flex;justify-content: space-between;'><div class='text-body'>" +
+            timetable_cart[n].code +
+            " - Section " +
+            timetable_cart[n].section +
+            " <a href=\"/course/" +
+            timetable_cart[n].code +
             "\"><i class=\"bi bi-box-arrow-in-up-right\"></i></a></div>" +
-            " <button type=\"button\" class=\"btn-close text-end\" section-num=\""+n+"\" onclick='deleteSectionFromCart(this)'></button>\n" +
+            " <button type=\"button\" class=\"btn-close text-end\" section-num=\"" + n + "\" onclick='deleteSectionFromCart(this)'></button>\n" +
             "</div>\n" +
             "                        <div class=\"card-body\">\n" +
-            "                            <p class=\"card-subtitle text-body-secondary\"><em>by</em> "+
-            timetable_cart[n].prof+
-            " <a href=\"/reviews/"+
-            timetable_cart[n].code+"/"+
-            timetable_cart[n].prof+
+            "                            <p class=\"card-subtitle text-body-secondary\"><em>by</em> " +
+            timetable_cart[n].prof +
+            " <a href=\"/reviews/" +
+            timetable_cart[n].code + "/" +
+            timetable_cart[n].prof +
             "\"><i class=\"bi bi-box-arrow-in-up-right\"></i></a></p>\n" +
             "                            <table class=\"table table-borderless table-hover table-sm caption-top\" style='margin-bottom: 0'>\n" +
             "                                <caption>\n" +
             "                                    Schedules\n" +
             "                                </caption>\n" +
             "                                <tbody>\n" +
-                                                schedules+
+            schedules +
             "                                </tbody>\n" +
             "                            </table>\n" +
             "                        </div>\n" +
             "                    </div>"
     }
-    meta+="  <button type=\"button\" class=\"btn btn-primary w-100\">Go to Timetable Sim</button>"
-    $('#timetable_cart_list').html(meta)
+    console.log(show_button)
+    if (show_button==true) {
+        meta += '  <button type="button" id="button_timetable" class="btn btn-warning button_timetable my-4 me-1 w-100"><i class="bi bi-calendar-week my-2 me-1"> </i>Check Out My Timetable</button>'
+    }
+
+    $(element).html(meta)
+    $('.button_timetable').click(function () {
+        document.location.href = "/timetable/";
+    })
 
 }
 
-function addSectionToCart(e){
-    var timetable_cart=[]
-    if (localStorage.getItem("timetable_cart")!="" && localStorage.getItem("timetable_cart")!=null ){
-        timetable_cart=JSON.parse(localStorage.getItem("timetable_cart"))
+function addSectionToCart(e) {
+    var timetable_cart = []
+    if (localStorage.getItem("timetable_cart") != "" && localStorage.getItem("timetable_cart") != null) {
+        timetable_cart = JSON.parse(localStorage.getItem("timetable_cart"))
     }
-    var newSection={
-        code:e.getAttribute('code'),
-        prof:e.getAttribute('prof'),
-        section:e.getAttribute('section'),
-        schedules:JSON.parse(
+    var newSection = {
+        code: e.getAttribute('code'),
+        prof: e.getAttribute('prof'),
+        section: e.getAttribute('section'),
+        schedules: JSON.parse(
             e.getAttribute('schedules')
         )
     }
-    if (duplicatesectionCheck(timetable_cart,newSection)){
+    if (duplicatesectionCheck(timetable_cart, newSection)) {
         timetable_cart.push(newSection)
         newToastMessage("添加成功 Added successfully!");
     }
@@ -366,52 +374,52 @@ function addSectionToCart(e){
     }
 
     e.setAttribute('disabled', '')
-    localStorage.setItem('timetable_cart',JSON.stringify(timetable_cart))
+    localStorage.setItem('timetable_cart', JSON.stringify(timetable_cart))
     updateTimetableCartList()
 }
 
-function addCourseSection(section){
-    var res='<table class="table table-borderless">' +
-            '<thead class="table-light"><tr>'+
-            '<td colspan="3">Section '+
-            section.section +
-            '</td></tr></thead><tbody>'
+function addCourseSection(section) {
+    var res = '<table class="table table-borderless">' +
+        '<thead class="table-light"><tr>' +
+        '<td colspan="3">Section ' +
+        section.section +
+        '</td></tr></thead><tbody>'
     section.schedules.sort(sortByWeekday)
     console.log(section.schedules.sort(sortByWeekday))
     for (const n in section.schedules) {
-        res+='<tr>'+
-            '<td>'+
+        res += '<tr>' +
+            '<td>' +
             section.schedules[n].date +
-            '</td>'+
-            '<td>'+
-            section.schedules[n].time+
-            '</td>'+
-            '<td>'+
-            section.schedules[n].location+
+            '</td>' +
+            '<td>' +
+            section.schedules[n].time +
+            '</td>' +
+            '<td>' +
+            section.schedules[n].location +
             '</td></tr> '
     }
-    res+='<tr><td colspan="3">' +
+    res += '<tr><td colspan="3">' +
         '<button type="button" class="btn btn-primary addCartBtn" ' +
-        'section="'+section.section+'" '+
-        'code="'+course_code+'" '+
-        'prof="'+instructor+'" '+
-        "schedules='"+
-        JSON.stringify(section.schedules)+ "' " +
-        'onclick="addSectionToCart(this)"'+
+        'section="' + section.section + '" ' +
+        'code="' + course_code + '" ' +
+        'prof="' + instructor + '" ' +
+        "schedules='" +
+        JSON.stringify(section.schedules) + "' " +
+        'onclick="addSectionToCart(this)"' +
         '>' +
-        '<i class="bi bi-cart-plus"></i> Add to Timetable Cart</button>' +
+        '<i class="bi bi-cart-plus"></i> Add to Schedule Cart</button>' +
         '</td></tr></tbody></table>'
     return res
 }
 
-function deleteSectionFromCart(e){
+function deleteSectionFromCart(e) {
     console.log(e.getAttribute('section-num'))
 
-    var timetable_cart=JSON.parse(localStorage.getItem("timetable_cart"))
+    var timetable_cart = JSON.parse(localStorage.getItem("timetable_cart"))
 
-    timetable_cart=[...timetable_cart.slice(0,e.getAttribute('section-num')),...timetable_cart.slice(e.getAttribute('section-num')+1)]
+    timetable_cart = [...timetable_cart.slice(0, e.getAttribute('section-num')), ...timetable_cart.slice(e.getAttribute('section-num') + 1)]
 
     console.log(timetable_cart.length)
-    localStorage.setItem('timetable_cart',JSON.stringify(timetable_cart))
+    localStorage.setItem('timetable_cart', JSON.stringify(timetable_cart))
     updateTimetableCartList()
 }

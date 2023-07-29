@@ -17,6 +17,11 @@ $("#button_search_main").click(function () {
         document.location.href = "/search.html?keyword=" + $("#input_search_main").val().trim() + "&instructor=" + $("#searchByInstructor").is(":checked");
 });
 
+$("#button_timetable").click(function () {
+    document.location.href = "/timetable/";
+});
+
+
 mustFillNavbar = false;
 alwaysShowSearch = false;
 scrollNav();

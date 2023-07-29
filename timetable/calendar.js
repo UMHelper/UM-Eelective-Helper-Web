@@ -413,7 +413,7 @@ export default class Calendar {
     for (let i = 0; i < events.length; i++) {
       const event = {
         ...events[i],
-        bgColor: bgColors[events[i].section], //this._getRandomBgColorAndTextColor().bgColor,
+        bgColor: bgColors[events[i].id % bgColors.length], //this._getRandomBgColorAndTextColor().bgColor,
         textColor: this._getRandomBgColorAndTextColor().textColor,
         dateFrom: new Date(events[i].dateFrom),
         dateTo: new Date(events[i].dateTo)

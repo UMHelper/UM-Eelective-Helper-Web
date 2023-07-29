@@ -4,7 +4,8 @@
         <li class="d-inline-block ms-3"><a href="https://umbbs.xyz/d/72/14">Community Guidelines</a></li>
         <li class="d-inline-block ms-3"><a href="https://umbbs.xyz/p/2-term-of-services">Terms of Service</a>
         </li>
-        <li class="d-inline-block ms-3"><a href="https://docs.google.com/forms/d/1_HrH0jJ9Fyxu_dmW1xGsn9Hq1ZtN9nFG-Jangj_BNVk/">Feedback
+        <li class="d-inline-block ms-3"><a
+                href="https://docs.google.com/forms/d/1_HrH0jJ9Fyxu_dmW1xGsn9Hq1ZtN9nFG-Jangj_BNVk/">Feedback
                 反饋</a>
         </li>
         <li class="d-inline-block ms-3"><a class="footnote" href="/src/sitemap.html">Sitemap</a></li>
@@ -116,10 +117,10 @@
     </div>
 </div>
 
-<!-- Timetable Cart Offcanvas -->
+<!-- Schedule Cart Offcanvas -->
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasTimetable" aria-labelledby="offcanvasTimetableLabel">
     <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasRightLabel">Timetable Cart</h5>
+        <h5 class="offcanvas-title" id="offcanvasRightLabel"></h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
@@ -132,17 +133,20 @@
 <script>
     updateTimetableCartList();
     // get current version
-    $.ajax({
-        url: "https://api.github.com/repos/UMHelper/UM-Eelective-Helper-Web/branches/bootstrap",
-        dataType: "json",
-        success: function (data) {
-            $('#version').html('<a href="' + data.commit.html_url + '">' + data.commit.commit.author.date);
-        },
-        error: function(data) {
-            Sentry.captureException(data);
-            $('#version').html("ERROR");
-        }
-    });
+    try {
+        $.ajax({
+            url: "https://api.github.com/repos/UMHelper/UM-Eelective-Helper-Web/branches/bootstrap",
+            dataType: "json",
+            success: function (data) {
+                $('#version').html('<a href="' + data.commit.html_url + '">' + data.commit.commit.author.date);
+            },
+            error: function (data) {
+                Sentry.captureException(data);
+                $('#version').html("ERROR");
+            }
+        });
+    } catch (err) {
+    }
 
 
 </script>
