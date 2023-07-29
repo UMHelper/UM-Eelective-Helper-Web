@@ -302,12 +302,10 @@ function addSectionToCart(e){
     }
     if (duplicatesectionCheck(timetable_cart,newSection)){
         timetable_cart.push(newSection)
-        const addSuccessToast = document.getElementById('addSuccessToast')
-        addSuccessToast.classList.add('show')
+        newToastMessage("添加成功 Added successfully!");
     }
     else {
-        const duplicateAddToast = document.getElementById('duplicateAddToast')
-        duplicateAddToast.classList.add('show')
+        newToastMessage("错误：已經添加過 Error: Section already added!");
     }
 
     e.setAttribute('disabled', '')
@@ -344,7 +342,7 @@ function addCourseSection(section){
         JSON.stringify(section.schedules)+ "' " +
         'onclick="addSectionToCart(this)"'+
         '>' +
-        'Add this Section to Timetable Cart <i class="bi bi-cart-plus"></i></button>' +
+        '<i class="bi bi-cart-plus"></i> Add to Timetable Cart</button>' +
         '</td></tr></tbody></table>'
     return res
 }
