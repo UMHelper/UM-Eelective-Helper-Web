@@ -276,6 +276,43 @@ const sortByWeekday= (a,b)=>{
     }
     return d2n[a.date.toUpperCase()]-d2n[b.date.toUpperCase()]
 }
+function duplicatesectionCheck(timetable_cart,section){
+    console.log(timetable_cart[0],section)
+    for (const n in timetable_cart) {
+        if (section.code==timetable_cart[n].code &&
+            section.prof==timetable_cart[n].prof &&
+            section.section==timetable_cart[n].section){
+            return false
+        }
+    }
+    return true
+}
+function addSectionToCart(e){
+    var timetable_cart=[]
+    if (localStorage.getItem("timetable_cart")!="" && localStorage.getItem("timetable_cart")!=null ){
+        timetable_cart=JSON.parse(localStorage.getItem("timetable_cart"))
+    }
+    var newSection={
+        code:e.getAttribute('code'),
+        prof:e.getAttribute('prof'),
+        section:e.getAttribute('section'),
+        schedules:JSON.parse(
+            e.getAttribute('schedules')
+        )
+    }
+    if (duplicatesectionCheck(timetable_cart,newSection)){
+        timetable_cart.push(newSection)
+        const addSuccessToast = document.getElementById('addSuccessToast')
+        addSuccessToast.classList.add('show')
+    }
+    else {
+        const duplicateAddToast = document.getElementById('duplicateAddToast')
+        duplicateAddToast.classList.add('show')
+    }
+
+    e.setAttribute('disabled', '')
+    localStorage.setItem('timetable_cart',JSON.stringify(timetable_cart))
+}
 
 function addCourseSection(section){
     var res='<table class="table table-borderless">' +
@@ -297,6 +334,16 @@ function addCourseSection(section){
             section.schedules[n].location+
             '</td></tr> '
     }
-    res+='</tbody>'
+    res+='<tr><td colspan="3">' +
+        '<button type="button" class="btn btn-primary addCartBtn" ' +
+        'section="'+section.section+'" '+
+        'code="'+course_code+'" '+
+        'prof="'+instructor+'" '+
+        "schedules='"+
+        JSON.stringify(section.schedules)+ "' " +
+        'onclick="addSectionToCart(this)"'+
+        '>' +
+        'Add this Section to Timetable Cart <i class="bi bi-cart-plus"></i></button>' +
+        '</td></tr></tbody></table>'
     return res
 }

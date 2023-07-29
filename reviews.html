@@ -138,13 +138,32 @@
                         </div>
                     </div>
                 </div>
-                <div class="d-flex" id="avatarNav" style="margin-top: -5px; margin-bottom: -5px; --size: 36px;"
-                    data-bs-toggle="modal" data-bs-target="#loginModal">
+                <div class="d-flex">
+                    <button class="d-flex" id="timetable_cart" style="margin-top: -5px; margin-bottom: -5px; --size: 36px; margin-right: 5px; background-color:transparent; border: none;"
+                            data-bs-toggle="offcanvas" data-bs-target="#offcanvasTimetable" aria-controls="offcanvasTimetable">
+                    <span class="Avatar" data-bs-toggle="tooltip"
+                          title="Timetable Cart"><i class="bi bi-cart-check"></i></span>
+                    </button>
+
+                    <div class="d-flex" id="avatarNav" style="margin-top: -5px; margin-bottom: -5px; --size: 36px;"
+                         data-bs-toggle="modal" data-bs-target="#loginModal">
                     <span class="Avatar" style="--avatar-bg:#cccccc;" data-bs-toggle="tooltip"
-                        title="Not Logged In">?</span>
+                          title="Not Logged In">?</span>
+                    </div>
                 </div>
+
             </div>
+
         </nav>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasTimetable" aria-labelledby="offcanvasTimetableLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasRightLabel">Timetable Cart</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                ...
+            </div>
+        </div>
     </header>
 
     <section style="padding-top: 2cm; background: linear-gradient(37deg, #002a4c, #0396e6);">
@@ -177,8 +196,8 @@
 
                                 </div>
 <!--                                <div class="modal-footer">-->
-<!--                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
-<!--                                    <button type="button" class="btn btn-primary">Save changes</button>-->
+<!--&lt;!&ndash;                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>&ndash;&gt;-->
+<!--                                    <button type="button" class="btn btn-primary" id="addCartBtn">Add to Timetable Cart <i class="bi bi-cart-plus"></i></button>-->
 <!--                                </div>-->
                             </div>
                         </div>
@@ -282,6 +301,31 @@
 
                 </div>
 
+            </div>
+        </div>
+
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            <div id="addSuccessToast" class="toast fade" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <strong class="me-auto">Good!</strong>
+                    <small>now</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    Add this section to Timetable Cart successfully.
+                </div>
+            </div>
+        </div>
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            <div id="duplicateAddToast" class="toast fade" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <strong class="me-auto">Warning!</strong>
+                    <small>now</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    This section has been added to the Timetable Cart
+                </div>
             </div>
         </div>
     </div>

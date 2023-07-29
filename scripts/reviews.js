@@ -197,6 +197,7 @@ $.ajax({
       }
 
       $('#timetable_body').html(meta)
+
     }
   },
   error: function (data) {
