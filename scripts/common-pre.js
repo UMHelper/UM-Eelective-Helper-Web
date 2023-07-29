@@ -312,6 +312,7 @@ function addSectionToCart(e){
 
     e.setAttribute('disabled', '')
     localStorage.setItem('timetable_cart',JSON.stringify(timetable_cart))
+    updateTimetableCartList()
 }
 
 function addCourseSection(section){
@@ -346,4 +347,16 @@ function addCourseSection(section){
         'Add this Section to Timetable Cart <i class="bi bi-cart-plus"></i></button>' +
         '</td></tr></tbody></table>'
     return res
+}
+
+function updateTimetableCartList(){
+    console.log("Update")
+    var timetable_cart=localStorage.getItem('timetable_cart')
+    if (timetable_cart=="" || timetable_cart==null){
+        $('#timetable_cart_list').append(
+            'Oh no! Your cart is empty. Try to add some course.</h5>'
+        )
+        return
+    }
+    var meta=""
 }
