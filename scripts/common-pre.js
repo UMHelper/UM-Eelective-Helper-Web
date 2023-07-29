@@ -287,6 +287,63 @@ function duplicatesectionCheck(timetable_cart,section){
     }
     return true
 }
+
+function updateTimetableCartList(){
+    console.log("Update")
+    var timetable_cart=localStorage.getItem('timetable_cart')
+    console.log(timetable_cart,$('#timetable_cart_list'))
+    if (timetable_cart=="" || timetable_cart==null || timetable_cart=='[]'){
+        $('#timetable_cart_list').html(
+            'Oh no! Your cart is empty. Try to add some course.</h5>'
+        )
+        return
+    }
+    timetable_cart=JSON.parse(timetable_cart)
+
+    var meta=""
+
+    for (const n in timetable_cart) {
+        let schedules=""
+        for (const s in timetable_cart[n].schedules) {
+            schedules+="<tr>\n" +
+                "                                        <td>"+timetable_cart[n].schedules[s].date+"</td>\n" +
+                "                                        <td>"+timetable_cart[n].schedules[s].time+"</td>\n" +
+                "                                        <td>"+timetable_cart[n].schedules[s].location+"</td>\n" +
+                "                                    </tr>"
+        }
+        meta+="<div class=\"card my-2\"'>\n" +
+            "                        <div class=\"card-header\" style='display: flex;justify-content: space-between;'><div class='text-body'>"+
+            timetable_cart[n].code+
+            " - Section "+
+            timetable_cart[n].section+
+            " <a href=\"/course/"+
+            timetable_cart[n].code+
+            "\"><i class=\"bi bi-box-arrow-in-up-right\"></i></a></div>" +
+            " <button type=\"button\" class=\"btn-close text-end\" section-num=\""+n+"\" onclick='deleteSectionFromCart(this)'></button>\n" +
+            "</div>\n" +
+            "                        <div class=\"card-body\">\n" +
+            "                            <p class=\"card-subtitle text-body-secondary\"><em>by</em> "+
+            timetable_cart[n].prof+
+            " <a href=\"/reviews/"+
+            timetable_cart[n].code+"/"+
+            timetable_cart[n].prof+
+            "\"><i class=\"bi bi-box-arrow-in-up-right\"></i></a></p>\n" +
+            "                            <table class=\"table table-borderless table-hover table-sm caption-top\" style='margin-bottom: 0'>\n" +
+            "                                <caption>\n" +
+            "                                    Schedules\n" +
+            "                                </caption>\n" +
+            "                                <tbody>\n" +
+                                                schedules+
+            "                                </tbody>\n" +
+            "                            </table>\n" +
+            "                        </div>\n" +
+            "                    </div>"
+    }
+    meta+="  <button type=\"button\" class=\"btn btn-primary w-100\">Go to Timetable Sim</button>"
+    $('#timetable_cart_list').html(meta)
+
+}
+
 function addSectionToCart(e){
     var timetable_cart=[]
     if (localStorage.getItem("timetable_cart")!="" && localStorage.getItem("timetable_cart")!=null ){
@@ -347,14 +404,14 @@ function addCourseSection(section){
     return res
 }
 
-function updateTimetableCartList(){
-    console.log("Update")
-    var timetable_cart=localStorage.getItem('timetable_cart')
-    if (timetable_cart=="" || timetable_cart==null){
-        $('#timetable_cart_list').append(
-            'Oh no! Your cart is empty. Try to add some course.</h5>'
-        )
-        return
-    }
-    var meta=""
+function deleteSectionFromCart(e){
+    console.log(e.getAttribute('section-num'))
+
+    var timetable_cart=JSON.parse(localStorage.getItem("timetable_cart"))
+
+    timetable_cart=[...timetable_cart.slice(0,e.getAttribute('section-num')),...timetable_cart.slice(e.getAttribute('section-num')+1)]
+
+    console.log(timetable_cart.length)
+    localStorage.setItem('timetable_cart',JSON.stringify(timetable_cart))
+    updateTimetableCartList()
 }

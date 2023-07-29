@@ -50,7 +50,7 @@
             },
         });
     });
-    
+
 </script>
 
 <!-- Toast Msg -->
@@ -124,40 +124,13 @@
     </div>
     <div class="offcanvas-body">
         <div class="container-fluid container-lg" id="timetable_cart_list">
-<!--                    <div class="card">-->
-<!--                        <div class="card-header">CISC1006 - Section 001 <a href="/course/CISC1006"><i class="bi bi-box-arrow-in-up-right"></i></a></div>-->
-<!--                        <div class="card-body">-->
-<!--                            <p class="card-subtitle mb-2 text-body-secondary"><em>by</em> ZHAO PING <a href="/reviews/CISC1006/ZHAO%20PING"><i class="bi bi-box-arrow-in-up-right"></i></a></p>-->
-<!--                            <table class="table table-borderless table-hover table-sm caption-top">-->
-<!--                                <caption>-->
-<!--                                    Schedules-->
-<!--                                </caption>-->
-<!--                                <tbody>-->
-<!--                                    <tr>-->
-<!--                                        <td>MON</td>-->
-<!--                                        <td>16:00-17:15</td>-->
-<!--                                        <td>E21-G009</td>-->
-<!--                                    </tr>-->
-<!--                                    <tr>-->
-<!--                                        <td>MON</td>-->
-<!--                                        <td>16:00-17:15</td>-->
-<!--                                        <td>E21-G009</td>-->
-<!--                                    </tr>-->
-<!--                                    <tr>-->
-<!--                                        <td>MON</td>-->
-<!--                                        <td>16:00-17:15</td>-->
-<!--                                        <td>E21-G009</td>-->
-<!--                                    </tr>-->
-<!--                                </tbody>-->
-<!--                            </table>-->
-<!--                            <button type="button" class="btn btn-danger"><i class="bi bi-cart-x"></i> Delete</button>-->
-<!--                        </div>-->
-<!--                    </div>-->
+
         </div>
     </div>
 </div>
 
-<script>        
+<script>
+    updateTimetableCartList();
     // get current version
     $.ajax({
         url: "https://api.github.com/repos/UMHelper/UM-Eelective-Helper-Web/branches/bootstrap",
