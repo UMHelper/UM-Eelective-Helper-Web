@@ -8,9 +8,11 @@ function addEvents(events){
       if (endMin == "00") {
         endMin = "59";
         endHour = endHour - 1;
-        events[evt].endTime = endHour.toString().padStart(2, '0') + ":" + endMin;
         console.log(events[evt].endTime)
       }
+
+      events[evt].startTime = startHour.toString().padStart(2, '0') + ":" + endMin;
+      events[evt].endTime = endHour.toString().padStart(2, '0') + ":" + endMin;
 
       var cal = {
         id: evt, 
