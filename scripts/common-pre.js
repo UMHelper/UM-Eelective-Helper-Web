@@ -235,7 +235,7 @@ function sessionLogin() {
                     Cookies.remove('bbs_token', { domain: "umeh.top" });
                     Cookies.remove('bbs_userid', { domain: "umeh.top" });
                     $("#loginAlert").empty().append('登出成功<br> Logged Out');
-                    $('#avatarNav').empty().append('<span class="Avatar" style="--avatar-bg:#cccccc;" data-bs-toggle="tooltip" title="Not Logged In">?</span>');
+                    $('#avatarNav').empty().append('<span class="Avatar" style="--avatar-bg:#cccccc;" data-bs-toggle="tooltip" title="Not Logged In"><i class="bi-person-x-fill"></i><</span>');
                     refreshTooltips(".Avatar");
                 })
             }
