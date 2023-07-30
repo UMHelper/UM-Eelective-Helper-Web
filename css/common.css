@@ -92,3 +92,6 @@
             border-radius: 100%;
             font-size: calc(var(--size)/2);
         }
+        .timetable_cart_list {
+            font-size: 1em;
+        }

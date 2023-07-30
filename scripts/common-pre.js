@@ -312,27 +312,25 @@ function updateTimetableCartList(element = ".timetable_cart_list", show_button =
                 "                                        <td>" + timetable_cart[n].schedules[s].location + "</td>\n" +
                 "                                    </tr>"
         }
-        meta += "<div class=\"card my-2\"'>\n" +
+        // card 
+        meta += "<div class=\"card mb-3\"'>\n" +
             "                        <div class=\"card-header\" style='display: flex;justify-content: space-between;'><div class='text-body'>" +
             timetable_cart[n].code +
             " - Section " +
             timetable_cart[n].section +
             " <a href=\"/course/" +
             timetable_cart[n].code +
-            "\"><i class=\"bi bi-box-arrow-in-up-right\"></i></a></div>" +
-            " <button type=\"button\" class=\"btn-close text-end\" section-num=\"" + n + "\" onclick='deleteSectionFromCart(this)'></button>\n" +
+            "\"><i class=\"bi bi-box-arrow-in-up-right small\"></i></a></div>" +
+            " <button type=\"button\" class=\"btn text-end p-0\" section-num=\"" + n + "\" onclick='deleteSectionFromCart(this)'><i class=\"bi-trash3\" style=\"font-size: 14px;display: flow;\"></i></button>\n" +
             "</div>\n" +
             "                        <div class=\"card-body\">\n" +
-            "                            <p class=\"card-subtitle text-body-secondary\"><em>by</em> " +
+            "                            <p class=\"card-subtitle text-body-secondary mb-2\"> " +
             timetable_cart[n].prof +
             " <a href=\"/reviews/" +
             timetable_cart[n].code + "/" +
             timetable_cart[n].prof +
-            "\"><i class=\"bi bi-box-arrow-in-up-right\"></i></a></p>\n" +
-            "                            <table class=\"table table-borderless table-hover table-sm caption-top\" style='margin-bottom: 0'>\n" +
-            "                                <caption>\n" +
-            "                                    Schedules\n" +
-            "                                </caption>\n" +
+            "\"><i class=\"bi bi-box-arrow-in-up-right small\"></i></a></p>\n" +
+            "                            <table class=\"table table-borderless table-hover table-sm\" style='margin-bottom: 0'>\n" +
             "                                <tbody>\n" +
             schedules +
             "                                </tbody>\n" +

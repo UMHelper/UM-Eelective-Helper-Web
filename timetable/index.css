@@ -152,6 +152,7 @@
   justify-content: center;
   align-items: center;
   border: 1px solid var(--calendar-border-color);
+  border-block-start: none;
   position: relative;
   box-sizing: border-box;
   max-width: var(--calendar-cell-width);

@@ -142,19 +142,23 @@ export default class Calendar {
     calendarBody.appendChild(calendarBodyRows);
   }
 
+  // modified to render only on div for one event
+  // this may break an event across more than one day
   _renderEvent(event) {
     const timeSlots = this._getDaysAndHours(event.dateFrom, event.dateTo);
     timeSlots.forEach((slot, index) => {
-      const cell = this._getCell(slot.day, slot.hour);
-      if (!cell.querySelector(`[data-event-id="${event.id}"]`)) {
-        const eventDiv = document.createElement('div');
-        eventDiv.classList.add('calendar-event');
-        eventDiv.dataset.eventId = event.id;
-        eventDiv.style.backgroundColor = event.bgColor;
-        eventDiv.style.color = event.textColor;
-        //this._addClicklistenerToEvent(eventDiv);
-        eventDiv.innerText = this._getEventName(event, timeSlots, index);
-        cell && cell.appendChild(eventDiv);
+      if (index < 1) {
+        const cell = this._getCell(slot.day, slot.hour);
+        if (!cell.querySelector(`[data-event-id="${event.id}"]`)) {
+          const eventDiv = document.createElement('div');
+          eventDiv.classList.add('calendar-event');
+          eventDiv.dataset.eventId = event.id;
+          eventDiv.style.backgroundColor = event.bgColor;
+          eventDiv.style.color = event.textColor;
+          //this._addClicklistenerToEvent(eventDiv);
+          eventDiv.innerText = this._getEventName(event, timeSlots, index);
+          cell && cell.appendChild(eventDiv);
+        }
       }
     });
     this._setEventStartEndSize(event);
@@ -206,38 +210,51 @@ export default class Calendar {
     const dateToMinute = dateTo.getMinutes().toString().padStart(2, '0');
     return `${dateFrom.toLocaleDateString()} ${dateFromHour}:${dateFromMinute} - ${dateTo.toLocaleDateString()} ${dateToHour}:${dateToMinute}`;
   }
+
+  // modified to render only on div for one event
+  // this may break an event across more than one day
   _setEventStartEndSize(event) {
     // Check if event start is within this week
     if (this._isThisWeek(event.dateFrom)) {
       const startDay = event.dateFrom.getDay();
       const startHour = event.dateFrom.getHours();
       const startMinute = event.dateFrom.getMinutes();
+
+      const endDay = event.dateTo.getDay();
+      const endHour = event.dateTo.getHours();
+      const endMinute = event.dateTo.getMinutes();
+
       const cell = this._getCell(startDay, startHour);
       const eventDiv = cell.querySelector(`[data-event-id="${event.id}"]`);
       if (eventDiv) {
         const marginTop = startMinute ? (this._getCellHeightAsNumber() / 60) * startMinute : 0;
-        eventDiv.style.height = `${this._getCellHeightAsNumber() - marginTop}px`;
+        //eventDiv.style.height = `${this._getCellHeightAsNumber() - marginTop}px`;
+        const height = this._getCellHeightAsNumber() * (endHour - startHour - 1)
+          + this._getCellHeightAsNumber() / 60 * (60 + endMinute - startMinute);
+        eventDiv.style.height = `${height}px`;
+
         eventDiv.style.marginTop = `${marginTop}px`;
       }
     }
 
     // Check if event end is within this week
-    if (this._isThisWeek(event.dateTo)) {
-      const endDay = event.dateTo.getDay();
-      const endHour = event.dateTo.getHours();
-      const endMinute = event.dateTo.getMinutes();
-      const cell = this._getCell(endDay, endHour);
-      const eventDiv = cell.querySelector(`[data-event-id="${event.id}"]`);
-      if (eventDiv) {
-        const marginBottom = endMinute ? ((this._getCellHeightAsNumber() / 60) * (60 - endMinute)) : 0;
-        if (eventDiv.style.height) {
-          eventDiv.style.height = `calc(${eventDiv.style.height} - ${marginBottom}px)`;
-        } else {
-          eventDiv.style.height = `${this._getCellHeightAsNumber() - marginBottom}px`;
-        }
-      }
-    }
+    //if (this._isThisWeek(event.dateTo)) {
+    //const endDay = event.dateTo.getDay();
+    //const endHour = event.dateTo.getHours();
+    //const endMinute = event.dateTo.getMinutes();
+
+    //const cell = this._getCell(endDay, endHour);
+    //const eventDiv = cell.querySelector(`[data-event-id="${event.id}"]`);
+    //if (eventDiv) {
+    //const marginBottom = endMinute ? ((this._getCellHeightAsNumber() / 60) * (60 - endMinute)) : 0;
+    //if (eventDiv.style.height) {
+    //  eventDiv.style.height = `calc(${eventDiv.style.height} - ${marginBottom}px)`;
+    //} else {
+    //  eventDiv.style.height = `${this._getCellHeightAsNumber() - marginBottom}px`;
+    //}
+    //}
   }
+
 
   _getCell(day, hour) {
     const row = document.querySelector(`#calendar-body-row-${hour}`);

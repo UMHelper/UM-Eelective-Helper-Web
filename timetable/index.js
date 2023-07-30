@@ -9,10 +9,10 @@ function addEvents(events){
       var startHour = events[evt].startTime.split(":")[0];
       var startMin = events[evt].startTime.split(":")[1];
 
-      if (endMin == "00") {
-        endMin = "59";
-        endHour = endHour - 1;
-      }
+      //if (endMin == "00") {
+      //  endMin = "59";
+      //  endHour = endHour - 1;
+      //}
 
       events[evt].startTime = startHour.toString().padStart(2, '0') + ":" + startMin;
       events[evt].endTime = endHour.toString().padStart(2, '0') + ":" + endMin;
