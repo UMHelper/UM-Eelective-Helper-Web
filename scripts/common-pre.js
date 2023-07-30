@@ -262,6 +262,8 @@ function newToastMessage(message) {
     $('#toast').toast('show');
 }
 
+// TIMETABLE FUNCTION START
+
 const sortByWeekday = (a, b) => {
     const d2n = {
         'MON': 0,

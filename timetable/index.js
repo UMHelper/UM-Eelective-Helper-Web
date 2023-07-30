@@ -49,32 +49,32 @@ const d2n = {
 
 }
 
-function updateCalendar() {
+export function updateCalendar() {
   
-    console.log("Update Calendar")
-    var timetable_cart = localStorage.getItem('timetable_cart')
-    timetable_cart = JSON.parse(timetable_cart)
+  console.log("Update Calendar")
+  var timetable_cart = localStorage.getItem('timetable_cart')
+  timetable_cart = JSON.parse(timetable_cart)
 
-    var id = 0
-    var events = []
+  var id = 0
+  var events = []
 
-    for (var i in timetable_cart) {
-      var course = {}
-      course.eventName = timetable_cart[i].code; 
-      if (course.eventName.length > 4){
-        course.eventName = timetable_cart[i].code.substring(0,4) + "\n" + timetable_cart[i].code.substring(4);
-      }
-      
-      for (var j in timetable_cart[i].schedules) {
-        var dayOfWeek = d2n[timetable_cart[i].schedules[j].date]
-        var startTime = timetable_cart[i].schedules[j].time.split("-")[0]
-        var endTime = timetable_cart[i].schedules[j].time.split("-")[1]
-
-        events.push({ eventName: course.eventName, dayOfWeek: dayOfWeek, startTime: startTime, endTime: endTime, id: i })
-      }
+  for (var i in timetable_cart) {
+    var course = {}
+    course.eventName = timetable_cart[i].code; 
+    if (course.eventName.length > 4){
+      course.eventName = timetable_cart[i].code.substring(0,4) + "\n" + timetable_cart[i].code.substring(4);
     }
+    
+    for (var j in timetable_cart[i].schedules) {
+      var dayOfWeek = d2n[timetable_cart[i].schedules[j].date] + 1 
+      var startTime = timetable_cart[i].schedules[j].time.split("-")[0]
+      var endTime = timetable_cart[i].schedules[j].time.split("-")[1]
 
-    addEvents(events)
+      events.push({ eventName: course.eventName, dayOfWeek: dayOfWeek, startTime: startTime, endTime: endTime, id: i })
+    }
+  }
+
+  addEvents(events)
 
 }
 
