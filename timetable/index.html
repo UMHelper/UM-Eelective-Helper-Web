@@ -131,7 +131,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-5 small" style="max-height:600px; overflow-y: auto;">
+                <div class="col-md-5 small" style="overflow-y: auto;">
                     <div class="container-fluid container-lg scrollable timetable_cart_list" id="timetable_page_list">
 
                     </div>
@@ -144,10 +144,10 @@
     </footer>
 
     <script src="/scripts/common-after.js" async></script>
-    <script type="module" src="index.js" async defer></script>
 
-    <script>
+    <script type="module">
         updateTimetableCartList();
+        import {updateCalendar} from "./index.js"
     </script>
 
 </body>
