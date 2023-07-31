@@ -2,8 +2,8 @@
 $(function () { $("#loginPlaceholder").load("/src/login.html") });
 
 //$('#navbarTogglerDemo02 > ul').append('<li class="nav-item"><a class="nav-link" aria-current="page" href="' + '/' + '">' + '首頁 Home' + '</a></li>');
-//$('#navbarTogglerDemo02 > ul').append('<li class="nav-item"><a class="nav-link" aria-current="page" href="'
-//    + '/catalog.html' + '">' + 'Catalog' + '</a></li>');
+$('#navbarTogglerDemo02 > ul').append('<li class="nav-item"><a class="nav-link" aria-current="page" href="'
+    + '/catalog.html' + '">' + 'Catalog' + '</a></li>');
 $('#navbarTogglerDemo02 > ul').append('<li class="nav-item dropdown">'
     + '<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">'
     + 'GE' + '</a>'
@@ -59,12 +59,14 @@ function scrollNav() {
 
 $('#navbarTogglerDemo02').on('show.bs.collapse', function () {
     navbarCollapseShown = true;
-    $('#avatarNav').attr('style', 'display:none !important; margin-top: -5px; margin-bottom: -5px; --size: 36px;');
+    $('#timetable_cart').attr('style', 'display:none !important;');
+    $('#avatarNav').attr('style', 'display:none !important; ');
     scrollNav();
 })
 
 $('#navbarTogglerDemo02').on('hidden.bs.collapse', function () {
     navbarCollapseShown = false;
+    $('#timetable_cart').attr('style', 'display:flex; margin-top: -5px; margin-bottom: -5px; --size: 36px; margin-right: 5px; background-color:transparent; border: none;');
     $('#avatarNav').attr('style', 'display:flex; margin-top: -5px; margin-bottom: -5px; --size: 36px;');
     scrollNav();
 })
