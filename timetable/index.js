@@ -19,7 +19,7 @@ function addEvents(events){
 
 
       var cal = {
-        id: evt, 
+        // id: evt,
         eventName: events[evt].eventName, //events[evt].eventName, 
         dateFrom: "2018-01-0" + events[evt].dayOfWeek+"T" + events[evt].startTime + ":00.000" , 
         dateTo: "2018-01-0" + events[evt].dayOfWeek+"T" + events[evt].endTime + ":00.000" , 

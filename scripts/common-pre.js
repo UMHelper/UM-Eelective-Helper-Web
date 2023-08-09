@@ -422,4 +422,7 @@ function deleteSectionFromCart(e) {
     console.log(timetable_cart.length)
     localStorage.setItem('timetable_cart', JSON.stringify(timetable_cart))
     updateTimetableCartList()
+    if (decodeURI(window.location.pathname.split('/')[1])=='timetable'){
+        location.reload();
+    }
 }
