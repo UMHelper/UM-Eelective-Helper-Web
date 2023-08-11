@@ -2,12 +2,13 @@
 $(function () { $("#loginPlaceholder").load("/src/login.html") });
 
 //$('#navbarTogglerDemo02 > ul').append('<li class="nav-item"><a class="nav-link" aria-current="page" href="' + '/' + '">' + '首頁 Home' + '</a></li>');
-$('#navbarTogglerDemo02 > ul').append('<li class="nav-item"><a class="nav-link" aria-current="page" href="'
-    + '/catalog.html' + '">' + 'Catalog' + '</a></li>');
+//$('#navbarTogglerDemo02 > ul').append('<li class="nav-item"><a class="nav-link" aria-current="page" href="'
+//    + '/catalog.html' + '">' + 'Catalog' + '</a></li>');
 $('#navbarTogglerDemo02 > ul').append('<li class="nav-item dropdown">'
     + '<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">'
-    + 'GE' + '</a>'
+    + 'Catalog' + '</a>'
     + '<ul class="dropdown-menu" aria-labelledby="navbarDropdown" >'
+    + '<li><a class="dropdown-item" href="' + '/catalog.html' + '"target="_blank">' + '全部課程 All Courses' + '</a></li>'
     + '<li><a class="dropdown-item" href="' + '/search.html?keyword=GEGA' + '"target="_blank">' + '環球意識 GEGA' + '</a></li>'
     + '<li><a class="dropdown-item" href="' + '/search.html?keyword=GELH' + '"target="_blank">' + '文學人文 GELH' + '</a></li>'
     + '<li><a class="dropdown-item" href="' + '/search.html?keyword=GEST' + '"target="_blank">' + '科學技術 GEST' + '</a></li>'
