@@ -19,24 +19,7 @@ $(window).on('scroll', function () {
 */
 
 // crawler detection
-const detectRobot = (userAgent) => {
-  const robots = new RegExp([
-    /bot/,/spider/,/crawl/,                            // GENERAL TERMS
-    /APIs-Google/,/AdsBot/,/Googlebot/,                // GOOGLE ROBOTS
-    /mediapartners/,/Google Favicon/,
-    /FeedFetcher/,/Google-Read-Aloud/,
-    /DuplexWeb-Google/,/googleweblight/,
-    /bing/,/yandex/,/baidu/,/duckduck/,/yahoo/,        // OTHER ENGINES
-    /ecosia/,/ia_archiver/,
-    /facebook/,/instagram/,/pinterest/,/reddit/,       // SOCIAL MEDIA
-    /slack/,/twitter/,/whatsapp/,/youtube/,
-    /semrush/,                                         // OTHER
-  ].map((r) => r.source).join("|"),"i");               // BUILD REGEXP + "i" FLAG
-
-  return robots.test(userAgent);
-};
-
-if(detectRobot(navigator.userAgent)) {
+if(/bot|google|baidu|bing|msn|teoma|slurp|yandex/i.test(navigator.userAgent)) {
   $('#googleBotCourseInfo').css('display', 'block');
 }
 else {
@@ -75,14 +58,10 @@ $.ajax({
       $('#meta_faculty').html('<a href="/catalog.html?faculty=' + data.course_info.Offering_Unit + '">' + data.course_info.Offering_Unit + '</a>');
     }
     $('#meta_lang').text(data.course_info.Medium_of_Instruction ? data.course_info.Medium_of_Instruction : '-');
-    if (data.course_info.courseDescription) {
+    if (data.course_info.courseDescription)
       description += data.course_info.courseDescription.replaceAll('\n', '</p><p>') + '</p>';
-      $('#googleBotCourseDesc').html(data.course_info.courseDescription.replaceAll('\n', '</p><p>') + '</p>');
-    }
-    if (data.course_info.Intended_Learning_Outcomes) {
+    if (data.course_info.Intended_Learning_Outcomes)
       ilo += data.course_info.Intended_Learning_Outcomes.replaceAll('\n', '</p><p>') + '</p>';
-      $('#googleBotCourseIlo').html(data.course_info.Intended_Learning_Outcomes.replaceAll('\n', '</p><p>') + '</p>');
-    }
 
     var temp_desc = '';
     if (data.course_info == 'Error Code')
@@ -103,6 +82,8 @@ $.ajax({
         is_offer=true
       }
     }
+
+    console.log(is_offer)
 
     $('#title_course').html(course_code+' <span class="align-middle badge rounded-pill '
       + (is_offer ? "bg-primary" : "bg-danger")

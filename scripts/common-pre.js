@@ -409,17 +409,16 @@ function addCourseSection(section) {
 }
 
 function deleteSectionFromCart(e) {
-    //console.log(e.getAttribute('section-num'))
+    console.log(e.getAttribute('section-num'))
 
     var timetable_cart = JSON.parse(localStorage.getItem("timetable_cart"))
 
     timetable_cart = [...timetable_cart.slice(0, e.getAttribute('section-num')), ...timetable_cart.slice(e.getAttribute('section-num') + 1)]
 
-    //console.log(timetable_cart.length)
+    console.log(timetable_cart.length)
     localStorage.setItem('timetable_cart', JSON.stringify(timetable_cart))
     updateTimetableCartList()
     if (decodeURI(window.location.pathname.split('/')[1])=='timetable'){
         location.reload();
     }
 }
-
