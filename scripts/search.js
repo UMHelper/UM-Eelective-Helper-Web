@@ -50,7 +50,7 @@ $.ajax({
     }
 
     if (dataLength > 8)
-      $("#title_search").after('<div class="alert alert-info alert-dismissible fade show" role="alert" style="width: 100%">結果有點多，可以用更多關鍵字細化你的搜索！<br>Many results found. Longer keyword helps to find your target. <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
+      $("#title_search").after('<div class="alert alert-info alert-dismissible fade show" role="alert" style="width: 100%">結果有點多，可以用更多關鍵字細化你的搜索！<br>Many results found. A longer keyword may help to find your target. <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
 
   },
   error: function (data) {
